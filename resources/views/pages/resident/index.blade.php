@@ -30,25 +30,25 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        @if (count($residents)<1)
-                            <tbody>
-                                <tr>
-                                    <td colspan="11">
-                                        <p class="pt-3 text-center">Tidak ada data</p>
-                                    </td>
-                                </tr>
-                            </tbody>
+                        @if ($residents->isEmpty())
+                        <tbody>
+                            <tr>
+                                <td colspan="12">
+                                    <p class="pt-3 text-center">Tidak ada data</p>
+                                </td>
+                            </tr>
+                        </tbody>
                         @else
-                            <tbody>
-                                @foreach ($residents as $item)
+                        <tbody>
+                            @foreach ($residents as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $loop->iteration + ($residents->currentPage() - 1) * $residents->perPage() }}</td>
                                     <td>{{ $item->nik }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->gender }}</td>
                                     <td>{{ $item->birth_place }}, {{ $item->birth_date }}</td>
                                     <td>{{ $item->address }}</td>
-                                    <td>{{ $item->religion }}</th>
+                                    <td>{{ $item->religion }}</td>
                                     <td>{{ $item->marital_status }}</td>
                                     <td>{{ $item->occupation }}</td>
                                     <td>{{ $item->phone }}</td>
@@ -58,17 +58,25 @@
                                             <a href="{{ route('resident.edit', $item->id) }}" class="d-inline-block mr-2 btn-sm btn-warning">
                                                 <i class="fas fa-pen"></i>
                                             </a>
-                                            <button type="button" class= "btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $item->id }}">
+                                            <button type="button" class="btn btn-sm btn-danger mr-2" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $item->id }}">
                                                 <i class="fas fa-eraser"></i> 
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#accountDetail-{{ $item->id }}">
+                                                <i class="fas fa-search"></i> 
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                                @include ('pages.resident.confirmation-delete')
-                                @endforeach
-                            </tbody>
+                                @include('pages.resident.confirmation-delete')
+                                @include('pages.resident.detail-account')
+                            @endforeach
+                        </tbody>
                         @endif
                     </table>
+                </div>
+                {{-- Pagination Navigation --}}
+                <div class="card-footer">
+                    {{ $residents->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
 

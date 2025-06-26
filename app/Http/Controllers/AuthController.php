@@ -86,7 +86,7 @@ class AuthController extends Controller
         $user->role_id = 2; // => User (Penduduk)
         $user->saveOrFail();
 
-        return redirect('/')->with('success', 'Berhasil mendaftarkan akun, menunggu persetujuan admin');
+        return redirect('/login')->with('success', 'Berhasil mendaftarkan akun, menunggu persetujuan admin');
     }
 
     public function _logout(Request $request)
@@ -94,13 +94,13 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function logout(Request $request)
     {
         if (!Auth::check()) {
-            return redirect('/');
+            return redirect('/login');
         }
 
         return $this->_logout($request);

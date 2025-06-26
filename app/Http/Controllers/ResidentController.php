@@ -10,9 +10,10 @@ class ResidentController extends Controller
 {
     public function index()
     {
-        $residents = Resident::all();
+        $residents = Resident::with('user')->paginate(10);
+
         return view('pages.resident.index', [
-            'residents' => $residents
+            'residents' => $residents,
         ]);
     }
 

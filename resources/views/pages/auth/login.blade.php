@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -37,13 +38,15 @@
     @endif
     
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
+                    <a href="{{ route('index') }}" class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; z-index: 10;">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
