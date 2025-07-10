@@ -50,4 +50,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Resident::class);
     }
+
+    public function visiMisi()
+    {
+        return $this->hasMany(VisiMisi::class);
+    }
+
+    public function villageOfficials()
+    {
+        return $this->hasMany(VillageOfficial::class);
+    }
 }

@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a href="/profile-nagari/edit-visi-misi" class="btn btn-primary btn-sm">
+                        <a href="{{ route('profile-nagari-content.edit') }}" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit me-1"></i> Kelola Visi & Misi
                         </a>
                     </div>
