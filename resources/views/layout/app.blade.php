@@ -23,6 +23,15 @@
 
 </head>
 
+<style>
+    .collapse-inner .collapse-item {
+        color: #e0e0e0 !important;
+    }
+    .collapse-inner .collapse-item:hover {
+        color: black !important;
+    }
+</style>
+
 <body id="page-top">
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class ResidentController extends Controller
 {
+    // Fungsi untuk menampilkan halaman daftar warga
     public function index()
     {
         $residents = Resident::with('user')->paginate(10);
@@ -16,7 +17,7 @@ class ResidentController extends Controller
             'residents' => $residents,
         ]);
     }
-
+    // Fungsi untuk menampilkan halaman buat warga
     public function create()
     {
         return view('pages.resident.create');
@@ -40,15 +41,14 @@ class ResidentController extends Controller
         Resident::create($validatedData);
         return redirect('/resident')->with('success', 'Data berhasil disimpan!');
     }
-
+    // Fungsi untuk menampilkan halaman edit warga
     public function edit($id)
     {
         $resident = Resident::findOrFail($id);
         return view('pages.resident.edit', [
             'resident' => $resident
         ]);
-    }   
-
+    }   // Fungsi untuk memperbarui data warga
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -68,7 +68,7 @@ class ResidentController extends Controller
         Resident::findOrFail($id)->update($validatedData);
         return redirect('/resident')->with('success', 'Berhasil Mengubah Data');
     }
-
+    // Fungsi untuk menghapus data warga
     public function destroy($id)
     {
         $residents = Resident::findOrFail($id);

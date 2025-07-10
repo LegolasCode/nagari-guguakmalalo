@@ -34,7 +34,6 @@
                             <a href="{{ route('dashboard') }}" class="btn btn-secondary mr-2">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
-                        
                     </form>
                 </div>
             </div>
