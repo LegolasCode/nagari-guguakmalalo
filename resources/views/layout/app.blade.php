@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SiNagari - Dashboard</title>
+    <title>Sistem Informasi Nagari Guguak Malalo</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -26,6 +26,25 @@
 </head>
 
 <style>
+    #sidebarToggleTop {
+        margin-left: 100px; /* Margin default untuk tampilan responsif */
+        transition: margin-left 0.3s ease; /* Transisi halus */
+    }
+    body.sidebar-toggled #sidebarToggleTop {
+        margin-left: 100px; /* Hapus margin ketika sidebar tertutup */
+    }
+    body:not(.sidebar-toggled) #sidebarToggleTop {
+        margin-left: 0px; /* Kembali ke margin semula saat sidebar terbuka */
+    }
+    #content-wrapper {
+        padding-top: 96px;
+    }
+    #accordionSidebar {
+        z-index: 1050;
+    }
+    .navbar.fixed-top {
+        z-index: 1030;
+    }
     .collapse-inner .collapse-item {
         color: #e0e0e0 !important;
     }
@@ -34,7 +53,7 @@
     }
 </style>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
 
 @stack('scripts')
     
@@ -116,6 +135,24 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.getElementById('sidebarToggleTop');
+            const body = document.querySelector('body'); // Ambil elemen body
+
+            if (sidebarToggle && body) {
+                sidebarToggle.addEventListener('click', function() {
+                    // Toggle kelas 'sidebar-toggled' pada body saat tombol diklik
+                    body.classList.toggle('sidebar-toggled');
+                });
+
+                // Opsional: Jika sidebar juga dibuka/ditutup oleh event lain,
+                // atau jika kamu ingin memastikan status awal, kamu bisa menambahkannya.
+                // Misalnya, jika ada JS template lain yang men-toggle body class ini.
+            }
+        });
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('template/vendor/jquery/jquery.min.js') }}"></script>

@@ -3,16 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\VisiMisi;
+use App\Models\VillageOfficial; // Pastikan ini diimpor
 
 class ProfilNagariController extends Controller
 {
     public function ProfilNagariView()
     {
-        return view('user.pages.profil-nagari');
+        $visi = VisiMisi::where('type', 'visi')->first();
+
+        $misiItems = VisiMisi::where('type', 'misi')->orderBy('order')->get();
+
+        // Ambil data officials di sini, sebelum return
+        $officials = VillageOfficial::orderBy('order')->orderBy('name')->take(4)->get();
+
+        // Hanya ada satu return statement yang meneruskan semua variabel
+        return view('user.pages.profil-nagari', compact('visi', 'misiItems', 'officials'));
     }
-    public function perangkatNagariView() // Metode baru
+
+
+    public function perangkatNagariView()
     {
-        return view('user.pages.perangkat-nagari'); // Untuk sementara tanpa data
+        $officials = VillageOfficial::orderBy('order')->orderBy('name')->get(); // Changed variable name here
+
+        // Pass the variable named $officials to the view
+        return view('user.pages.perangkat-nagari', compact('officials')); // Now it matches the Blade loop
     }
 }
-

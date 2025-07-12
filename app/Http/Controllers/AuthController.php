@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return back();
+            return redirect()->intended('dashboard');
         }
 
         return view('pages.auth.login');

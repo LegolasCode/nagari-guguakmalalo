@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a href="/profile-nagari/struktur-organisasi" class="btn btn-success btn-sm">
+                        <a href="{{ route('struktur-organisasi.index') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-users-cog me-1"></i> Kelola Pengurus
                         </a>
                     </div>

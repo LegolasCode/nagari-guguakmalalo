@@ -10,6 +10,8 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfilNagariController;
 use App\Http\Controllers\ProfilNagariContentController;
 use App\Http\Controllers\StrukturOrganisasiController;
+use App\Http\Controllers\NewsController as PublicNewsController;
+use App\Http\Controllers\NewsController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -59,17 +61,25 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
  Route::get('/profile-nagari-content/edit-visi-misi', [ProfilNagariContentController::class, 'editVisiMisi'])->middleware('role:Admin')->name('profile-nagari-content.edit');
  Route::put('/profile-nagari-content/edit-visi-misi', [ProfilNagariContentController::class, 'updateVisiMisi'])->middleware('role:Admin')->name('profile-nagari-content.update');
  // Rute untuk Struktur Organisasi
- Route::get('/profile-nagari-content/struktur-organisasi', [ProfilNagariContentController::class, 'indexStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.index');
- Route::get('/profile-nagari-content/struktur-organisasi/create', [ProfilNagariContentController::class, 'createStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.create');
- Route::post('/profile-nagari-content/struktur-organisasi', [ProfilNagariContentController::class, 'storeStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.store');
- Route::get('/profile-nagari-content/struktur-organisasi/{id}/edit', [ProfilNagariContentController::class, 'editStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.edit');
- Route::put('/profile-nagari-content/struktur-organisasi/{id}', [ProfilNagariContentController::class, 'updateStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.update');
- Route::delete('/profile-nagari-content/struktur-organisasi/{id}', [ProfilNagariContentController::class, 'destroyStrukturOrganisasi'])->middleware('role:Admin')->name('profilNagari.strukturOrganisasi.destroy');
+ Route::get('/struktur-organisasi', [ProfilNagariContentController::class, 'indexStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.index');
+ Route::get('/struktur-organisasi/create', [ProfilNagariContentController::class, 'createStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.create');
+ Route::post('/struktur-organisasi', [ProfilNagariContentController::class, 'storeStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.store');
+ Route::get('/struktur-organisasi/{id}/edit', [ProfilNagariContentController::class, 'editStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.edit');
+ Route::put('/struktur-organisasi/{id}', [ProfilNagariContentController::class, 'updateStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.update');
+ Route::delete('struktur-organisasi/{id}', [ProfilNagariContentController::class, 'destroyStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.destroy');
+
+ // News
+ Route::resource('news', NewsController::class)->middleware('role:Admin');
 
 
-// Beranda
+
+// Beranda Public
 Route::get('/', [LandingPageController::class, 'LandingPageView'])->name('index');
 
 // Profil Nagari
 Route::get('/profil-nagari', [ProfilNagariController::class, 'ProfilNagariView'])->name('profil-nagari');
-Route::get('/perangkat-nagari', [ProfilNagariController::class, 'perangkatNagariView'])->name('perangkat-nagari'); // Rute baru
+Route::get('/perangkat-nagari', [ProfilNagariController::class, 'perangkatNagariView'])->name('perangkat-nagari');
+
+// Berita
+Route::get('/berita', [PublicNewsController::class, 'indexPublic'])->name('berita.index');
+Route::get('/berita/show/{slug}', [PublicNewsController::class, 'showPublic'])->name('berita.show');

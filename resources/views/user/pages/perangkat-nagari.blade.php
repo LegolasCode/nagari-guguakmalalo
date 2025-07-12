@@ -4,25 +4,34 @@
     <section class="py-5">
         <div class="container">
             <h1 class="text-center fw-bold mb-5">Seluruh Perangkat Nagari</h1>
-            {{-- Di sini Anda akan menampilkan daftar lengkap pengurus, mungkin dalam tabel atau card lebih banyak --}}
-            <p class="text-center">Daftar detail pengurus nagari akan ditampilkan di sini.</p>
-            {{-- Anda bisa loop data perangkat jika Anda meneruskannya dari controller --}}
-            {{--
-            <div class="row">
-                @foreach($perangkat as $item)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('images/' . $item->photo) }}" class="card-img-top" alt="{{ $item->name }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $item->name }}</h5>
-                                <p class="card-text">{{ $item->position }}</p>
-                                <p class="card-text small">{{ $item->task_description }}</p>
+        </div>
+        <div class="container">
+            <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center">
+                {{-- Loop untuk menampilkan daftar Pengurus dari Database --}}
+                @forelse ($officials as $official) {{-- Gunakan $officials yang diteruskan dari controller --}}
+                    <div class="col">
+                        <div class="card h-100 text-center shadow-sm">
+                            @if ($official->photo)
+                                {{-- Foto dari storage/app/public --}}
+                                <img src="{{ asset('storage/' . $official->photo) }}" class="card-img-top mx-auto mt-3 rounded-circle" alt="Foto {{ $official->name }}" style="width: 150px; height: 150px; object-fit: cover;">
+                            @else
+                                {{-- Gambar placeholder jika tidak ada foto --}}
+                                <img src="{{ asset('images/default-profile.png') }}" class="card-img-top mx-auto mt-3 rounded-circle" alt="Foto Default" style="width: 150px; height: 150px; object-fit: cover;">
+                            @endif
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <h5 class="card-title fw-bold mb-1">{{ $official->name }}</h5>
+                                    <p class="card-text text-muted mb-2">{{ $official->position }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="col-12 text-center py-4">
+                        <p class="text-muted">Data perangkat nagari belum tersedia.</p>
+                    </div>
+                @endforelse
             </div>
-            --}}
         </div>
     </section>
 @endsection

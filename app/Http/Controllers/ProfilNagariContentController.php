@@ -86,13 +86,13 @@ class ProfilNagariContentController extends Controller
         // Mengambil semua data pengurus, diurutkan berdasarkan 'order' jika ada, atau 'name'
         $officials = VillageOfficial::orderBy('order')->orderBy('name')->get();
 
-        return view('pages.profile-nagari-content.struktur-organisasi', compact('officials'));
+        return view('pages.profile-nagari-content.struktur-organisasi.index', compact('officials'));
     }
 
     // Menampilkan form untuk menambah pengurus baru.
     public function createStrukturOrganisasi()
     {
-        return view('pages.profile-nagari-content.create-struktur-organisasi');
+        return view('pages.profile-nagari-content.struktur-organisasi.create');
     }
 
     // Menangani proses penyimpanan pengurus baru.
@@ -101,7 +101,7 @@ class ProfilNagariContentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi foto
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240', // Validasi foto
             'task_description' => 'nullable|string',
             'order' => 'nullable|integer',
         ]);
@@ -128,7 +128,7 @@ class ProfilNagariContentController extends Controller
     {
         $official = VillageOfficial::findOrFail($id); // Mencari pengurus, jika tidak ada akan 404
 
-        return view('profile-nagari-content.edit-struktur-organisasi', compact('official'));
+        return view('pages.profile-nagari-content.struktur-organisasi.edit', compact('official'));
     }
 
     // Menangani proses update pengurus.
@@ -139,7 +139,7 @@ class ProfilNagariContentController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi foto
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240', // Validasi foto
             'task_description' => 'nullable|string',
             'order' => 'nullable|integer',
         ]);
