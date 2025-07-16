@@ -89,10 +89,12 @@
             <a class="collapse-item" href="/news"><i class="fas fa-fw fa-newspaper mr-2"></i>Berita</a>
             <a class="collapse-item" href="/gallery"><i class="fas fa-fw fa-images mr-2"></i>Galeri</a>
             <a class="collapse-item" href="/umkm"><i class="fas fa-fw fa-store mr-2"></i>UMKM</a>
+            <a class="collapse-item" href="/tourism-spots"><i class="fas fa-fw fa-map-marked-alt mr-2"></i>Wisata</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-seedling mr-2"></i>Pertanian</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-paw mr-2"></i>Peternakan</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-balance-scale mr-2"></i>Hukum</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-heart mr-2"></i>Kesehatan</a>
+            
         </div>
     </div>
 </li>

@@ -5,7 +5,7 @@
     <h2 class="text-center fw-bold mb-4">Galeri Nagari</h1>
     <hr class="mb-5">
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4 g-4">
         @forelse ($galleries as $item)
             <div class="col">
                 <div class="card h-100 shadow-sm border-0">
@@ -22,9 +22,6 @@
                             <img src="{{ asset('images/default-gallery.png') }}" class="card-img-top rounded-lg" alt="Gambar Default" style="height: 250px; object-fit: cover;">
                         @endif
                     </a>
-                    <div class="d-flex flex-column text-center">
-                        <p class="fw-bold mt-2">{{ $item->activity_name }}</p>
-                    </div>
                 </div>
             </div>
         @empty

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('activity_name'); // Nama Kegiatan
             $table->string('photo'); // Path ke file foto galeri (wajib)
             $table->date('activity_date'); // Tanggal Kegiatan
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); // Admin yang mengunggah

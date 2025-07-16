@@ -25,7 +25,6 @@
                             <thead>
                                 <tr>
                                     <th style="width: 50px;">No</th>
-                                    <th>Nama Kegiatan</th>
                                     <th>Foto</th>
                                     <th>Tanggal Kegiatan</th>
                                     <th style="width: 150px;">Aksi</th>
@@ -35,7 +34,6 @@
                                 @forelse ($galleries as $item)
                                     <tr>
                                         <td>{{ $loop->iteration + ($galleries->currentPage() - 1) * $galleries->perPage() }}</td>
-                                        <td>{{ $item->activity_name }}</td>
                                         <td>
                                             @if ($item->photo)
                                                 <img src="{{ asset('storage/' . $item->photo) }}" alt="{{ $item->activity_name }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
@@ -47,10 +45,10 @@
                                         <td>
                                             <div class="d-flex">
                                                 <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-warning btn-sm me-2">
-                                                    <i class="fas fa-edit"></i> Edit
+                                                    <i class="fas fa-pen"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteGalleryModal{{ $item->id }}">
-                                                    <i class="fas fa-trash"></i> Hapus
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </td>

@@ -10,7 +10,6 @@ class Gallery extends Model
     use HasFactory;
 
     protected $fillable = [
-        'activity_name',
         'photo',
         'activity_date',
         'user_id',

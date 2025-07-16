@@ -108,7 +108,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <i class="fa-solid fa-users-line fa-4x text-primary mb-3"></i>
                                 <h3 class="card-title display-4 fw-bold text-primary">{{ number_format($totalPenduduk) }}</h3> {{-- Tampilkan Total Penduduk --}}
                                 <p class="card-text fs-5">Total Penduduk</p>
@@ -118,7 +118,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <i class="fa-solid fa-person fa-4x text-info mb-3"></i>
                                 <h3 class="card-title display-4 fw-bold text-info">{{ number_format($lakiLaki) }}</h3> {{-- Tampilkan Jumlah Laki-laki --}}
                                 <p class="card-text fs-5">Laki-laki</p>
@@ -128,7 +128,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <i class="fa-solid fa-person-dress fa-4x text-danger mb-3"></i>
                                 <h3 class="card-title display-4 fw-bold text-danger">{{ number_format($perempuan) }}</h3> {{-- Tampilkan Jumlah Perempuan --}}
                                 <p class="card-text fs-5">Perempuan</p>
@@ -183,7 +183,7 @@
             <div class="container">
                 <h2 class="text-center mb-5 fw-bold">Galeri Terbaru Nagari</h2>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4">
                     @forelse ($latestGalleries as $item) {{-- Loop melalui 6 gambar galeri terbaru --}}
                         <div class="col">
                             <div class="card h-100 shadow-sm border-0">
@@ -192,9 +192,6 @@
                                 @else
                                     <img src="{{ asset('images/default-gallery.png') }}" class="card-img-top rounded-lg" alt="Gambar Default" style="height: 250px; object-fit: cover;">
                                 @endif
-                                <div class="d-flex flex-column text-center">
-                                    <p class="fw-bold mt-2">{{ $item->activity_name }}</p>
-                                </div>
                             </div>
                         </div>
                     @empty

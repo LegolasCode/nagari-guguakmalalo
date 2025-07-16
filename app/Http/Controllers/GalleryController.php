@@ -28,7 +28,6 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'activity_name' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240', 
             'activity_date' => 'required|date',
         ]);
@@ -36,7 +35,6 @@ class GalleryController extends Controller
         $photoPath = $request->file('photo')->store('photos/gallery', 'public'); 
 
         Gallery::create([
-            'activity_name' => $validatedData['activity_name'],
             'photo' => $photoPath,
             'activity_date' => Carbon::parse($validatedData['activity_date']),
             'user_id' => auth()->id(), 
@@ -55,7 +53,6 @@ class GalleryController extends Controller
     public function update(Request $request, Gallery $gallery) // Menggunakan Route Model Binding
     {
         $validatedData = $request->validate([
-            'activity_name' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240', // Foto opsional saat update
             'activity_date' => 'required|date',
             'remove_photo' => 'nullable|boolean', // Untuk checkbox hapus foto
@@ -76,7 +73,6 @@ class GalleryController extends Controller
         }
 
         $gallery->update([
-            'activity_name' => $validatedData['activity_name'],
             'photo' => $photoPath,
             'activity_date' => Carbon::parse($validatedData['activity_date']),
             'user_id' => auth()->id(), // Catat user terakhir yang update

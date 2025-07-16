@@ -22,11 +22,6 @@
         @csrf
         <div class="card-body bg-white mb-3 shadow-sm">
             <div class="mb-3">
-                <label for="activity_name" class="form-label">Nama Kegiatan</label>
-                <input type="text" id="activity_name" name="activity_name" class="form-control @error('activity_name') is-invalid @enderror" value="{{ old('activity_name') }}">
-                @error('activity_name')<div class="invalid-feedback">{{ $message }}</div>@enderror
-            </div>
-            <div class="mb-3">
                 <label for="photo" class="form-label">Foto Kegiatan</label>
                 <input type="file" id="photo" name="photo" class="form-control @error('photo') is-invalid @enderror">
                 <div class="form-text text-muted">Format: JPG, PNG, GIF, SVG. Maksimal: {{ ini_get('upload_max_filesize') }}.</div>

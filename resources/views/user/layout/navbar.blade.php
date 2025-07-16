@@ -28,6 +28,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownInformasi">
                             <li><a class="dropdown-item" href="{{ url('/berita') }}">Berita</a></li>
                             <li><a class="dropdown-item" href="{{ url('/galeri') }}">Galeri</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/wisata') }}">Wisata</a></li>
                             <li><a class="dropdown-item" href="{{ url('/pertanian') }}">Pertanian</a></li>
                             <li><a class="dropdown-item" href="{{ url('/peternakan') }}">Peternakan</a></li>
                         </ul>

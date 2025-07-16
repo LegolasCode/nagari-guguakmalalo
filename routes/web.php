@@ -13,6 +13,7 @@ use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\TourismSpotController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -75,6 +76,9 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Gallery
   Route::resource('gallery', GalleryController::class)->middleware('role:Admin');
 
+  // Tourism Spot
+  Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
+
 
 
 // Beranda Public
@@ -91,3 +95,7 @@ Route::get('/berita/show/{slug}', [PublicNewsController::class, 'showPublic'])->
 
 // Galeri
 Route::get('/galeri', [GalleryController::class, 'indexPublic'])->name('galeri.index');
+
+// Wisata
+Route::get('/wisata', [TourismSpotController::class, 'indexPublic'])->name('wisata.index'); // Untuk daftar semua wisata
+Route::get('/wisata/{tourismSpot:slug}', [TourismSpotController::class, 'showPublic'])->name('wisata.show'); // Untuk detail wisata

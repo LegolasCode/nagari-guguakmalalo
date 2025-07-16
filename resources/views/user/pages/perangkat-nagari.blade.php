@@ -3,7 +3,7 @@
 @section('content')
     <section class="py-5">
         <div class="container">
-            <h1 class="text-center fw-bold mb-5">Seluruh Perangkat Nagari</h1>
+            <h2 class="text-center fw-bold mb-5">Seluruh Perangkat Nagari</h2>
         </div>
         <div class="container">
             <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center">
