@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\VisiMisi;
 use App\Models\Resident;
 use App\Models\News;
+use App\Models\Gallery;
 
 class LandingPageController extends Controller
 {
@@ -28,7 +29,11 @@ class LandingPageController extends Controller
         ->take(6)                           // Ambil hanya 6
         ->get();
 
-        return view('user.pages.index', compact('visi', 'misiItems', 'totalPenduduk', 'lakiLaki', 'perempuan', 'latestNews'));
+        // --- Ambil 6 Gambar Galeri Terbaru ---
+        $latestGalleries = Gallery::orderBy('activity_date', 'desc') // Urutkan berdasarkan tanggal kegiatan terbaru
+                                 ->take(6)                         // Ambil hanya 6
+                                 ->get();
+        return view('user.pages.index', compact('visi', 'misiItems', 'totalPenduduk', 'lakiLaki', 'perempuan', 'latestNews', 'latestGalleries'));
     }
 }
 

@@ -174,7 +174,39 @@
 
                 <div class="text-center mt-5">
                     {{-- Tombol untuk melihat semua berita --}}
-                    <a href="{{ route('berita.index') }}" class="btn btn-outline-primary btn-md px-4">Lihat Semua Berita <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    <a href="{{ route('berita.index') }}" class="btn btn-outline-warning btn-md px-4">Lihat Semua Berita <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeri-nagari" class="py-5"> {{-- Warna background default (putih) --}}
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">Galeri Terbaru Nagari</h2>
+
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @forelse ($latestGalleries as $item) {{-- Loop melalui 6 gambar galeri terbaru --}}
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0">
+                                @if ($item->photo)
+                                    <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top rounded-lg" alt="{{ $item->activity_name }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/default-gallery.png') }}" class="card-img-top rounded-lg" alt="Gambar Default" style="height: 250px; object-fit: cover;">
+                                @endif
+                                <div class="d-flex flex-column text-center">
+                                    <p class="fw-bold mt-2">{{ $item->activity_name }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12 text-center py-5">
+                            <p>Belum ada foto galeri terbaru yang dapat ditampilkan.</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                <div class="text-center mt-5">
+                    {{-- Tombol untuk melihat semua galeri --}}
+                    <a href="{{ route('galeri.index') }}" class="btn btn-outline-warning btn-md px-4">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>

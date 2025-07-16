@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('sejarah-nagari') }}" class="btn btn-primary btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="{{ route('sejarah-nagari') }}" class="btn btn-warning btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('perangkat-nagari') }}" class="btn btn-primary btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="{{ route('perangkat-nagari') }}" class="btn btn-warning btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>
