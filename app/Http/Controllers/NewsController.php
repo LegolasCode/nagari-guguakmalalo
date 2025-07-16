@@ -10,32 +10,26 @@ use Illuminate\Support\Str; // Untuk membuat slug
 
 class NewsController extends Controller
 {
-    /**
-     * Menampilkan daftar semua berita di halaman admin.
-     */
+    // Menampilkan daftar semua berita di halaman admin.
     public function index()
     {
         $news = News::orderBy('published_at', 'desc')->paginate(6); // Ambil berita terbaru, dengan pagination
         return view('pages.news.index', compact('news'));
     }
 
-    /**
-     * Menampilkan form untuk membuat berita baru.
-     */
+    // Menampilkan form untuk membuat berita baru.
     public function create()
     {
         return view('pages.news.create');
     }
 
-    /**
-     * Menyimpan berita baru ke database.
-     */
+    // Menyimpan berita baru ke database.
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240', // Contoh validasi gambar 2MB
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240', 
             'published_at' => 'nullable|date',
         ]);
 
@@ -56,25 +50,19 @@ class NewsController extends Controller
         return redirect('/news')->with('success', 'Berita berhasil ditambahkan!');
     }
 
-    /**
-     * Menampilkan detail satu berita (opsional, biasanya untuk tampilan publik).
-     */
+    // Menampilkan detail satu berita (opsional, biasanya untuk tampilan publik).
     public function show(News $news)
     {
         return view('pages.news.show', compact('news')); // Atau bisa diarahkan ke tampilan publik
     }
 
-    /**
-     * Menampilkan form untuk mengedit berita yang ada.
-     */
+    // Menampilkan form untuk mengedit berita yang ada.
     public function edit(News $news) // Menggunakan Route Model Binding
     {
         return view('pages.news.edit', compact('news'));
     }
 
-    /**
-     * Memperbarui berita di database.
-     */
+    // Memperbarui berita di database.
     public function update(Request $request, News $news) // Menggunakan Route Model Binding
     {
         $validatedData = $request->validate([
@@ -137,8 +125,8 @@ class NewsController extends Controller
                         ->firstOrFail();
 
         // Ambil 6 berita terbaru lainnya, kecuali berita yang sedang dibaca saat ini
-        $relatedNews = News::where('id', '!=', $newsItem->id) // Kecualikan berita saat ini
-                           ->whereNotNull('published_at')     // Pastikan sudah dipublikasi
+        $relatedNews = News::where('id', '!=', $newsItem->id) 
+                           ->whereNotNull('published_at')     
                            ->orderBy('published_at', 'desc')  // Urutkan dari yang terbaru
                            ->take(6)                           // Ambil hanya 6
                            ->get();

@@ -87,7 +87,7 @@
         <div class="collapse-inner">
             <a class="collapse-item" href="/profile-nagari-content"><i class="fas fa-fw fa-building mr-2"></i>Profil Nagari</a>
             <a class="collapse-item" href="/news"><i class="fas fa-fw fa-newspaper mr-2"></i>Berita</a>
-            <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-images mr-2"></i>Galeri</a>
+            <a class="collapse-item" href="/gallery"><i class="fas fa-fw fa-images mr-2"></i>Galeri</a>
             <a class="collapse-item" href="/umkm"><i class="fas fa-fw fa-store mr-2"></i>UMKM</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-seedling mr-2"></i>Pertanian</a>
             <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-paw mr-2"></i>Peternakan</a>

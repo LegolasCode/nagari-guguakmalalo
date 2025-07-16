@@ -29,4 +29,9 @@ class ProfilNagariController extends Controller
         // Pass the variable named $officials to the view
         return view('user.pages.perangkat-nagari', compact('officials')); // Now it matches the Blade loop
     }
+
+    public function sejarahNagariView()
+    {
+        return view('user.pages.sejarah-nagari');
+    }
 }

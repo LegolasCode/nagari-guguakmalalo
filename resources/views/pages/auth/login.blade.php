@@ -23,7 +23,43 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<style>
+    body {
+        /* Background gambar */
+        background-size: cover; /* Menutupi seluruh area */
+        background-position: center; /* Memusatkan gambar */
+        background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+        
+        height: 100vh; /* Pastikan body setinggi viewport */
+        position: relative; /* Penting untuk pseudo-element overlay */
+        overflow: hidden; /* Mencegah scroll yang tidak diinginkan jika gambar terlalu besar */
+    }
+
+    /* Menambahkan overlay gelap sebagai pseudo-element */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan opacity 50% */
+        z-index: 1; /* Pastikan overlay di atas gambar background */
+    }
+
+    .container { /* Sesuaikan selektor ini jika kontainer konten kamu punya kelas lain */
+        position: relative;
+        z-index: 2; /* Harus lebih tinggi dari z-index overlay */
+    }
+
+    .bg-login-image {
+        background: url('{{ asset('images/hero_slide3.jpg') }}'); /* Ganti dengan path gambar kamu */
+        background-position: center;
+        background-size: cover;
+    }
+</style>
+
+<body class="bg-cover d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/hero_slide1.jpg') }}');">
 
 <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -50,11 +86,13 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                                
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
                                     <form class="user" action="/login" method="POST">
                                         @csrf
@@ -76,7 +114,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/register">Create an Account!</a>
+                                        <a class="small" href="/register">Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>

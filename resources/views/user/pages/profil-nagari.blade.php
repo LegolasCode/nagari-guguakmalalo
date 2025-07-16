@@ -63,11 +63,12 @@
             <div class="col-lg-8 col-md-7">
                 <p class="mb-4">
                     Nagari Guguak Malalo adalah salah satu nagari adat yang kaya akan sejarah dan budaya di Kabupaten Tanah Datar, Sumatera Barat. Berlokasi strategis di lereng Bukit Barisan, nagari ini telah menjadi saksi bisu perjalanan waktu dan perkembangan peradaban masyarakat Minangkabau.
-                </p>
-                <p class="mb-4">
                     Sejak dahulu kala, Guguak Malalo dikenal sebagai daerah agraris yang subur, dengan mayoritas penduduknya berprofesi sebagai petani. Kehidupan sosial masyarakatnya sangat erat kaitannya dengan nilai-nilai adat dan agama, di mana "Adat Basandi Syarak, Syarak Basandi Kitabullah" menjadi landasan utama dalam setiap sendi kehidupan. Berbagai tradisi dan upacara adat masih terus dilestarikan hingga kini, menunjukkan kuatnya akar budaya yang diwarisi dari nenek moyang.
                 </p>
             </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ route('sejarah-nagari') }}" class="btn btn-primary btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>
@@ -103,8 +104,7 @@
         </div>
 
         <div class="text-center mt-5">
-            {{-- Asumsi rute 'perangkat-nagari' adalah rute untuk halaman daftar lengkap pengurus --}}
-            <a href="{{ route('perangkat-nagari') }}" class="btn btn-primary btn-lg px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="{{ route('perangkat-nagari') }}" class="btn btn-primary btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>

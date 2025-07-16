@@ -29,6 +29,8 @@
     #sidebarToggleTop {
         margin-left: 100px; /* Margin default untuk tampilan responsif */
         transition: margin-left 0.3s ease; /* Transisi halus */
+        position: relative;
+        z-index: 1051;
     }
     body.sidebar-toggled #sidebarToggleTop {
         margin-left: 100px; /* Hapus margin ketika sidebar tertutup */
@@ -146,10 +148,6 @@
                     // Toggle kelas 'sidebar-toggled' pada body saat tombol diklik
                     body.classList.toggle('sidebar-toggled');
                 });
-
-                // Opsional: Jika sidebar juga dibuka/ditutup oleh event lain,
-                // atau jika kamu ingin memastikan status awal, kamu bisa menambahkannya.
-                // Misalnya, jika ada JS template lain yang men-toggle body class ini.
             }
         });
     </script>

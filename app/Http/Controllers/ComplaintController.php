@@ -118,6 +118,6 @@ class ComplaintController extends Controller
     $complaint->save();
 
     return redirect()->back()->with('success', 'Status aduan diperbarui.');
-}
+    }
 
 }

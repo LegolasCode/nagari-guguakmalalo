@@ -11,10 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProfilNagariContentController extends Controller
 {
-    /**
-     * Menampilkan halaman indeks untuk manajemen konten profil nagari.
-     * Terdapat tombol untuk Visi & Misi dan Struktur Organisasi.
-     */
+    // Menampilkan halaman indeks untuk manajemen konten profil nagari.
     public function index()
     {
         return view('pages.profile-nagari-content.index');
@@ -25,9 +22,7 @@ class ProfilNagariContentController extends Controller
     {
         $visi = VisiMisi::where('type', 'visi')->firstOrNew(['type' => 'visi']);
         $misiItems = VisiMisi::where('type', 'misi')->orderBy('order')->get();
-        // --- Perubahan di sini: Hitung misiIndex di controller ---
         $misiIndex = count($misiItems);
-        // --- End Perubahan ---
         return view('pages.profile-nagari-content.edit-visi-misi', compact('visi', 'misiItems', 'misiIndex'));
     }
 

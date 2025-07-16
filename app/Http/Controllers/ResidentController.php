@@ -9,10 +9,19 @@ use Illuminate\Http\Request;
 class ResidentController extends Controller
 {
     // Fungsi untuk menampilkan halaman daftar warga
-    public function index()
+    public function index(Request $request)
     {
-        $residents = Resident::with('user')->paginate(10);
-
+        $query = Resident::query(); // Mulai query dari model Resident
+        // Jika ada parameter 'search' di URL
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('nik', 'like', '%' . $search . '%') // Cari di kolom NIK
+                  ->orWhere('name', 'like', '%' . $search . '%'); // Atau di kolom Nama
+        }
+        // Terapkan with('user') dan paginate(10) langsung pada objek $query
+        $residents = $query->with('user')->paginate(10);
+        // --- AKHIR PERBAIKAN ---
+    
         return view('pages.resident.index', [
             'residents' => $residents,
         ]);

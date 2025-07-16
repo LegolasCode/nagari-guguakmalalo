@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfilNagariContentController;
 use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\GalleryController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -26,8 +27,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 // Resident
-Route::get('/resident', [ResidentController::class, 'index'])->middleware('role:Admin');              
-Route::get('/resident/create', [ResidentController::class, 'create'])->middleware('role:Admin');
+Route::get('/resident', [ResidentController::class, 'index'])->middleware('role:Admin')->name('pages.resident.index');;              
+Route::get('/resident/create', [ResidentController::class, 'create'])->middleware('role:Admin')->name('resident.index');;
 Route::get('/resident/{id}/edit', [ResidentController::class, 'edit'])->middleware('role:Admin')->name('resident.edit');
 Route::post('/resident', [ResidentController::class, 'store'])->middleware('role:Admin')->name('resident.store');
 Route::put('/resident/{id}', [ResidentController::class, 'update'])->middleware('role:Admin');
@@ -71,6 +72,9 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
  // News
  Route::resource('news', NewsController::class)->middleware('role:Admin');
 
+  // Gallery
+  Route::resource('gallery', GalleryController::class)->middleware('role:Admin');
+
 
 
 // Beranda Public
@@ -79,7 +83,11 @@ Route::get('/', [LandingPageController::class, 'LandingPageView'])->name('index'
 // Profil Nagari
 Route::get('/profil-nagari', [ProfilNagariController::class, 'ProfilNagariView'])->name('profil-nagari');
 Route::get('/perangkat-nagari', [ProfilNagariController::class, 'perangkatNagariView'])->name('perangkat-nagari');
+Route::get('/sejarah-nagari', [ProfilNagariController::class, 'sejarahNagariView'])->name('sejarah-nagari');
 
 // Berita
 Route::get('/berita', [PublicNewsController::class, 'indexPublic'])->name('berita.index');
 Route::get('/berita/show/{slug}', [PublicNewsController::class, 'showPublic'])->name('berita.show');
+
+// Galeri
+Route::get('/galeri', [GalleryController::class, 'indexPublic'])->name('galeri.index');
