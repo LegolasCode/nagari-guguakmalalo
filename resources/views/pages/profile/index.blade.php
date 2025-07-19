@@ -30,9 +30,9 @@
                         <input type="email" class="form-control" value="{{ $user->email }}" disabled>
                     </div>
 
-                    <div class="d-flex justify-content-end gap-2">
+                    <div class="d-flex justify-content-end">
                         <a href="{{ route('dashboard') }}" class="btn btn-secondary mr-2">Kembali</a>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        <button type="submit" class="btn btn-success">Simpan Perubahan</button>
                     </div>
                 </form>
                 </div>

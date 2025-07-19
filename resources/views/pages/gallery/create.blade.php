@@ -33,7 +33,7 @@
                 @error('activity_date')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
         </div>
-        <div class="card-footer d-flex justify-content-end" style="gap: 10px;">
+        <div class="card-footer d-flex justify-content-end">
             <a href="{{ route('gallery.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
             <button type="submit" class="btn btn-success">Simpan</button>
         </div>

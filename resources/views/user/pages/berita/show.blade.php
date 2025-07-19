@@ -24,7 +24,7 @@
                     </div>
 
                     <hr class="my-5">
-                    <a href="{{ route('berita.index') }}" class="btn btn-outline-primary"><i class="fa-solid fa-arrow-left me-2"></i> Kembali</a>
+                    <a href="{{ route('berita.index') }}" class="btn btn-custom"><i class="fa-solid fa-arrow-left me-2"></i> Kembali</a>
                 </div>
             </div>
         </div>

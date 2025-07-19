@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Manajemen Berita</h1>
-        <a href="{{ route('news.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="{{ route('news.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
             <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Berita
         </a>
     </div>
@@ -20,8 +20,23 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-body">
+                    <form action="{{ route('news.index') }}" method="GET" class="mb-3">
+                            <div class="row justify-content-end"> {{-- Tambahkan row dan justify-content-center --}}
+                                <div class="col-md-6 col-lg-4"> {{-- Batasi lebar di sini --}}
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Judul..."
+                                            aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-success" type="submit">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th style="width: 50px;">No</th>

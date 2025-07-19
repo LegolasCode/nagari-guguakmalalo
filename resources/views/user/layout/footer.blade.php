@@ -1,4 +1,4 @@
-<footer class="bg-primary text-white py-5">
+<footer class="text-white py-5" style="background-color: #003d4d;">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4 mb-md-0">
@@ -50,7 +50,7 @@
 
         <hr class="border-top border-light mt-4">
         <div class="text-center small">
-            &copy; 2025 Nagari Guguak Malalo. All rights reserved.
+            &copy; 2025 Nagari Guguak Malalo X KKN UNAND. All rights reserved.
         </div>
     </div>
 </footer>

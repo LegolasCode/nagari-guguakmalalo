@@ -53,6 +53,7 @@
     .collapse-inner .collapse-item:hover {
         color: black !important;
     }
+
 </style>
 
 <body id="page-top" class="sidebar-toggled">
@@ -131,7 +132,7 @@
                 <div class="modal-body">Apakah anda yakin akan keluar dari aplikasi?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-primary">Logout</button>
+                    <button type="submit" class="btn btn-danger">Logout</button>
                 </div>
             </div>
             </form>

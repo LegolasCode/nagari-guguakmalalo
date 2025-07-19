@@ -10,8 +10,9 @@
             <div class="carousel-item active">
             <div class="hero-slide bg-cover d-flex align-items-center justify-content-center text-white" style="background-image: url('{{ asset('images/hero_slide1.jpg') }}');">
                 <div class="text-center">
-                  <h1 class="display-4 fw-bold">Selamat Datang di Website Nagari</h1>
-                  <p class="lead">Sumber informasi Nagari Guguak Malalo</p>
+                  <h1 class="display-4 fw-bold">Selamat Datang di</h1>
+                  <h1 class="display-4 fw-bold">Nagari Guguak Malalo</h1>
+                  <p class="lead">Sumber informasi dan layanan Nagari Guguak Malalo</p>
                 </div>
               </div>
             </div>
@@ -71,7 +72,7 @@
       </section>
 
       <!-- Jelajahi Desa Section -->
-        <section id="jelajahi-desa" class="py-5 bg-light">
+        <section id="jelajahi-desa" class="py-4 bg-light">
             <div class="container text-center">
                 <h2 class="mb-5 fw-bold">Jelajahi Nagari Guguak Malalo</h2>
                 <div class="row row-cols-2 row-cols-lg-4 g-4">
@@ -92,7 +93,7 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a href="#pariwisata-detail" class="btn btn-outline-info btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
+                        <a href="{{ url('/wisata') }}" class="btn btn-outline-info btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-camera-retro fa-3x mb-3"></i> <span class="fw-semibold fs-5">Pariwisata</span>
                         </a>
                     </div>
@@ -100,38 +101,53 @@
             </div>
         </section>
 
-        <!-- Data Penduduk Section -->
-        <section id="data-penduduk" class="py-5">
+        <!-- Statistik Nagari Section -->
+        <section id="statistik-nagari" class="py-4">
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Data Penduduk Nagari</h2>
+                <h2 class="text-center mb-5 fw-bold">Statistik Nagari</h2>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
+                <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
                     <div class="col">
-                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-users-line fa-4x text-primary mb-3"></i>
-                                <h3 class="card-title display-4 fw-bold text-primary">{{ number_format($totalPenduduk) }}</h3> {{-- Tampilkan Total Penduduk --}}
-                                <p class="card-text fs-5">Total Penduduk</p>
+                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-users fa-3x text-primary mb-3"></i> <h3 class="card-title display-5 fw-bold text-primary">{{ number_format($totalPenduduk) }}</h3>
+                                <p class="card-text fs-6">Jumlah Penduduk</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col">
-                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-person fa-4x text-info mb-3"></i>
-                                <h3 class="card-title display-4 fw-bold text-info">{{ number_format($lakiLaki) }}</h3> {{-- Tampilkan Jumlah Laki-laki --}}
-                                <p class="card-text fs-5">Laki-laki</p>
+                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-store fa-3x text-success mb-3"></i> <h3 class="card-title display-5 fw-bold text-success">10</h3> {{-- Anda perlu variabel $jumlahUmkm dari backend --}}
+                                <p class="card-text fs-6">Jumlah UMKM</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="col">
-                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center">
-                            <div class="card-body text-center">
-                                <i class="fa-solid fa-person-dress fa-4x text-danger mb-3"></i>
-                                <h3 class="card-title display-4 fw-bold text-danger">{{ number_format($perempuan) }}</h3> {{-- Tampilkan Jumlah Perempuan --}}
-                                <p class="card-text fs-5">Perempuan</p>
+                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-seedling fa-3x text-info mb-3"></i> <h3 class="card-title display-5 fw-bold text-info">50</h3> {{-- Anda perlu variabel $jumlahPertanian dari backend --}}
+                                <p class="card-text fs-6">Jumlah Pertanian</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-cow fa-3x text-warning mb-3"></i> <h3 class="card-title display-5 fw-bold text-warning">20</h3> {{-- Anda perlu variabel $jumlahPeternakan dari backend --}}
+                                <p class="card-text fs-6">Jumlah Peternakan</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                            <div class="card-body">
+                                <i class="fa-solid fa-stethoscope fa-3x text-danger mb-3"></i> <h3 class="card-title display-5 fw-bold text-danger">30</h3> {{-- Anda perlu variabel $jumlahNakes dari backend --}}
+                                <p class="card-text fs-6">Jumlah Tenaga Kesehatan</p>
                             </div>
                         </div>
                     </div>
@@ -161,12 +177,12 @@
                                     <p class="card-text flex-grow-1">{{ Str::limit(strip_tags($item->content), 100, '...') }}</p>
                                 </div>
                                 <div class="card-footer bg-white border-0 d-flex justify-content-end">
-                                    <a href="{{ route('berita.show', $item->slug) }}" class="btn btn-sm btn-primary">Baca Selengkapnya</a>
+                                    <a href="{{ route('berita.show', $item->slug) }}" class="btn btn-sm btn-custom-readmore">Baca Selengkapnya</a>
                                 </div>
                             </div>
                         </div>
                     @empty
-                        <div class="col-12 text-center py-5">
+                        <div class="col-12 text-center py-4">
                             <p>Belum ada berita terbaru yang dapat ditampilkan.</p>
                         </div>
                     @endforelse
@@ -174,7 +190,7 @@
 
                 <div class="text-center mt-5">
                     {{-- Tombol untuk melihat semua berita --}}
-                    <a href="{{ route('berita.index') }}" class="btn btn-outline-warning btn-md px-4">Lihat Semua Berita <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    <a href="{{ route('berita.index') }}" class="btn btn-custom btn-md px-4">Lihat Semua Berita <i class="fa-solid fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
@@ -203,8 +219,29 @@
 
                 <div class="text-center mt-5">
                     {{-- Tombol untuk melihat semua galeri --}}
-                    <a href="{{ route('galeri.index') }}" class="btn btn-outline-warning btn-md px-4">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    <a href="{{ route('galeri.index') }}" class="btn btn-custom btn-md px-4">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ms-2"></i></a>
                 </div>
+            </div>
+        </section>
+
+        <section id="wisata-landing" class="py-5 text-white d-flex align-items-center justify-content-center" style="
+            background-image: url('{{ asset('images/wisata.jpg') }}'); {{-- Ganti dengan gambar wisata pilihan kamu --}}
+            background-size: cover;
+            background-position: center;
+            min-height: 500px; {{-- Tinggi minimal section --}}
+            position: relative;">
+
+            {{-- Overlay gelap di atas gambar background --}}
+            <div class="overlay" style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
+
+            <div class="container text-center" style="position: relative; z-index: 2;">
+                <h2 class="display-4 fw-bold mb-4">Pesona Wisata Nagari</h2>
+                <p class="lead mb-5 mx-auto" style="max-width: 800px;">
+                    Nagari Guguak Malalo menyimpan keindahan alam dan kekayaan budaya yang siap dijelajahi. Setiap sudut Nagari menawarkan pengalaman tak terlupakan.
+                </p>
+                <a href="{{ route('wisata.index') }}" class="btn btn-light btn-md px-4 shadow-sm">
+                    Lihat Semua Wisata <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
             </div>
         </section>
 @endsection

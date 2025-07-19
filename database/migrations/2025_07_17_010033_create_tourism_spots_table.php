@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tourism-spots', function (Blueprint $table) {
+        Schema::create('tourism_spots', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Nama tempat wisata
             $table->string('slug')->unique(); // Untuk URL yang rapi
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tourism-spots');
+        Schema::dropIfExists('tourism_spots');
     }
 };

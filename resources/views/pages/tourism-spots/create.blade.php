@@ -1,18 +1,23 @@
 @extends('layout.app')
 
 @section('content')
-<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Tambah Wisata Baru</h1>
+    </div>
 
-    <h1 class="h3 mb-4 text-gray-800">Tambah Tempat Wisata</h1>
-
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Form Tambah Tempat Wisata</h6>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <div class="card-body">
-            <form action="{{ route('tourism-spots.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+    @endif
 
+        <form action="{{ route('tourism-spots.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="card-body bg-white mb-3 shadow-sm">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama Tempat Wisata <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
@@ -55,11 +60,11 @@
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="7" required>{{ old('description') }}</textarea>
                     @error('description')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
-
-                <a href="{{ route('tourism-spots.index') }}" class="btn btn-secondary">Batal</a>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </form>
-        </div>
-    </div>
-</div>
+            </div>
+            
+            <div class="card-footer d-flex justify-content-end">
+                <a href="/tourism-spots" class="btn btn-outline-secondary me-2">Kembali</a>
+                <button type="submit" class="btn btn-success">Simpan</button>
+            </div>
+        </form>
 @endsection

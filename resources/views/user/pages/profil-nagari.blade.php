@@ -11,7 +11,7 @@
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm h-100">
                     <div class="card-body p-4">
-                        <h3 class="card-title fw-bold text-primary mb-3"><i class="fa-solid fa-eye me-2"></i> Visi Nagari</h3>
+                        <h3 class="card-title fw-bold text-success mb-3"><i class="fa-solid fa-eye me-2"></i> Visi Nagari</h3>
                         {{-- Tampilkan Visi dari database --}}
                         @if ($visi && $visi->content) {{-- Pastikan $visi tidak null dan kontennya ada --}}
                             <p class="card-text lead">
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="text-center mt-5">
-            <a href="{{ route('sejarah-nagari') }}" class="btn btn-warning btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="{{ route('sejarah-nagari') }}" class="btn btn-custom btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>
@@ -104,7 +104,7 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="{{ route('perangkat-nagari') }}" class="btn btn-warning btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            <a href="{{ route('perangkat-nagari') }}" class="btn btn-custom btn-md px-4">Lihat Selengkapnya <i class="fa-solid fa-arrow-right ms-2"></i></a>
         </div>
     </div>
 </section>

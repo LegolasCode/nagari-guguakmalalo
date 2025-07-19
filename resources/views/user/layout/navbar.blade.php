@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg fixed-top" style="background-color: #003d4d;">
         <div class="container">
             <!-- Logo dan Nama -->
             <a class="navbar-brand fw-semibold d-flex align-items-center" href="#">
@@ -46,7 +46,7 @@
                         </ul>
                     </li>
                 </ul>
-                    <a href="{{ route('login') }}" class="btn btn-warning fw-semibold">Login</a>
+                <a href="{{ route('login') }}" class="btn btn-custom fw-semibold">Login</a>
             </div>
         </div>
     </nav>

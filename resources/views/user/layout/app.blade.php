@@ -50,7 +50,29 @@
         z-index: 3; /* Pastikan ini lebih tinggi dari z-index overlay (z-index: 1) */
     }
 
-    
+    .btn-custom-readmore {
+        background-color: #003d4d !important;
+        border-color: #003d4d !important;
+        color: #ffffff !important;
+    }
+
+    .btn-custom-readmore:hover {
+        background-color: #002a36 !important;
+        border-color: #8acfe0 !important;
+    }
+
+    .btn-custom-login, .btn-custom {
+        background-color: #f0e68c !important; /* !important untuk menimpa gaya Bootstrap */
+        border-color: #f0e68c !important;
+        color: #000000 !important; /* Warna teks hitam agar terbaca */
+    }
+
+    /* Opsional: Efek hover untuk tombol */
+    .btn-custom-login, .btn-custom:hover {
+        background-color: #e0d67c !important; /* Warna sedikit lebih gelap saat di-hover */
+        border-color: #e0d67c !important;
+    }
+
     </style>
 </head>
 

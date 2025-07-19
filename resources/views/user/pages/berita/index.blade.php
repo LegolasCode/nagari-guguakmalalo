@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-footer bg-white border-0 d-flex justify-content-end">
                         {{-- Tombol baca selengkapnya, mengarah ke halaman detail berita --}}
-                        <a href="{{ route('berita.show', $item->slug) }}" class="btn btn-sm btn-primary">Baca Selengkapnya</a>
+                        <a href="{{ route('berita.show', $item->slug) }}" class="btn btn-sm btn-custom-readmore">Baca Selengkapnya</a>
                     </div>
                 </div>
             </div>

@@ -56,6 +56,18 @@
         background-position: center;
         background-size: cover;
     }
+
+    .btn-custom-register{
+        background-color: #003d4d !important;
+        border-color: #003d4d !important;
+        color: #ffffff !important;
+    }
+
+    /* Opsional: Efek hover untuk tombol */
+    .btn-custom-register:hover{
+        background-color: #002a36 !important;
+        border-color: #8acfe0 !important;
+    }
 </style>
 
 <body class="bg-cover d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/hero_slide1.jpg') }}');">
@@ -98,14 +110,14 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="inputPassword" name="password" placeholder="Password">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-custom-register btn-user btn-block">
                                             Simpan
                                         </button>
                                         <hr>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/login">Login!</a>
+                                        <a class="small" style="color: #003d4d" href="/login">Login!</a>
                                     </div>
                                 </div>
                             </div>

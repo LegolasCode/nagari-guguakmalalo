@@ -51,7 +51,7 @@
                     <p class="text-muted" id="no-misi-message">Belum ada Misi Nagari. Klik "Tambah Misi" untuk menambahkan.</p>
                 @endforelse
             </div>
-            <button type="button" id="add-misi-item" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Misi</button>
+            <button type="button" id="add-misi-item" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Misi</button>
         </div>
 
         <div class="card-footer d-flex justify-content-end" style="gap: 10px;">

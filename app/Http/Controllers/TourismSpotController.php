@@ -25,7 +25,7 @@ class TourismSpotController extends Controller
 
         $tourismSpots = $query->paginate(10);
 
-        return view('tourism-spots.index', compact('tourismSpots'));
+        return view('pages.tourism-spots.index', compact('tourismSpots'));
     }
 
     /**
@@ -33,7 +33,7 @@ class TourismSpotController extends Controller
      */
     public function create()
     {
-        return view('tourism-spots.create');
+        return view('pages.tourism-spots.create');
     }
 
     /**
@@ -64,19 +64,11 @@ class TourismSpotController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(TourismSpot $tourismSpot)
-    {
-        return view('tourism-spots.show', compact('tourismSpot'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(TourismSpot $tourismSpot)
     {
-        return view('tourism-spots.edit', compact('tourismSpot'));
+        return view('pages.tourism-spots.edit', compact('tourismSpot'));
     }
 
     /**
@@ -127,4 +119,28 @@ class TourismSpotController extends Controller
 
         return redirect('/tourism-spots')->with('success', 'Tempat wisata berhasil dihapus!');
     }
+
+    public function indexPublic()
+    {
+        // Mengambil semua tempat wisata, diurutkan berdasarkan nama, dengan pagination
+        $tourismSpots = TourismSpot::orderBy('name')->paginate(10); // Contoh: 9 tempat wisata per halaman
+
+        return view('user.pages.wisata.index', compact('tourismSpots')); // Path view publik
+    }
+
+
+    public function showPublic($slug)
+    {
+        $tourismSpot = TourismSpot::where('slug', $slug)->firstOrFail();
+
+        // Mendapatkan wisata lainnya, kecuali yang sedang ditampilkan
+        // Ambil 3 wisata lainnya secara acak atau berdasarkan kriteria tertentu
+        $otherTourismSpots = TourismSpot::where('id', '!=', $tourismSpot->id)
+                                    ->inRandomOrder() // Atau orderBy('created_at', 'desc')
+                                    ->limit(3) // Batasi jumlah yang ditampilkan
+                                    ->get();
+
+        return view('user.pages.wisata.show', compact('tourismSpot', 'otherTourismSpots'));
+    }
+    
 }

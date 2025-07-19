@@ -11,9 +11,16 @@ use Illuminate\Support\Str; // Untuk membuat slug
 class NewsController extends Controller
 {
     // Menampilkan daftar semua berita di halaman admin.
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::orderBy('published_at', 'desc')->paginate(6); // Ambil berita terbaru, dengan pagination
+        $query = News::query(); // Mulai query dari model Resident
+        // Jika ada parameter 'search' di URL
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('title', 'like', '%' . $search . '%'); // Cari di kolom NIK
+        }
+        
+        $news = $query->with('user')->orderBy('published_at', 'desc')->paginate(10); // Pastikan .with('user') ada
         return view('pages.news.index', compact('news'));
     }
 
