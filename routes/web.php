@@ -14,6 +14,10 @@ use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TourismSpotController;
+use App\Http\Controllers\KelembagaanTaniController;
+use App\Http\Controllers\LuasAreaProduksiController;
+use App\Http\Controllers\PopulasiTanamanController;
+use App\Http\Controllers\PopulasiTernakController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -79,8 +83,20 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Tourism Spot
   Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
 
+  // Kelembagaan Tani
+  Route::resource('kelembagaan_tani', KelembagaanTaniController::class);
+
+  // Luas Area Produksi
+  Route::resource('luas_area_produksi', LuasAreaProduksiController::class);
+
+  // Populasi Tanaman
+  Route::resource('populasi_tanaman', PopulasiTanamanController::class);
+
+  // Populasi Ternak
+  Route::resource('populasi_ternak', PopulasiTernakController::class);
 
 
+  
 // Beranda Public
 Route::get('/', [LandingPageController::class, 'LandingPageView'])->name('index');
 
