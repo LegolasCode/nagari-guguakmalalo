@@ -19,10 +19,59 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
-<body class="bg-gradient-primary">
+<style>
+    body {
+        /* Background gambar */
+        background-size: cover; /* Menutupi seluruh area */
+        background-position: center; /* Memusatkan gambar */
+        background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+        
+        height: 100vh; /* Pastikan body setinggi viewport */
+        position: relative; /* Penting untuk pseudo-element overlay */
+        overflow: hidden; /* Mencegah scroll yang tidak diinginkan jika gambar terlalu besar */
+    }
+
+    /* Menambahkan overlay gelap sebagai pseudo-element */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan opacity 50% */
+        z-index: 1; /* Pastikan overlay di atas gambar background */
+    }
+
+    .container { /* Sesuaikan selektor ini jika kontainer konten kamu punya kelas lain */
+        position: relative;
+        z-index: 2; /* Harus lebih tinggi dari z-index overlay */
+    }
+
+    .bg-login-image {
+        background: url('{{ asset('images/hero_slide3.jpg') }}'); /* Ganti dengan path gambar kamu */
+        background-position: center;
+        background-size: cover;
+    }
+    
+    .btn-custom-login{
+        background-color: #003d4d !important;
+        border-color: #003d4d !important;
+        color: #ffffff !important;
+    }
+
+    /* Opsional: Efek hover untuk tombol */
+    .btn-custom-login:hover{
+        background-color: #002a36 !important;
+        border-color: #8acfe0 !important;
+    }
+</style>
+
+<body class="bg-cover d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/hero_slide1.jpg') }}');">
 
 <!-- SweetAlert2 CDN -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -37,21 +86,24 @@
     @endif
     
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
+                    <a href="{{ route('index') }}" class="btn btn-light position-absolute top-0 end-0 m-3 rounded-circle" style="width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; z-index: 10;">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image">
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
                                     <form class="user" action="/login" method="POST">
                                         @csrf
@@ -66,14 +118,14 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="inputPassword" name="password" placeholder="Password">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-custom-login btn-user btn-block">
                                             Login
                                         </button>
                                         <hr>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/register">Create an Account!</a>
+                                        <a class="small" style="color: #003d4d;" href="/register">Buat Akun!</a>
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="confirmationRejectedLabel">Konfirmasi Penolakan</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <p>Apakah Anda yakin ingin <strong>menolak</strong> permintaan akun ini?</p>

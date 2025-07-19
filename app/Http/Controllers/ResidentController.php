@@ -8,14 +8,25 @@ use Illuminate\Http\Request;
 
 class ResidentController extends Controller
 {
-    public function index()
+    // Fungsi untuk menampilkan halaman daftar warga
+    public function index(Request $request)
     {
-        $residents = Resident::all();
+        $query = Resident::query(); // Mulai query dari model Resident
+        // Jika ada parameter 'search' di URL
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('nik', 'like', '%' . $search . '%') // Cari di kolom NIK
+                  ->orWhere('name', 'like', '%' . $search . '%'); // Atau di kolom Nama
+        }
+        // Terapkan with('user') dan paginate(10) langsung pada objek $query
+        $residents = $query->with('user')->paginate(10);
+        // --- AKHIR PERBAIKAN ---
+    
         return view('pages.resident.index', [
-            'residents' => $residents
+            'residents' => $residents,
         ]);
     }
-
+    // Fungsi untuk menampilkan halaman buat warga
     public function create()
     {
         return view('pages.resident.create');
@@ -39,15 +50,14 @@ class ResidentController extends Controller
         Resident::create($validatedData);
         return redirect('/resident')->with('success', 'Data berhasil disimpan!');
     }
-
+    // Fungsi untuk menampilkan halaman edit warga
     public function edit($id)
     {
         $resident = Resident::findOrFail($id);
         return view('pages.resident.edit', [
             'resident' => $resident
         ]);
-    }   
-
+    }   // Fungsi untuk memperbarui data warga
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -67,7 +77,7 @@ class ResidentController extends Controller
         Resident::findOrFail($id)->update($validatedData);
         return redirect('/resident')->with('success', 'Berhasil Mengubah Data');
     }
-
+    // Fungsi untuk menghapus data warga
     public function destroy($id)
     {
         $residents = Resident::findOrFail($id);

@@ -22,7 +22,55 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<style>
+    body {
+        /* Background gambar */
+        background-size: cover; /* Menutupi seluruh area */
+        background-position: center; /* Memusatkan gambar */
+        background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+        
+        height: 100vh; /* Pastikan body setinggi viewport */
+        position: relative; /* Penting untuk pseudo-element overlay */
+        overflow: hidden; /* Mencegah scroll yang tidak diinginkan jika gambar terlalu besar */
+    }
+
+    /* Menambahkan overlay gelap sebagai pseudo-element */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan opacity 50% */
+        z-index: 1; /* Pastikan overlay di atas gambar background */
+    }
+
+    .container { /* Sesuaikan selektor ini jika kontainer konten kamu punya kelas lain */
+        position: relative;
+        z-index: 2; /* Harus lebih tinggi dari z-index overlay */
+    }
+
+    .bg-login-image {
+        background: url('{{ asset('images/hero_slide3.jpg') }}'); /* Ganti dengan path gambar kamu */
+        background-position: center;
+        background-size: cover;
+    }
+
+    .btn-custom-register{
+        background-color: #003d4d !important;
+        border-color: #003d4d !important;
+        color: #ffffff !important;
+    }
+
+    /* Opsional: Efek hover untuk tombol */
+    .btn-custom-register:hover{
+        background-color: #002a36 !important;
+        border-color: #8acfe0 !important;
+    }
+</style>
+
+<body class="bg-cover d-flex align-items-center justify-content-center" style="background-image: url('{{ asset('images/hero_slide1.jpg') }}');">
 
     <div class="container">
 
@@ -49,6 +97,11 @@
                                                 id="inputName" name="name" placeholder="Full Name">
                                         </div>
                                         <div class="form-group">
+                                            <input type="text" class="form-control form-control-user @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number"
+                                                placeholder="Nomor Telepon" value="{{ old('phone_number') }}">
+                                            @error('phone_number')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                                        </div>
+                                        <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="inputEmail" name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
@@ -57,14 +110,14 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="inputPassword" name="password" placeholder="Password">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-custom-register btn-user btn-block">
                                             Simpan
                                         </button>
                                         <hr>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="/">Login!</a>
+                                        <a class="small" style="color: #003d4d" href="/login">Login!</a>
                                     </div>
                                 </div>
                             </div>

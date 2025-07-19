@@ -10,8 +10,7 @@ class Resident extends Model
 
     protected $guarded = [];
 
-    protected $fillable = [
-        'nik', 'name', 'gender', 'birth_place', 'birth_date', 'address',
-        'religion', 'marital_status', 'occupation', 'phone', 'status'
-    ];
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
