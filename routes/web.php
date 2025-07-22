@@ -14,6 +14,7 @@ use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TourismSpotController;
+use App\Http\Controllers\PertanianPeternakanController;
 use App\Http\Controllers\KelembagaanTaniController;
 use App\Http\Controllers\LuasAreaProduksiController;
 use App\Http\Controllers\PopulasiTanamanController;
@@ -83,17 +84,16 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Tourism Spot
   Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
 
+    // Pertanian dan Peternakan
+  Route::get('/pertanian-peternakan', [PertanianPeternakanController::class, 'index'])->name('pertanian-peternakan.index');
   // Kelembagaan Tani
-  Route::resource('kelembagaan_tani', KelembagaanTaniController::class);
-
+  Route::resource('kelembagaan-tani', KelembagaanTaniController::class)->middleware('role:Admin');
   // Luas Area Produksi
-  Route::resource('luas_area_produksi', LuasAreaProduksiController::class);
-
+  Route::resource('luas-area-produksi', LuasAreaProduksiController::class)->middleware('role:Admin');
   // Populasi Tanaman
-  Route::resource('populasi_tanaman', PopulasiTanamanController::class);
-
+  Route::resource('populasi-tanaman', PopulasiTanamanController::class)->middleware('role:Admin');
   // Populasi Ternak
-  Route::resource('populasi_ternak', PopulasiTernakController::class);
+  Route::resource('populasi-ternak', PopulasiTernakController::class)->middleware('role:Admin');
 
 
   

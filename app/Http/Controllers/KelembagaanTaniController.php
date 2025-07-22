@@ -2,63 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\KelembagaanTani; // Import Model
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule; // Untuk validasi unique pada update
 
 class KelembagaanTaniController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar Kelembagaan Tani.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $query = KelembagaanTani::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('nama_poktan', 'like', '%' . $search . '%')
+                  ->orWhere('nama_ketua', 'like', '%' . $search . '%')
+                  ->orWhere('id_poktan', 'like', '%' . $search . '%');
+        }
+
+        $kelembagaanTani = $query->paginate(10);
+        return view('pages.pertanian-peternakan.kelembagaan-tani.index', compact('kelembagaanTani'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat Kelembagaan Tani baru.
      */
     public function create()
     {
-        //
+        return view('pages.pertanian-peternakan.kelembagaan-tani.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan Kelembagaan Tani baru.
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_poktan' => 'required|string|max:255|unique:kelembagaan_tani',
+            'kelas_kemampuan' => ['required', Rule::in(['Pemula', 'Lanjutan'])],
+            'id_poktan' => 'nullable|string|max:255|unique:kelembagaan_tani',
+            'jumlah_anggota' => 'required|integer|min:1',
+            'nama_ketua' => 'required|string|max:255',
+            'no_hp' => 'nullable|string|max:15',
+            'alamat_sekretariat' => 'nullable|string',
+        ]);
+
+        $validated['user_id'] = auth()->id(); // Catat admin yang membuat
+
+        KelembagaanTani::create($validated);
+
+        return redirect('/kelembagaan-tani')->with('success', 'Data Kelembagaan Tani berhasil ditambahkan!');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan form untuk mengedit Kelembagaan Tani.
      */
-    public function show(string $id)
+    public function edit(KelembagaanTani $kelembagaanTani) // Route Model Binding
     {
-        //
+        return view('pages.pertanian-peternakan.kelembagaan-tani.edit', compact('kelembagaanTani'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Memperbarui Kelembagaan Tani.
      */
-    public function edit(string $id)
+    public function update(Request $request, KelembagaanTani $kelembagaanTani) // Route Model Binding
     {
-        //
+        $validated = $request->validate([
+            'nama_poktan' => ['required', 'string', 'max:255', Rule::unique('kelembagaan_tani')->ignore($kelembagaanTani->id)],
+            'kelas_kemampuan' => ['required', Rule::in(['Pemula', 'Lanjutan'])],
+            'id_poktan' => ['nullable', 'string', 'max:255', Rule::unique('kelembagaan_tani')->ignore($kelembagaanTani->id)],
+            'jumlah_anggota' => 'required|integer|min:1',
+            'nama_ketua' => 'required|string|max:255',
+            'no_hp' => 'nullable|string|max:15',
+            'alamat_sekretariat' => 'nullable|string',
+        ]);
+
+        $validated['user_id'] = auth()->id(); // Catat admin yang terakhir mengupdate
+
+        $kelembagaanTani->update($validated);
+
+        return redirect('/kelembagaan-tani')->with('success', 'Data Kelembagaan Tani berhasil diperbarui!');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Menghapus Kelembagaan Tani.
      */
-    public function update(Request $request, string $id)
+    public function destroy(KelembagaanTani $kelembagaanTani) // Route Model Binding
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $kelembagaanTani->delete();
+        return redirect('/kelembagaan-tani')->with('success', 'Data Kelembagaan Tani berhasil dihapus!');
     }
 }
