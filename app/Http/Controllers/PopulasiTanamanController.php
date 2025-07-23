@@ -3,43 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\PopulasiTanaman; // Import Model
+use App\Models\PopulasiTanaman;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage; 
 
 class PopulasiTanamanController extends Controller
 {
-    /**
-     * Menampilkan daftar Populasi Tanaman.
-     */
     public function index(Request $request)
     {
         $query = PopulasiTanaman::query();
-
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-            $query->where('nama_komoditi', 'like', '%' . $search . '%')
-                  ->orWhere('tipe_tanaman', 'like', '%' . $search . '%');
+            $query->where('nama_komoditi', 'like', '%' . $search . '%')->orWhere('tipe_tanaman', 'like', '%' . $search . '%');
         }
         if ($request->has('tahun') && $request->tahun != '') {
             $query->where('tahun', $request->tahun);
         }
-
         $populasiTanaman = $query->paginate(10);
-        return view('populasi-tanaman.index', compact('populasiTanaman'));
+
+        $availableYears = PopulasiTanaman::select('tahun')
+        ->distinct() // Ambil nilai tahun yang unik
+        ->orderBy('tahun', 'desc') // Urutkan dari tahun terbaru
+        ->pluck('tahun'); // Ambil hanya kolom 'tahun'
+
+        return view('pages.pertanian-peternakan.populasi-tanaman.index', compact('populasiTanaman', 'availableYears'));
     }
 
-    /**
-     * Menampilkan form untuk membuat Populasi Tanaman baru.
-     */
-    public function create()
-    {
-        return view('populasi-tanaman.create');
-    }
+    public function create() { return view('pages.pertanian-peternakan.populasi-tanaman.create'); }
 
-    /**
-     * Menyimpan Populasi Tanaman baru.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -49,26 +41,21 @@ class PopulasiTanamanController extends Controller
             'jumlah_guguak' => 'required|integer|min:0',
             'jumlah_baiang' => 'required|integer|min:0',
             'tahun' => 'nullable|integer|digits:4',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi image
         ]);
 
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images/populasi-tanaman', 'public');
+        }
+
         $validated['user_id'] = auth()->id();
-
         PopulasiTanaman::create($validated);
-        return redirect()->route('populasi-tanaman.index')->with('success', 'Data Populasi Tanaman berhasil ditambahkan!');
+        return redirect('/populasi-tanaman')->with('success', 'Data Populasi Tanaman berhasil ditambahkan!');
     }
 
-    /**
-     * Menampilkan form untuk mengedit Populasi Tanaman.
-     */
-    public function edit(PopulasiTanaman $populasiTanaman) // Route Model Binding
-    {
-        return view('populasi-tanaman.edit', compact('populasiTanaman'));
-    }
+    public function edit(PopulasiTanaman $populasiTanaman) { return view('pages.pertanian-peternakan.populasi-tanaman.edit', compact('populasiTanaman')); }
 
-    /**
-     * Memperbarui Populasi Tanaman.
-     */
-    public function update(Request $request, PopulasiTanaman $populasiTanaman) // Route Model Binding
+    public function update(Request $request, PopulasiTanaman $populasiTanaman)
     {
         $validated = $request->validate([
             'nama_komoditi' => 'required|string|max:255',
@@ -77,20 +64,34 @@ class PopulasiTanamanController extends Controller
             'jumlah_guguak' => 'required|integer|min:0',
             'jumlah_baiang' => 'required|integer|min:0',
             'tahun' => 'nullable|integer|digits:4',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'remove_image' => 'nullable|boolean',
         ]);
 
-        $validated['user_id'] = auth()->id();
+        $imagePath = $populasiTanaman->image;
 
+        if ($request->hasFile('image')) {
+            if ($imagePath) { Storage::disk('public')->delete($imagePath); }
+            $imagePath = $request->file('image')->store('images/populasi-tanaman', 'public');
+        } elseif ($request->boolean('remove_image')) {
+            if ($imagePath) { Storage::disk('public')->delete($imagePath); }
+            $imagePath = null;
+        } else {
+            unset($validated['image']);
+        }
+
+        $validated['user_id'] = auth()->id();
         $populasiTanaman->update($validated);
-        return redirect()->route('populasi-tanaman.index')->with('success', 'Data Populasi Tanaman berhasil diperbarui!');
+        $populasiTanaman->image = $imagePath; // Set kembali path gambar di model
+        $populasiTanaman->save();
+
+        return redirect('/populasi-tanaman')->with('success', 'Data Populasi Tanaman berhasil diperbarui!');
     }
 
-    /**
-     * Menghapus Populasi Tanaman.
-     */
-    public function destroy(PopulasiTanaman $populasiTanaman) // Route Model Binding
+    public function destroy(PopulasiTanaman $populasiTanaman)
     {
+        if ($populasiTanaman->image) { Storage::disk('public')->delete($populasiTanaman->image); }
         $populasiTanaman->delete();
-        return redirect()->route('populasi-tanaman.index')->with('success', 'Data Populasi Tanaman berhasil dihapus!');
+        return redirect('/populasi-tanaman')->with('success', 'Data Populasi Tanaman berhasil dihapus!');
     }
 }

@@ -80,6 +80,10 @@
                         {{ $tourismSpots->links() }}
                     </div>
                 </div>
+                {{-- Pagination Navigation --}}
+                <div class="card-footer">
+                    {{ $tourismSpots->links('vendor.pagination.bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>

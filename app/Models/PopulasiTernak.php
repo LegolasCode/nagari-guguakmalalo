@@ -17,6 +17,7 @@ class PopulasiTernak extends Model
         'jumlah_baiang',
         'tahun',
         'user_id',
+        'image',
     ];
     public function user() { return $this->belongsTo(User::class); }
 }

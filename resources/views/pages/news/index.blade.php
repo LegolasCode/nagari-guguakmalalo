@@ -89,13 +89,13 @@
                         </table>
                     </div>
                 </div>
-            </div>
                 {{-- Pagination Navigation --}}
                 @if ($news instanceof \Illuminate\Pagination\LengthAwarePaginator)
                     <div class="card-footer">
                         {{ $news->links('vendor.pagination.bootstrap-5') }}
                     </div>
                 @endif
+            </div>
         </div>
     </div>
 

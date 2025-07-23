@@ -31,6 +31,8 @@
                             <li><a class="dropdown-item" href="{{ url('/wisata') }}">Wisata</a></li>
                             <li><a class="dropdown-item" href="{{ url('/pertanian') }}">Pertanian</a></li>
                             <li><a class="dropdown-item" href="{{ url('/peternakan') }}">Peternakan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/kesehatan') }}">Kesehatan</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item">

@@ -3,43 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\LuasAreaProduksi; // Import Model
+use App\Models\LuasAreaProduksi;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage; // Pastikan ini diimpor
 
 class LuasAreaProduksiController extends Controller
 {
-    /**
-     * Menampilkan daftar Luas Area Produksi.
-     */
     public function index(Request $request)
     {
         $query = LuasAreaProduksi::query();
-
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-            $query->where('nama_komoditi', 'like', '%' . $search . '%')
-                  ->orWhere('tipe_area', 'like', '%' . $search . '%');
+            $query->where('nama_komoditi', 'like', '%' . $search . '%')->orWhere('tipe_area', 'like', '%' . $search . '%');
         }
         if ($request->has('tahun') && $request->tahun != '') {
             $query->where('tahun', $request->tahun);
         }
-
         $luasAreaProduksi = $query->paginate(10);
-        return view('luas-area-produksi.index', compact('luasAreaProduksi'));
+
+        $availableYears = LuasAreaProduksi::select('tahun')
+                                        ->distinct() // Ambil nilai tahun yang unik
+                                        ->orderBy('tahun', 'desc') // Urutkan dari tahun terbaru
+                                        ->pluck('tahun'); // Ambil hanya kolom 'tahun'
+        
+        return view('pages.pertanian-peternakan.luas-area-produksi.index', compact('luasAreaProduksi', 'availableYears'));
     }
 
-    /**
-     * Menampilkan form untuk membuat Luas Area Produksi baru.
-     */
-    public function create()
-    {
-        return view('luas-area-produksi.create');
-    }
+    public function create() { return view('pages.pertanian-peternakan.luas-area-produksi.create'); }
 
-    /**
-     * Menyimpan Luas Area Produksi baru.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -49,26 +41,21 @@ class LuasAreaProduksiController extends Controller
             'luas_panen' => 'required|numeric|min:0',
             'produksi' => 'required|numeric|min:0',
             'tahun' => 'nullable|integer|digits:4',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi image
         ]);
 
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images/luas-area-produksi', 'public');
+        }
+
         $validated['user_id'] = auth()->id();
-
         LuasAreaProduksi::create($validated);
-        return redirect()->route('luas-area-produksi.index')->with('success', 'Data Luas Area Produksi berhasil ditambahkan!');
+        return redirect('/luas-area-produksi')->with('success', 'Data Luas Area Produksi berhasil ditambahkan!');
     }
 
-    /**
-     * Menampilkan form untuk mengedit Luas Area Produksi.
-     */
-    public function edit(LuasAreaProduksi $luasAreaProduksi) // Route Model Binding
-    {
-        return view('luas-area-produksi.edit', compact('luasAreaProduksi'));
-    }
+    public function edit(LuasAreaProduksi $luasAreaProduksi) { return view('pages.pertanian-peternakan.luas-area-produksi.edit', compact('luasAreaProduksi')); }
 
-    /**
-     * Memperbarui Luas Area Produksi.
-     */
-    public function update(Request $request, LuasAreaProduksi $luasAreaProduksi) // Route Model Binding
+    public function update(Request $request, LuasAreaProduksi $luasAreaProduksi)
     {
         $validated = $request->validate([
             'nama_komoditi' => 'required|string|max:255',
@@ -77,20 +64,34 @@ class LuasAreaProduksiController extends Controller
             'luas_panen' => 'required|numeric|min:0',
             'produksi' => 'required|numeric|min:0',
             'tahun' => 'nullable|integer|digits:4',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'remove_image' => 'nullable|boolean', // Untuk checkbox hapus gambar
         ]);
 
-        $validated['user_id'] = auth()->id();
+        $imagePath = $luasAreaProduksi->image; // Ambil path gambar lama
 
-        $luasAreaProduksi->update($validated);
-        return redirect()->route('luas-area-produksi.index')->with('success', 'Data Luas Area Produksi berhasil diperbarui!');
+        if ($request->hasFile('image')) {
+            if ($imagePath) { Storage::disk('public')->delete($imagePath); }
+            $imagePath = $request->file('image')->store('images/luas-area-produksi', 'public');
+        } elseif ($request->boolean('remove_image')) {
+            if ($imagePath) { Storage::disk('public')->delete($imagePath); }
+            $imagePath = null;
+        } else {
+            unset($validated['image']); // Pastikan tidak menimpa dengan null jika tidak ada upload/hapus
+        }
+
+        $validated['user_id'] = auth()->id();
+        $luasAreaProduksi->update($validated); // Gunakan $validated yang sudah diupdate
+        $luasAreaProduksi->image = $imagePath; // Set kembali path gambar di model
+        $luasAreaProduksi->save();
+
+        return redirect('/luas-area-produksi')->with('success', 'Data Luas Area Produksi berhasil diperbarui!');
     }
 
-    /**
-     * Menghapus Luas Area Produksi.
-     */
-    public function destroy(LuasAreaProduksi $luasAreaProduksi) // Route Model Binding
+    public function destroy(LuasAreaProduksi $luasAreaProduksi)
     {
+        if ($luasAreaProduksi->image) { Storage::disk('public')->delete($luasAreaProduksi->image); }
         $luasAreaProduksi->delete();
-        return redirect()->route('luas-area-produksi.index')->with('success', 'Data Luas Area Produksi berhasil dihapus!');
+        return redirect('/luas-area-produksi')->with('success', 'Data Luas Area Produksi berhasil dihapus!');
     }
 }

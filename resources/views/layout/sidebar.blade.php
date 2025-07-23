@@ -82,7 +82,7 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Konten</span>
         </a>
-        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkm-content*') || request()->is('tourism-spots*') ? 'show' : '' }}" aria-labelledby="headingKonten"
+        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkm-content*') || request()->is('tourism-spots*') || request()->is('pertanian-peternakan*') ? 'show' : '' }}" aria-labelledby="headingKonten"
             data-parent="#accordionSidebar">
             <div class="collapse-inner">
                 <a class="collapse-item {{ request()->is('profile-nagari-content*') ? 'active' : '' }}" href="/profile-nagari-content"><i class="fas fa-fw fa-building mr-2"></i>Profil Nagari</a>

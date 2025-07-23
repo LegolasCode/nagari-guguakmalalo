@@ -18,6 +18,7 @@ class LuasAreaProduksi extends Model
         'produksi',
         'tahun',
         'user_id',
+        'image',
     ];
     protected $casts = [ // Otomatis ubah tipe data ke float
         'luas_tanam' => 'float',

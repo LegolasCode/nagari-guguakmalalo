@@ -19,6 +19,7 @@ use App\Http\Controllers\KelembagaanTaniController;
 use App\Http\Controllers\LuasAreaProduksiController;
 use App\Http\Controllers\PopulasiTanamanController;
 use App\Http\Controllers\PopulasiTernakController;
+use App\Http\Controllers\PertanianController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -115,3 +116,9 @@ Route::get('/galeri', [GalleryController::class, 'indexPublic'])->name('galeri.i
 // Wisata
 Route::get('/wisata', [TourismSpotController::class, 'indexPublic'])->name('wisata.index'); // Untuk daftar semua wisata
 Route::get('/wisata/{tourismSpot:slug}', [TourismSpotController::class, 'showPublic'])->name('wisata.show'); // Untuk detail wisata
+
+// Pertanian
+Route::get('/pertanian', [PertanianController::class, 'indexPublic'])->name('user.pages.pertanian.index');
+Route::get('/pertanian/kelembagaan-tani', [PertanianController::class, 'kelembagaanTaniPublic'])->name('user.pages.pertanian.kelembagaan-tani');
+Route::get('/pertanian/luas-area-produksi', [PertanianController::class, 'luasAreaProduksiPublic'])->name('user.pages.pertanian.luas-area-produksi');
+Route::get('/pertanian/populasi-tanaman', [PertanianController::class, 'populasiTanamanPublic'])->name('user.pages.pertanian.populasi-tanaman');

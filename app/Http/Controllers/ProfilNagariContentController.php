@@ -81,6 +81,11 @@ class ProfilNagariContentController extends Controller
         // Mengambil semua data pengurus, diurutkan berdasarkan 'order' jika ada, atau 'name'
         $officials = VillageOfficial::orderBy('order')->orderBy('name')->get();
 
+        $query = VillageOfficial::query();
+        $query->orderBy('order')->orderBy('name');
+        // Ambil hanya 10 item per halaman. Jika Anda punya 15 data, pagination akan muncul.
+        $officials = $query->paginate(10); // <--- Ubah angka ini jika perlu
+
         return view('pages.profile-nagari-content.struktur-organisasi.index', compact('officials'));
     }
 
