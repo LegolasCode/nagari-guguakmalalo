@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="confirmationDelete-{{ $item->id }}" tabindex="-1" aria-labelledby="confirmationDelete" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <form action="/resident/{{ $item->id }}" method="POST">
         @csrf
         @method('DELETE')
@@ -15,8 +15,8 @@
             <span>Apakah anda yakin ingin menghapus data ini?</span>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            <button type="submit" class="btn btn-outline-danger">Ya, hapus!</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-danger">Hapus</button>
         </div>
         </div>
     </form>

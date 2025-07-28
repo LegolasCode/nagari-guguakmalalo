@@ -15,8 +15,7 @@ class ProfilNagariController extends Controller
         $misiItems = VisiMisi::where('type', 'misi')->orderBy('order')->get();
 
         // Ambil data officials di sini, sebelum return
-        $officials = VillageOfficial::orderBy('order')->orderBy('name')->take(4)->get();
-
+        $officials = VillageOfficial::orderBy('order')->orderBy('name')->get(); // Ambil semua, diurutkan
         // Hanya ada satu return statement yang meneruskan semua variabel
         return view('user.pages.profil-nagari', compact('visi', 'misiItems', 'officials'));
     }

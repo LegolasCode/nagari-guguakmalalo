@@ -4,22 +4,21 @@
 <div class="container py-5">
     <h2 class="text-center fw-bold mb-4">Data Populasi Tanaman</h2>
     <p class="text-center lead mb-5 mx-auto" style="max-width: 800px;">
-        Informasi mengenai populasi tanaman di berbagai wilayah Nagari Guguak Malalo setiap tahunnya.
+        Informasi mengenai populasi tanaman (buah-buahan dan perkebunan) di berbagai wilayah Nagari Guguak Malalo setiap tahunnya.
     </p>
 
-    {{-- Tabel Data Populasi Tanaman --}}
+    {{-- Form Pencarian dan Filter --}}
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold">Daftar Populasi Tanaman</h6>
+            <h6 class="m-0 font-weight-bold">Cari & Filter Data Populasi Tanaman</h6>
         </div>
         <div class="card-body">
             <form action="{{ route('user.pages.pertanian.populasi-tanaman') }}" method="GET" class="mb-3">
-                <div class="row g-3 align-items-center justify-content-end">
-                    {{-- Kolom Filter Tahun (Dropdown) --}}
+                <div class="row g-3 align-items-center">
                     @if(isset($availableYears) && $availableYears->isNotEmpty())
                     <div class="col-md-4 col-lg-3">
                         <select name="tahun" class="form-select bg-light border-0 small" onchange="this.form.submit()">
-                            <option value="">Filter Tahun</option>
+                            <option value="">Semua Tahun</option>
                             @foreach ($availableYears as $year)
                                 <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>
                                     {{ $year }}
@@ -28,8 +27,6 @@
                         </select>
                     </div>
                     @endif
-
-                    {{-- Kolom Pencarian --}}
                     <div class="col-md-8 col-lg-6">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Komoditi atau Tipe Tanaman..."
@@ -43,56 +40,55 @@
                     </div>
                 </div>
             </form>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover w-100" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">No</th>
-                            <th>Nama Komoditi</th>
-                            <th>Tipe Tanaman</th>
-                            <th>Jml. Duo Koto</th>
-                            <th>Jml. Guguak</th>
-                            <th>Jml. Baiang</th>
-                            <th>Total Populasi</th>
-                            <th>Tahun</th>
-                            <th>Gambar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($populasiTanaman as $item)
-                            <tr>
-                                <td>{{ $loop->iteration + ($populasiTanaman->currentPage() - 1) * $populasiTanaman->perPage() }}</td>
-                                <td>{{ $item->nama_komoditi }}</td>
-                                <td>{{ $item->tipe_tanaman }}</td>
-                                <td>{{ number_format($item->jumlah_duo_koto) }}</td>
-                                <td>{{ number_format($item->jumlah_guguak) }}</td>
-                                <td>{{ number_format($item->jumlah_baiang) }}</td>
-                                <td>{{ number_format($item->total_populasi) }}</td>
-                                <td>{{ $item->tahun ?? '-' }}</td>
-                                <td>
-                                    @if ($item->image)
-                                        <img src="{{ asset('storage/' . $item->image) }}" alt="Gambar" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover;">
-                                    @else
-                                        <span class="text-muted">Tidak ada</span>
-                                    @endif
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="9" class="text-center py-4">Belum ada data populasi tanaman yang tersedia.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
         </div>
-            {{-- Pagination Navigation --}}
-            @if ($populasiTanaman instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                <div class="card-footer d-flex justify-content-center">
-                    {{ $populasiTanaman->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
-                </div>
-            @endif
     </div>
+
+    {{-- Tampilan Card untuk Populasi Tanaman --}}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> {{-- Grid untuk card --}}
+        @forelse ($populasiTanaman as $item)
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    @if ($item->image)
+                        <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top rounded-top" alt="{{ $item->nama_komoditi }}" style="height: 200px; object-fit: cover;">
+                    @else
+                        <img src="{{ asset('images/default-tanaman.png') }}" class="card-img-top rounded-top" alt="Gambar Default" style="height: 200px; object-fit: cover;">
+                    @endif
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold mb-2">{{ $item->nama_komoditi }}</h5>
+                        <p class="card-text text-muted small mb-1">
+                            <i class="fa-solid fa-tree me-1"></i> Tipe Tanaman: {{ $item->tipe_tanaman }}
+                        </p>
+                        <p class="card-text small mb-1">
+                            Jumlah Duo Koto: {{ number_format($item->jumlah_duo_koto) }}
+                        </p>
+                        <p class="card-text small mb-1">
+                            Jumlah Guguak: {{ number_format($item->jumlah_guguak) }}
+                        </p>
+                        <p class="card-text small mb-1">
+                            Jumlah Baiang: {{ number_format($item->jumlah_baiang) }}
+                        </p>
+                        <p class="card-text small fw-bold mb-1">
+                            <i class="fa-solid fa-chart-pie me-1"></i> Total Populasi: {{ number_format($item->total_populasi) }}
+                        </p>
+                        <p class="card-text small text-muted mt-2">
+                            <i class="fa-solid fa-calendar-alt me-1"></i> Tahun: {{ $item->tahun ?? '-' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12 text-center py-5">
+                <p>Belum ada data populasi tanaman yang tersedia.</p>
+            </div>
+        @endforelse
+    </div>
+
+    {{-- Pagination Navigation --}}
+    @if ($populasiTanaman instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        <div class="d-flex justify-content-center mt-5">
+            {{ $populasiTanaman->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
+        </div>
+    @endif
 
     {{-- Tombol Kembali ke Halaman Pertanian Utama --}}
     <div class="text-center mt-4">

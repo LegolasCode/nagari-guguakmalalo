@@ -20,6 +20,9 @@ use App\Http\Controllers\LuasAreaProduksiController;
 use App\Http\Controllers\PopulasiTanamanController;
 use App\Http\Controllers\PopulasiTernakController;
 use App\Http\Controllers\PertanianController;
+use App\Http\Controllers\PeternakanController;
+use App\Http\Controllers\UmkmController;
+use App\Http\Controllers\PublicUmkmController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -31,7 +34,7 @@ Route::post('/register', [AuthController::class, 'register']);
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'role:Admin,User'])
-    ->name('dashboard');
+    ->name('pages.dashboard');
 
 // Resident
 Route::get('/resident', [ResidentController::class, 'index'])->middleware('role:Admin')->name('pages.resident.index');;              
@@ -96,6 +99,9 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Populasi Ternak
   Route::resource('populasi-ternak', PopulasiTernakController::class)->middleware('role:Admin');
 
+  // UMKM
+  Route::resource('umkms', UmkmController::class)->middleware('role:Admin'); 
+
 
   
 // Beranda Public
@@ -122,3 +128,7 @@ Route::get('/pertanian', [PertanianController::class, 'indexPublic'])->name('use
 Route::get('/pertanian/kelembagaan-tani', [PertanianController::class, 'kelembagaanTaniPublic'])->name('user.pages.pertanian.kelembagaan-tani');
 Route::get('/pertanian/luas-area-produksi', [PertanianController::class, 'luasAreaProduksiPublic'])->name('user.pages.pertanian.luas-area-produksi');
 Route::get('/pertanian/populasi-tanaman', [PertanianController::class, 'populasiTanamanPublic'])->name('user.pages.pertanian.populasi-tanaman');
+Route::get('/peternakan', [PeternakanController::class, 'populasiTernakPublic'])->name('user.pages.peternakan.index');
+
+// UMKM
+Route::get('/umkm', [PublicUmkmController::class, 'indexPublic'])->name('user.pages.umkm.index');

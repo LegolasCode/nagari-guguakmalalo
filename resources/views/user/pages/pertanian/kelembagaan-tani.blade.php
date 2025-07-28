@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container py-5">
-    <h1 class="text-center fw-bold mb-4">Data Kelembagaan Tani</h1>
+    <h2 class="text-center fw-bold mb-4">Data Kelembagaan Tani</h2>
     <p class="text-center lead mb-5 mx-auto" style="max-width: 800px;">
         Berikut adalah daftar kelembagaan tani yang aktif di Nagari Guguak Malalo, berperan penting dalam memajukan sektor pertanian.
     </p>

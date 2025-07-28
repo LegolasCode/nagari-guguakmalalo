@@ -32,6 +32,11 @@
                     </div>
                 @endforelse
             </div>
+            <div class="text-center mt-4">
+                <a href="profil-nagari" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Kembali
+                </a>
+            </div>
         </div>
     </section>
 @endsection

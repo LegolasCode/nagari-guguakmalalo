@@ -17,7 +17,7 @@
                     <i class="fa-solid fa-seedling fa-4x text-primary mb-3"></i>
                     <h3 class="card-title display-5 fw-bold text-primary">{{ number_format($totalKelembagaanTani) }}</h3>
                     <p class="card-text fs-5">Kelembagaan Tani</p>
-                    <a href="{{ route('user.pages.pertanian.kelembagaan-tani') }}" class="btn btn-sm btn-outline-primary mt-3">Lihat Detail</a> {{-- Arahkan ke halaman detail jika ada --}}
+                    <a href="{{ route('user.pages.pertanian.kelembagaan-tani') }}" class="btn btn-sm btn-custom-readmore mt-3">Lihat Detail</a> {{-- Arahkan ke halaman detail jika ada --}}
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <i class="fa-solid fa-chart-area fa-4x text-success mb-3"></i>
                     <h3 class="card-title display-5 fw-bold text-success">{{ number_format($totalLuasAreaProduksi) }}</h3>
                     <p class="card-text fs-5">Luas Area Produksi</p>
-                    <a href="{{ route('user.pages.pertanian.luas-area-produksi') }}" class="btn btn-sm btn-outline-success mt-3">Lihat Detail</a>
+                    <a href="{{ route('user.pages.pertanian.luas-area-produksi') }}" class="btn btn-sm btn-custom-readmore mt-3">Lihat Detail</a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <i class="fa-solid fa-tree fa-4x text-info mb-3"></i>
                     <h3 class="card-title display-5 fw-bold text-info">{{ number_format($totalPopulasiTanaman) }}</h3>
                     <p class="card-text fs-5">Populasi Tanaman</p>
-                    <a href="{{ route('user.pages.pertanian.populasi-tanaman') }}" class="btn btn-sm btn-outline-info mt-3">Lihat Detail</a>
+                    <a href="{{ route('user.pages.pertanian.populasi-tanaman') }}" class="btn btn-sm btn-custom-readmore mt-3">Lihat Detail</a>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="video_url" class="form-label">Link Video (YouTube/Vimeo)</label>
+                    <label for="video_url" class="form-label">Link Video (YouTube/Gdrive)</label>
                     <input type="url" class="form-control @error('video_url') is-invalid @enderror" id="video_url" name="video_url" value="{{ old('video_url') }}" placeholder="Contoh: https://www.youtube.com/watch?v=xxxxxxxx">
                     @error('video_url')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>

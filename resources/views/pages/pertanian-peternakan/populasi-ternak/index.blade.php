@@ -100,6 +100,10 @@
                 </div>
             @endif
         </div>
+        <div class="d-flex justify-content-start mt-4">
+            <a href="{{ route('pertanian-peternakan.index') }}" class="btn btn-outline-secondary me-2">
+            <i class="fas fa-arrow-left me-2"></i>Kembali</a>
+        </div>
     </div>
     {{-- Modals Konfirmasi Hapus --}}
     @foreach ($populasiTernak as $item)

@@ -75,11 +75,10 @@
                 <textarea class="form-control @error('alamat_sekretariat') is-invalid @enderror" id="alamat_sekretariat" name="alamat_sekretariat" rows="3">{{ old('alamat_sekretariat', $kelembagaanTani->alamat_sekretariat) }}</textarea>
                 @error('alamat_sekretariat')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
-
-            <div class="card-footer d-flex justify-content-end">
-                <a href="{{ route('kelembagaan-tani.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
-                <button type="submit" class="btn btn-success">Simpan Perubahan</button>
-            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{{ route('kelembagaan-tani.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
+            <button type="submit" class="btn btn-warning">Update</button>
         </div>
     </form>
 @endsection

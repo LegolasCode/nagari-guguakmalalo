@@ -93,7 +93,7 @@
 
         <div class="card-footer d-flex justify-content-end" style="gap: 10px;">
             <a href="/struktur-organisasi" class="btn btn-outline-secondary">Kembali</a>
-            <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+            <button type="submit" class="btn btn-warning">Update</button>
         </div>
     </form>
 @endsection

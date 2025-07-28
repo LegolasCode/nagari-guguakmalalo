@@ -22,7 +22,7 @@
               <div class="hero-slide bg-cover d-flex align-items-center justify-content-center text-white" style="background-image: url('{{ asset('images/hero_slide2.jpg') }}');">
                 <div class="text-center">
                   <h1 class="display-5 fw-bold">Sejarah Nagari</h1>
-                  <p class="lead">Nagari Guguak Malalo memiliki sejarah panjang dalam perjuangan dan budaya masyarakat Minangkabau.</p>
+                  <p class="lead mx-auto" style="max-width: 800px;">Nagari Guguak Malalo adalah salah satu nagari adat yang kaya akan sejarah dan budaya di Kabupaten Tanah Datar, Sumatera Barat. Berlokasi strategis di lereng Bukit Barisan, nagari ini telah menjadi saksi bisu perjalanan waktu dan perkembangan peradaban masyarakat Minangkabau.</p>
                 </div>
               </div>
             </div>
@@ -110,7 +110,9 @@
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
-                                <i class="fa-solid fa-users fa-3x text-primary mb-3"></i> <h3 class="card-title display-5 fw-bold text-primary">{{ number_format($totalPenduduk) }}</h3>
+                                {{-- Tambahkan kelas text-custom-stats --}}
+                                <i class="fa-solid fa-users fa-3x text-success mb-3"></i>
+                                <h3 class="card-title display-5 fw-bold text-success">{{ number_format($totalPenduduk) }}</h3>
                                 <p class="card-text fs-6">Jumlah Penduduk</p>
                             </div>
                         </div>
@@ -119,7 +121,9 @@
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
-                                <i class="fa-solid fa-store fa-3x text-success mb-3"></i> <h3 class="card-title display-5 fw-bold text-success">10</h3> {{-- Anda perlu variabel $jumlahUmkm dari backend --}}
+                                {{-- Tambahkan kelas text-custom-stats --}}
+                                <i class="fa-solid fa-store fa-3x text-success mb-3"></i>
+                                <h3 class="card-title display-5 fw-bold text-success">{{ number_format($jumlahUmkm) }}</h3>
                                 <p class="card-text fs-6">Jumlah UMKM</p>
                             </div>
                         </div>
@@ -128,8 +132,10 @@
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
-                                <i class="fa-solid fa-seedling fa-3x text-info mb-3"></i> <h3 class="card-title display-5 fw-bold text-info">50</h3> {{-- Anda perlu variabel $jumlahPertanian dari backend --}}
-                                <p class="card-text fs-6">Jumlah Pertanian</p>
+                                {{-- Tambahkan kelas text-custom-stats --}}
+                                <i class="fa-solid fa-seedling fa-3x text-success mb-3"></i>
+                                <h3 class="card-title display-5 fw-bold text-success">{{ number_format($jumlahPertanian) }}</h3>
+                                <p class="card-text fs-6">Jumlah Komoditi Pertanian</p>
                             </div>
                         </div>
                     </div>
@@ -137,7 +143,9 @@
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
-                                <i class="fa-solid fa-cow fa-3x text-warning mb-3"></i> <h3 class="card-title display-5 fw-bold text-warning">20</h3> {{-- Anda perlu variabel $jumlahPeternakan dari backend --}}
+                                {{-- Tambahkan kelas text-custom-stats --}}
+                                <i class="fa-solid fa-cow fa-3x text-success mb-3"></i>
+                                <h3 class="card-title display-5 fw-bold text-success">{{ number_format($jumlahPeternakan) }}</h3>
                                 <p class="card-text fs-6">Jumlah Peternakan</p>
                             </div>
                         </div>
@@ -146,7 +154,9 @@
                     <div class="col">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
-                                <i class="fa-solid fa-stethoscope fa-3x text-danger mb-3"></i> <h3 class="card-title display-5 fw-bold text-danger">30</h3> {{-- Anda perlu variabel $jumlahNakes dari backend --}}
+                                {{-- Tambahkan kelas text-custom-stats --}}
+                                <i class="fa-solid fa-stethoscope fa-3x text-success mb-3"></i>
+                                <h3 class="card-title display-5 fw-bold text-success">30</h3> {{-- Ini masih statis --}}
                                 <p class="card-text fs-6">Jumlah Tenaga Kesehatan</p>
                             </div>
                         </div>
@@ -195,6 +205,7 @@
             </div>
         </section>
 
+        <!-- Gallery Section --> 
         <section id="galeri-nagari" class="py-5"> {{-- Warna background default (putih) --}}
             <div class="container">
                 <h2 class="text-center mb-5 fw-bold">Galeri Terbaru Nagari</h2>
@@ -224,6 +235,7 @@
             </div>
         </section>
 
+        <!-- Wisata Section --> 
         <section id="wisata-landing" class="py-5 text-white d-flex align-items-center justify-content-center" style="
             background-image: url('{{ asset('images/wisata.jpg') }}'); {{-- Ganti dengan gambar wisata pilihan kamu --}}
             background-size: cover;
@@ -242,6 +254,47 @@
                 <a href="{{ route('wisata.index') }}" class="btn btn-light btn-md px-4 shadow-sm">
                     Lihat Semua Wisata <i class="fa-solid fa-arrow-right ms-2"></i>
                 </a>
+            </div>
+        </section>
+
+        <!-- UMKM Section -->
+        <section id="umkm-unggulan" class="py-5 bg-light"> {{-- Gunakan bg-light untuk kontras --}}
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">UMKM Unggulan Nagari</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @forelse ($featuredUmkms as $item) {{-- Loop melalui UMKM unggulan --}}
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0">
+                                @if ($item->photo)
+                                    <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top rounded-top" alt="{{ $item->nama_usaha }}" style="height: 200px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('images/default-umkm.png') }}" class="card-img-top rounded-top" alt="Gambar Default" style="height: 200px; object-fit: cover;">
+                                @endif
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold mb-2">{{ $item->nama_usaha }}</h5>
+                                    <p class="card-text text-muted small mb-1">
+                                        <i class="fa-solid fa-user me-1"></i> Pemilik: {{ $item->nama_pemilik }}
+                                    </p>
+                                    <p class="card-text small mb-1">
+                                        <i class="fa-solid fa-phone me-1"></i> Telp: {{ $item->no_hp_usaha ?? '-' }}
+                                    </p>
+                                    <p class="card-text small mb-2">
+                                        <i class="fa-solid fa-map-marker-alt me-1"></i> Alamat: {{ Str::limit($item->alamat_usaha, 50, '...') ?? '-' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="col-12 text-center py-5">
+                            <p>Belum ada UMKM unggulan yang dapat ditampilkan.</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                <div class="text-center mt-5">
+                    {{-- Tombol untuk melihat seluruh UMKM, mengarah ke public.umkms.index --}}
+                    <a href="{{ route('user.pages.umkm.index') }}" class="btn btn-custom btn-md px-4">Lihat Seluruh UMKM <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
             </div>
         </section>
 @endsection

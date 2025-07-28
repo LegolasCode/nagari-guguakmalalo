@@ -63,9 +63,9 @@
                                 <td>{{ $loop->iteration + ($luasAreaProduksi->currentPage() - 1) * $luasAreaProduksi->perPage() }}</td>
                                 <td>{{ $item->nama_komoditi }}</td>
                                 <td>{{ $item->tipe_area }}</td>
-                                <td>{{ number_format($item->luas_tanam, 2, ',', '.') }}</td>
-                                <td>{{ number_format($item->luas_panen, 2, ',', '.') }}</td>
-                                <td>{{ number_format($item->produksi, 2, ',', '.') }}</td>
+                                <td>{{ $item->luas_tanam_formatted }}</td>
+                                <td>{{ $item->luas_panen_formatted }}</td>
+                                <td>{{ $item->produksi_formatted }}</td>
                                 <td>{{ $item->tahun ?? '-' }}</td>
                                 <td>
                                     @if ($item->image)
@@ -93,14 +93,18 @@
                     </tbody>
                 </table>
             </div>
+            {{-- Pagination Navigation --}}
+            @if ($luasAreaProduksi instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                <div class="card-footer">
+                    {{ $luasAreaProduksi->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
+                </div>
+            @endif
+        </div>
+        <div class="d-flex justify-content-start mt-4">
+            <a href="{{ route('pertanian-peternakan.index') }}" class="btn btn-outline-secondary me-2">
+            <i class="fas fa-arrow-left me-2"></i>Kembali</a>
         </div>
     </div>
-    {{-- Pagination Navigation --}}
-    @if ($luasAreaProduksi instanceof \Illuminate\Pagination\LengthAwarePaginator)
-        <div class="card-footer">
-            {{ $luasAreaProduksi->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
-        </div>
-    @endif
 </div>
 
     {{-- Modals Konfirmasi Hapus --}}

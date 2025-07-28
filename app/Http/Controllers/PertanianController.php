@@ -57,7 +57,7 @@ class PertanianController extends Controller
         }
 
         // Ambil data dengan pagination, 10 data per halaman
-        $luasAreaProduksi = $query->orderBy('tahun', 'desc')->orderBy('nama_komoditi')->paginate(10);
+        $luasAreaProduksi = $query->orderBy('tahun', 'desc')->orderBy('nama_komoditi')->paginate(9);
 
         // Ambil tahun unik untuk filter
         $availableYears = LuasAreaProduksi::select('tahun')
@@ -83,7 +83,7 @@ class PertanianController extends Controller
         }
 
         // Ambil data dengan pagination, 10 data per halaman
-        $populasiTanaman = $query->orderBy('tahun', 'desc')->orderBy('nama_komoditi')->paginate(10);
+        $populasiTanaman = $query->orderBy('tahun', 'desc')->orderBy('nama_komoditi')->paginate(9);
 
         // Ambil tahun unik untuk filter
         $availableYears = PopulasiTanaman::select('tahun')
