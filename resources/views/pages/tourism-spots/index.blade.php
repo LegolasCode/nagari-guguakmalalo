@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <form action="{{ route('tourism-spots.index') }}" method="GET" class="mb-3">
                             <div class="row justify-content-end">
-                                <div class="col-md-6 col-lg-4">
+                                <div class="col-md-8 col-lg-6"> 
                                     <div class="input-group">
                                         <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Nama atau Alamat..."
                                             aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">
@@ -79,6 +79,10 @@
                         </table>
                         {{ $tourismSpots->links() }}
                     </div>
+                </div>
+                {{-- Pagination Navigation --}}
+                <div class="card-footer">
+                    {{ $tourismSpots->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

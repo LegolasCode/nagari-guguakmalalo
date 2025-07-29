@@ -30,7 +30,7 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #003d4d;"id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center mt-2 mb-2 ml-2" href="{{ route('dashboard') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center mt-2 mb-2 ml-2" href="{{ route('pages.dashboard') }}">
         <img src="{{ asset('images/logo_nagari.png') }}" alt="Logo" width="48" height="48">
         <div class="sidebar-brand-text mx-3">Nagari Guguak Malalo</div>
     </a>
@@ -82,17 +82,17 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Konten</span>
         </a>
-        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkm-content*') || request()->is('tourism-spots*') ? 'show' : '' }}" aria-labelledby="headingKonten"
+        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkms*') || request()->is('tourism-spots*') || request()->is('pertanian-peternakan*') || request()->is('health*') ? 'show' : '' }}" aria-labelledby="headingKonten"
             data-parent="#accordionSidebar">
             <div class="collapse-inner">
                 <a class="collapse-item {{ request()->is('profile-nagari-content*') ? 'active' : '' }}" href="/profile-nagari-content"><i class="fas fa-fw fa-building mr-2"></i>Profil Nagari</a>
                 <a class="collapse-item {{ request()->is('news*') ? 'active' : '' }}" href="/news"><i class="fas fa-fw fa-newspaper mr-2"></i>Berita</a>
                 <a class="collapse-item {{ request()->is('gallery*') ? 'active' : '' }}" href="/gallery"><i class="fas fa-fw fa-images mr-2"></i>Galeri</a>
-                <a class="collapse-item {{ request()->is('umkm-content*') ? 'active' : '' }}" href="/umkm-content"><i class="fas fa-fw fa-store mr-2"></i>UMKM</a>
+                <a class="collapse-item {{ request()->is('umkms*') ? 'active' : '' }}" href="/umkms"><i class="fas fa-fw fa-store mr-2"></i>UMKM</a>
                 <a class="collapse-item {{ request()->is('tourism-spots*') ? 'active' : '' }}" href="/tourism-spots"><i class="fas fa-solid fa-camera-retro mr-2"></i>Wisata</a>
-                <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-seedling mr-2"></i>Tani & Ternak</a>
+                <a class="collapse-item {{ request()->is('pertanian-peternakan*') ? 'active' : '' }}" href="/pertanian-peternakan"><i class="fas fa-fw fa-seedling mr-2"></i>Tani & Ternak</a>
                 <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-balance-scale mr-2"></i>Hukum</a>
-                <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-heart mr-2"></i>Kesehatan</a>
+                <a class="collapse-item {{ request()->is('health*') ? 'active' : '' }}" href="/health"><i class="fas fa-fw fa-heart mr-2"></i>Kesehatan</a>
                 
             </div>
         </div>

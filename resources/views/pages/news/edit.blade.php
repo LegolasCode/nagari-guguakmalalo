@@ -66,7 +66,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
             <a href="{{ route('news.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
-            <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+            <button type="submit" class="btn btn-warning">Update</button>
         </div>
     </form>
 @endsection

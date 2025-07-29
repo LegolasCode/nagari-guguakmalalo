@@ -14,10 +14,19 @@ use App\Http\Controllers\NewsController as PublicNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TourismSpotController;
+use App\Http\Controllers\PertanianPeternakanController;
 use App\Http\Controllers\KelembagaanTaniController;
 use App\Http\Controllers\LuasAreaProduksiController;
 use App\Http\Controllers\PopulasiTanamanController;
 use App\Http\Controllers\PopulasiTernakController;
+use App\Http\Controllers\PertanianController;
+use App\Http\Controllers\PeternakanController;
+use App\Http\Controllers\UmkmController;
+use App\Http\Controllers\PublicUmkmController;
+use App\Http\Controllers\HealthFacilityController;
+use App\Http\Controllers\DiseaseController;
+use App\Http\Controllers\KesehatanController;
+use App\Http\Controllers\KesehatanPublicController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -29,7 +38,7 @@ Route::post('/register', [AuthController::class, 'register']);
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'role:Admin,User'])
-    ->name('dashboard');
+    ->name('pages.dashboard');
 
 // Resident
 Route::get('/resident', [ResidentController::class, 'index'])->middleware('role:Admin')->name('pages.resident.index');;              
@@ -83,17 +92,27 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Tourism Spot
   Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
 
+  // Pertanian dan Peternakan
+  Route::get('/pertanian-peternakan', [PertanianPeternakanController::class, 'index'])->name('pertanian-peternakan.index');
   // Kelembagaan Tani
-  Route::resource('kelembagaan_tani', KelembagaanTaniController::class);
-
+  Route::resource('kelembagaan-tani', KelembagaanTaniController::class)->middleware('role:Admin');
   // Luas Area Produksi
-  Route::resource('luas_area_produksi', LuasAreaProduksiController::class);
-
+  Route::resource('luas-area-produksi', LuasAreaProduksiController::class)->middleware('role:Admin');
   // Populasi Tanaman
-  Route::resource('populasi_tanaman', PopulasiTanamanController::class);
-
+  Route::resource('populasi-tanaman', PopulasiTanamanController::class)->middleware('role:Admin');
   // Populasi Ternak
-  Route::resource('populasi_ternak', PopulasiTernakController::class);
+  Route::resource('populasi-ternak', PopulasiTernakController::class)->middleware('role:Admin');
+
+  // UMKM
+  Route::resource('umkms', UmkmController::class)->middleware('role:Admin'); 
+
+
+  // Kesehatan
+  Route::get('/health', [KesehatanController::class, 'index'])->name('health.index');
+  // Fasilitas Layanan Kesehatan
+  Route::resource('health-facilities', HealthFacilityController::class)->middleware('role:Admin');
+  // Data Penyakit
+  Route::resource('diseases', DiseaseController::class)->middleware('role:Admin');
 
 
   
@@ -115,3 +134,16 @@ Route::get('/galeri', [GalleryController::class, 'indexPublic'])->name('galeri.i
 // Wisata
 Route::get('/wisata', [TourismSpotController::class, 'indexPublic'])->name('wisata.index'); // Untuk daftar semua wisata
 Route::get('/wisata/{tourismSpot:slug}', [TourismSpotController::class, 'showPublic'])->name('wisata.show'); // Untuk detail wisata
+
+// Pertanian
+Route::get('/pertanian', [PertanianController::class, 'indexPublic'])->name('user.pages.pertanian.index');
+Route::get('/pertanian/kelembagaan-tani', [PertanianController::class, 'kelembagaanTaniPublic'])->name('user.pages.pertanian.kelembagaan-tani');
+Route::get('/pertanian/luas-area-produksi', [PertanianController::class, 'luasAreaProduksiPublic'])->name('user.pages.pertanian.luas-area-produksi');
+Route::get('/pertanian/populasi-tanaman', [PertanianController::class, 'populasiTanamanPublic'])->name('user.pages.pertanian.populasi-tanaman');
+Route::get('/peternakan', [PeternakanController::class, 'populasiTernakPublic'])->name('user.pages.peternakan.index');
+
+// UMKM
+Route::get('/umkm', [PublicUmkmController::class, 'indexPublic'])->name('user.pages.umkm.index');
+
+// Kesehatan
+Route::get('/kesehatan', [KesehatanPublicController::class, 'indexPublic'])->name('user.pages.kesehatan.index');

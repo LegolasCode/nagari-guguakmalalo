@@ -51,14 +51,15 @@
     }
 
     .btn-custom-readmore {
-        background-color: #003d4d !important;
-        border-color: #003d4d !important;
-        color: #ffffff !important;
+        background-color: transparent !important; 
+        border-color: #003d4d !important; 
+        color: #003d4d !important; 
     }
 
     .btn-custom-readmore:hover {
-        background-color: #002a36 !important;
-        border-color: #8acfe0 !important;
+        background-color: #003d4d !important; 
+        border-color: #003d4d !important; 
+        color: #ffffff !important; 
     }
 
     .btn-custom-login, .btn-custom {
@@ -72,6 +73,10 @@
         background-color: #e0d67c !important; /* Warna sedikit lebih gelap saat di-hover */
         border-color: #e0d67c !important;
     }
+
+    .text-custom-stats {
+    color: #e0d67c !important; /* Warna kustom yang Anda inginkan */
+    }   
 
     </style>
 </head>

@@ -10,7 +10,7 @@
                     <p class="text-muted small mb-4">
                         <i class="fa-solid fa-map-marker-alt me-1"></i> {{ $tourismSpot->address ?? 'Alamat tidak tersedia' }}
                         @if ($tourismSpot->latitude && $tourismSpot->longitude)
-                        <a href="https://maps.google.com/?q={{ $tourismSpot->latitude }},{{ $tourismSpot->longitude }}" target="_blank" class="btn btn-sm btn-custom ms-2">
+                        <a href="https://maps.google.com/?q={{ $tourismSpot->latitude }},{{ $tourismSpot->longitude }}" target="_blank" class="btn btn-sm btn-custom-readmore ms-2">
                             <i class="fa-solid fa-location-arrow"></i> Lihat di Peta
                         </a>
                         @endif
@@ -57,7 +57,7 @@
                     </div>
 
                     <hr class="my-5">
-                    <a href="{{ route('wisata.index') }}" class="btn btn-custom"><i class="fa-solid fa-arrow-left me-2"></i> Kembali</a>
+                    <a href="{{ route('wisata.index') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-left me-2"></i> Kembali</a>
                 </div>
             </div>
         </div>

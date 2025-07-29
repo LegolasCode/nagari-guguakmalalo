@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <form action="{{ route('news.index') }}" method="GET" class="mb-3">
                             <div class="row justify-content-end"> {{-- Tambahkan row dan justify-content-center --}}
-                                <div class="col-md-6 col-lg-4"> {{-- Batasi lebar di sini --}}
+                                <div class="col-md-8 col-lg-6">  {{-- Batasi lebar di sini --}}
                                     <div class="input-group">
                                         <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Judul..."
                                             aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">

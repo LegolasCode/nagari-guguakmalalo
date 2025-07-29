@@ -66,12 +66,10 @@
                         </table>
                     </div>
                 </div>
-                {{-- Pagination Navigation (jika Anda menggunakan pagination) --}}
-                @if ($officials instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                    <div class="card-footer">
-                        {{ $officials->links('vendor.pagination.bootstrap-5') }}
-                    </div>
-                @endif
+                {{-- Pagination Navigation --}}
+                <div class="card-footer">
+                    {{ $officials->links('vendor.pagination.bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>

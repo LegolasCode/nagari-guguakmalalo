@@ -31,10 +31,12 @@
                             <li><a class="dropdown-item" href="{{ url('/wisata') }}">Wisata</a></li>
                             <li><a class="dropdown-item" href="{{ url('/pertanian') }}">Pertanian</a></li>
                             <li><a class="dropdown-item" href="{{ url('/peternakan') }}">Peternakan</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/kesehatan') }}">Kesehatan</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="#umkm">UMKM</a>
+                        <a class="nav-link fw-semibold {{ Request::routeIs('umkm') ? 'active' : '' }}" href="{{ route('user.pages.umkm.index') }}">UMKM</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link fw-semibold dropdown-toggle" href="#" id="navbarDropdownLayanan" role="button" data-bs-toggle="dropdown" aria-expanded="false">
