@@ -29,7 +29,7 @@
                         </div>
 
                         {{-- Kolom Pencarian --}}
-                        <div class="col-md-8 col-lg-6"> {{-- Sesuaikan lebar kolom --}}
+                        <div class="col-md-8 col-lg-6"> 
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Komoditi atau Tipe Area..."
                                     aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">

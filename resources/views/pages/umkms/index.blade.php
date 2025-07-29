@@ -13,10 +13,10 @@
             <div class="card shadow">
                 <div class="card-body">
                     <form action="{{ route('umkms.index') }}" method="GET" class="mb-3">
-                        <div class="row justify-content-end"> {{-- Tambahkan row dan justify-content-center --}}
-                            <div class="col-md-6 col-lg-4"> {{-- Batasi lebar di sini --}}
+                        <div class="row justify-content-end"> 
+                            <div class="col-md-8 col-lg-6">  
                                 <div class="input-group">
-                                    <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Nama Poktan, Id Poktan, atau Nama Ketua..."
+                                    <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Nama Usaha, Nama Pemilik, atau NIK"
                                         aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-success" type="submit">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table table-responsive table-bordered table-hover w-100"> 
+                    <table class="table table-responsive table-bordered w-100"> 
                         <thead>
                             <tr>
                                 <th style="width: 50px;">No</th>

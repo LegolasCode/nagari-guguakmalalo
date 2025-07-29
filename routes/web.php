@@ -23,6 +23,10 @@ use App\Http\Controllers\PertanianController;
 use App\Http\Controllers\PeternakanController;
 use App\Http\Controllers\UmkmController;
 use App\Http\Controllers\PublicUmkmController;
+use App\Http\Controllers\HealthFacilityController;
+use App\Http\Controllers\DiseaseController;
+use App\Http\Controllers\KesehatanController;
+use App\Http\Controllers\KesehatanPublicController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -88,7 +92,7 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
   // Tourism Spot
   Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
 
-    // Pertanian dan Peternakan
+  // Pertanian dan Peternakan
   Route::get('/pertanian-peternakan', [PertanianPeternakanController::class, 'index'])->name('pertanian-peternakan.index');
   // Kelembagaan Tani
   Route::resource('kelembagaan-tani', KelembagaanTaniController::class)->middleware('role:Admin');
@@ -101,6 +105,14 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
 
   // UMKM
   Route::resource('umkms', UmkmController::class)->middleware('role:Admin'); 
+
+
+  // Kesehatan
+  Route::get('/health', [KesehatanController::class, 'index'])->name('health.index');
+  // Fasilitas Layanan Kesehatan
+  Route::resource('health-facilities', HealthFacilityController::class)->middleware('role:Admin');
+  // Data Penyakit
+  Route::resource('diseases', DiseaseController::class)->middleware('role:Admin');
 
 
   
@@ -132,3 +144,6 @@ Route::get('/peternakan', [PeternakanController::class, 'populasiTernakPublic'])
 
 // UMKM
 Route::get('/umkm', [PublicUmkmController::class, 'indexPublic'])->name('user.pages.umkm.index');
+
+// Kesehatan
+Route::get('/kesehatan', [KesehatanPublicController::class, 'indexPublic'])->name('user.pages.kesehatan.index');

@@ -82,7 +82,7 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Konten</span>
         </a>
-        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkms*') || request()->is('tourism-spots*') || request()->is('pertanian-peternakan*') ? 'show' : '' }}" aria-labelledby="headingKonten"
+        <div id="collapseKonten" class="collapse {{ request()->is('profile-nagari-content*') || request()->is('news*') || request()->is('gallery*') || request()->is('umkms*') || request()->is('tourism-spots*') || request()->is('pertanian-peternakan*') || request()->is('health*') ? 'show' : '' }}" aria-labelledby="headingKonten"
             data-parent="#accordionSidebar">
             <div class="collapse-inner">
                 <a class="collapse-item {{ request()->is('profile-nagari-content*') ? 'active' : '' }}" href="/profile-nagari-content"><i class="fas fa-fw fa-building mr-2"></i>Profil Nagari</a>
@@ -92,7 +92,7 @@
                 <a class="collapse-item {{ request()->is('tourism-spots*') ? 'active' : '' }}" href="/tourism-spots"><i class="fas fa-solid fa-camera-retro mr-2"></i>Wisata</a>
                 <a class="collapse-item {{ request()->is('pertanian-peternakan*') ? 'active' : '' }}" href="/pertanian-peternakan"><i class="fas fa-fw fa-seedling mr-2"></i>Tani & Ternak</a>
                 <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-balance-scale mr-2"></i>Hukum</a>
-                <a class="collapse-item" href="/galeri"><i class="fas fa-fw fa-heart mr-2"></i>Kesehatan</a>
+                <a class="collapse-item {{ request()->is('health*') ? 'active' : '' }}" href="/health"><i class="fas fa-fw fa-heart mr-2"></i>Kesehatan</a>
                 
             </div>
         </div>
