@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VisiMisi; 
 use App\Models\VillageOfficial; 
+use App\Models\ContentPage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -184,5 +185,50 @@ class ProfilNagariContentController extends Controller
         $official->delete();
 
         return redirect('/struktur-organisasi')->with('success', 'Pengurus berhasil dihapus!');
+    }
+
+    
+    /**
+     * Menampilkan form untuk mengedit kontak hukum (Polsek, Babinsa).
+     */
+    public function editLegalContact()
+    {
+        $legalContact = ContentPage::firstOrCreate(
+            ['type' => 'legal_contact'],
+            ['title' => 'Kontak Hukum Nagari', 'body' => 'Deskripsi umum kontak hukum di Nagari.']
+        );
+        // === PERBAIKAN DI SINI ===
+        // Path view harus sesuai dengan folder Anda
+        return view('pages.law.legal-contact-edit', compact('legalContact'));
+        // === AKHIR PERBAIKAN ===
+    }
+
+    /**
+     * Memperbarui kontak hukum.
+     */
+    public function updateLegalContact(Request $request)
+    {
+        $validated = $request->validate([
+            'description' => 'nullable|string',
+            'contact_polsek_phone' => 'nullable|string|max:15',
+            'contact_polsek_name' => 'nullable|string|max:255',
+            'contact_babinsa_phone' => 'nullable|string|max:15',
+            'contact_babinsa_name' => 'nullable|string|max:255',
+        ]);
+
+        $legalContact = ContentPage::where('type', 'legal_contact')->firstOrFail();
+
+        $legalContact->update([
+            'body' => $validated['description'],
+            'contact_polsek_phone' => $validated['contact_polsek_phone'],
+            'contact_polsek_name' => $validated['contact_polsek_name'],
+            'contact_babinsa_phone' => $validated['contact_babinsa_phone'],
+            'contact_babinsa_name' => $validated['contact_babinsa_name'],
+        ]);
+
+        // === PERBAIKAN DI SINI ===
+        // Gunakan redirect()->route() dengan nama rute yang benar
+        return redirect()->route('law.index')->with('success', 'Kontak Hukum berhasil diperbarui!');
+        // === AKHIR PERBAIKAN ===
     }
 }

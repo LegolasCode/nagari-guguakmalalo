@@ -65,16 +65,16 @@
         </div>
             {{-- Pagination Navigation --}}
             @if ($kelembagaanTani instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                <div class="card-footer d-flex justify-content-center">
+                <div class="card-footer">
                     {{ $kelembagaanTani->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
                 </div>
             @endif
     </div>
 
     {{-- Tombol Kembali ke Halaman Pertanian Utama --}}
-    <div class="text-center mt-4">
+    <div class="mt-4">
         <a href="{{ route('user.pages.pertanian.index') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-arrow-left me-2"></i> Kembali ke Halaman Pertanian
+            <i class="fas fa-arrow-left me-2"></i> Kembali
         </a>
     </div>
 </div>

@@ -14,8 +14,8 @@
         <div class="col">
             <div class="card shadow-sm h-100 d-flex flex-column justify-content-center text-center">
                 <div class="card-body p-4">
-                    <i class="fa-solid fa-seedling fa-4x text-primary mb-3"></i>
-                    <h3 class="card-title display-5 fw-bold text-primary">{{ number_format($totalKelembagaanTani) }}</h3>
+                    <i class="fa-solid fa-seedling fa-4x text-success mb-3"></i>
+                    <h3 class="card-title display-5 fw-bold text-success">{{ number_format($totalKelembagaanTani) }}</h3>
                     <p class="card-text fs-5">Kelembagaan Tani</p>
                     <a href="{{ route('user.pages.pertanian.kelembagaan-tani') }}" class="btn btn-sm btn-custom-readmore mt-3">Lihat Detail</a> {{-- Arahkan ke halaman detail jika ada --}}
                 </div>
@@ -38,8 +38,8 @@
         <div class="col">
             <div class="card shadow-sm h-100 d-flex flex-column justify-content-center text-center">
                 <div class="card-body p-4">
-                    <i class="fa-solid fa-tree fa-4x text-info mb-3"></i>
-                    <h3 class="card-title display-5 fw-bold text-info">{{ number_format($totalPopulasiTanaman) }}</h3>
+                    <i class="fa-solid fa-tree fa-4x text-success mb-3"></i>
+                    <h3 class="card-title display-5 fw-bold text-success">{{ number_format($totalPopulasiTanaman) }}</h3>
                     <p class="card-text fs-5">Populasi Tanaman</p>
                     <a href="{{ route('user.pages.pertanian.populasi-tanaman') }}" class="btn btn-sm btn-custom-readmore mt-3">Lihat Detail</a>
                 </div>

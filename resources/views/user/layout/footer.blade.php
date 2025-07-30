@@ -36,7 +36,7 @@
                 <h5 class="fw-bold">Lokasi Kami</h5>
                 <div class="map-container" style="overflow:hidden; padding-bottom:56.25%; position:relative; height:0;">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.5207010627287!2d100.5249979128493!3d-0.6507267631017123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4d70002e984b7%3A0x3a235d925ef5c545!2sKantor%20Wali%20Nagari%20Guguak%20Malalo!5e0!3m2!1sid!2sid!4v1752404868231!5m2!1sid!2sid"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7979.224844863585!2d100.48968516836041!3d-0.5820883514334444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd529d1d8759207%3A0x9ff57a02d75f6dee!2sKantor%20Wali%20Nagari%20Guguak%20Malalo%20(baru)!5e0!3m2!1sid!2sid!4v1753874024399!5m2!1sid!2sid"
                         width="600"
                         height="450"
                         style="border:0; position:absolute; top:0; left:0; width:100%; height:100%;"

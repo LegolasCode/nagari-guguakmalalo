@@ -71,13 +71,13 @@
                                     <td>{{ $item->status }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('resident.edit', $item->id) }}" class="d-inline-block mr-2 btn-sm btn-warning">
+                                            <a href="{{ route('resident.edit', $item->id) }}" class="d-inline-block me-2 btn-sm btn-warning">
                                                 <i class="fas fa-pen"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger mr-2" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $item->id }}">
+                                            <button type="button" class="btn btn-sm btn-danger me-2" data-bs-toggle="modal" data-bs-target="#confirmationDelete-{{ $item->id }}">
                                                 <i class="fas fa-eraser"></i> 
                                             </button>
-                                            <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#accountDetail-{{ $item->id }}">
+                                            <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#accountDetail-{{ $item->id }}">
                                                 <i class="fas fa-search"></i> 
                                             </button>
                                         </div>
