@@ -27,6 +27,9 @@ use App\Http\Controllers\HealthFacilityController;
 use App\Http\Controllers\DiseaseController;
 use App\Http\Controllers\KesehatanController;
 use App\Http\Controllers\KesehatanPublicController;
+use App\Http\Controllers\HukumController;
+use App\Http\Controllers\HukumPublicController;
+use App\Http\Controllers\DocumentController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -83,39 +86,47 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
  Route::put('/struktur-organisasi/{id}', [ProfilNagariContentController::class, 'updateStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.update');
  Route::delete('struktur-organisasi/{id}', [ProfilNagariContentController::class, 'destroyStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.destroy');
 
- // News
- Route::resource('news', NewsController::class)->middleware('role:Admin');
+// News
+Route::resource('news', NewsController::class)->middleware('role:Admin');
 
-  // Gallery
-  Route::resource('gallery', GalleryController::class)->middleware('role:Admin');
+// Gallery
+Route::resource('gallery', GalleryController::class)->middleware('role:Admin');
 
-  // Tourism Spot
-  Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
+// Tourism Spot
+Route::resource('tourism-spots', TourismSpotController::class)->middleware('role:Admin');
 
-  // Pertanian dan Peternakan
-  Route::get('/pertanian-peternakan', [PertanianPeternakanController::class, 'index'])->name('pertanian-peternakan.index');
-  // Kelembagaan Tani
-  Route::resource('kelembagaan-tani', KelembagaanTaniController::class)->middleware('role:Admin');
-  // Luas Area Produksi
-  Route::resource('luas-area-produksi', LuasAreaProduksiController::class)->middleware('role:Admin');
-  // Populasi Tanaman
-  Route::resource('populasi-tanaman', PopulasiTanamanController::class)->middleware('role:Admin');
-  // Populasi Ternak
-  Route::resource('populasi-ternak', PopulasiTernakController::class)->middleware('role:Admin');
+// Pertanian dan Peternakan
+Route::get('/pertanian-peternakan', [PertanianPeternakanController::class, 'index'])->middleware('role:Admin')->name('pertanian-peternakan.index');
+// Kelembagaan Tani
+Route::resource('kelembagaan-tani', KelembagaanTaniController::class)->middleware('role:Admin');
+// Luas Area Produksi
+Route::resource('luas-area-produksi', LuasAreaProduksiController::class)->middleware('role:Admin');
+// Populasi Tanaman
+Route::resource('populasi-tanaman', PopulasiTanamanController::class)->middleware('role:Admin');
+// Populasi Ternak
+Route::resource('populasi-ternak', PopulasiTernakController::class)->middleware('role:Admin');
 
-  // UMKM
-  Route::resource('umkms', UmkmController::class)->middleware('role:Admin'); 
+// UMKM
+Route::resource('umkms', UmkmController::class)->middleware('role:Admin'); 
 
+// Kesehatan
+Route::get('/health', [KesehatanController::class, 'index'])->middleware('role:Admin')->name('health.index');
+// Fasilitas Layanan Kesehatan
+Route::resource('health-facilities', HealthFacilityController::class)->middleware('role:Admin');
+// Data Penyakit
+Route::resource('diseases', DiseaseController::class)->middleware('role:Admin');
 
-  // Kesehatan
-  Route::get('/health', [KesehatanController::class, 'index'])->name('health.index');
-  // Fasilitas Layanan Kesehatan
-  Route::resource('health-facilities', HealthFacilityController::class)->middleware('role:Admin');
-  // Data Penyakit
-  Route::resource('diseases', DiseaseController::class)->middleware('role:Admin');
+// Hukum
+Route::get('/law', [HukumController::class, 'index'])->middleware('role:Admin')->name('law.index');
 
-
+// Kontak Hukum
+Route::get('/law/legal-contact-edit', [ProfilNagariContentController::class, 'editLegalContact'])->middleware('role:Admin')->name('law.legal-contact-edit'); 
+Route::put('/law/legal-contact-edit', [ProfilNagariContentController::class, 'updateLegalContact'])->middleware('role:Admin')->name('law.contact.update'); 
+// Dokumen 
+Route::resource('documents', DocumentController::class)->middleware('role:Admin');
   
+
+
 // Beranda Public
 Route::get('/', [LandingPageController::class, 'LandingPageView'])->name('index');
 
@@ -147,3 +158,8 @@ Route::get('/umkm', [PublicUmkmController::class, 'indexPublic'])->name('user.pa
 
 // Kesehatan
 Route::get('/kesehatan', [KesehatanPublicController::class, 'indexPublic'])->name('user.pages.kesehatan.index');
+
+// Hukum
+Route::get('/hukum', [HukumPublicController::class, 'indexPublic'])->name('user.pages.hukum.index');
+Route::get('/hukum/download/{document:slug}', [HukumPublicController::class, 'downloadDocument'])->name('hukum.download');
+Route::get('/hukum/dokumen/{document:slug}', [HukumPublicController::class, 'showDocument'])->name('user.pages.hukum.show'); // Opsional: Halaman review dokumen

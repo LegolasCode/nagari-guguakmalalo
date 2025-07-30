@@ -82,15 +82,15 @@
 
     {{-- Pagination Navigation --}}
     @if ($luasAreaProduksi instanceof \Illuminate\Pagination\LengthAwarePaginator)
-        <div class="d-flex justify-content-center mt-5">
+        <div class="mt-5">
             {{ $luasAreaProduksi->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
         </div>
     @endif
 
     {{-- Tombol Kembali ke Halaman Pertanian Utama --}}
-    <div class="text-center mt-4">
+    <div class="mt-4">
         <a href="{{ route('user.pages.pertanian.index') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-arrow-left me-2"></i> Kembali ke Halaman Pertanian
+            <i class="fas fa-arrow-left me-2"></i> Kembali
         </a>
     </div>
 </div>
