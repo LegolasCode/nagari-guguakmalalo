@@ -30,6 +30,9 @@ use App\Http\Controllers\KesehatanPublicController;
 use App\Http\Controllers\HukumController;
 use App\Http\Controllers\HukumPublicController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\LetterServiceController;
+use App\Http\Controllers\LetterRequestController;
+use App\Http\Controllers\UserRequestController;
 
 // Auth
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -124,7 +127,29 @@ Route::get('/law/legal-contact-edit', [ProfilNagariContentController::class, 'ed
 Route::put('/law/legal-contact-edit', [ProfilNagariContentController::class, 'updateLegalContact'])->middleware('role:Admin')->name('law.contact.update'); 
 // Dokumen 
 Route::resource('documents', DocumentController::class)->middleware('role:Admin');
-  
+
+// Layanan Surat
+Route::resource('letter-services', LetterServiceController::class)->middleware('role:Admin');
+// Manajemen Permintaan Surat dari User 
+Route::get('letter-request', [LetterRequestController::class, 'index'])->middleware('role:Admin')->name('letter-request.index');
+Route::get('letter-request/{letterRequest}', [LetterRequestController::class, 'show'])->middleware('role:Admin')->name('letter-request.show');
+Route::put('letter-request/{letterRequest}', [LetterRequestController::class, 'update'])->middleware('role:Admin')->name('letter-request.update');
+Route::delete('letter-request/{letterRequest}', [LetterRequestController::class, 'destroy'])->middleware('role:Admin')->name('letter-request.destroy');
+Route::get('letter-request/{letterRequest}/download', [LetterRequestController::class, 'download'])->middleware('role:Admin')->name('letter-request.download');
+
+
+// Menampilkan daftar layanan surat yang bisa dipilih
+Route::get('layanan-surat', [UserRequestController::class, 'indexServices'])->name('layanan-surat.index')->middleware('auth');
+// Form pengajuan surat untuk layanan tertentu
+Route::get('layanan-surat/create/{letterService:slug}', [UserRequestController::class, 'createRequest'])->name('create-request')->middleware('auth');
+// Menyimpan permintaan surat dari user
+Route::post('layanan-surat/store/{letterService:slug}', [UserRequestController::class, 'storeRequest'])->name('store-request')->middleware('auth');
+// Menampilkan daftar permintaan surat yang diajukan oleh user
+Route::get('layanan-surat/my-request', [UserRequestController::class, 'indexMyRequests'])->name('my-request')->middleware('auth');
+// Menampilkan status dan detail satu permintaan surat
+Route::get('layanan-surat/my-request/{letterRequest}', [UserRequestController::class, 'showMyRequest'])->name('show-request')->middleware('auth');
+// Mengunduh surat yang telah selesai
+Route::get('layanan-surat/my-request/{letterRequest}/download', [UserRequestController::class, 'downloadCompletedFile'])->name('my-request.download')->middleware('auth');
 
 
 // Beranda Public

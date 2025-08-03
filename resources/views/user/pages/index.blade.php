@@ -257,6 +257,106 @@
             </div>
         </section>
 
+        <!-- Potensi Pertanian & Peternakan Section -->
+        <section id="potensi-pertanian-peternakan" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">Potensi Pertanian & Peternakan</h2>
+                <div class="row g-4">
+                    {{-- Kolom Kiri: Komoditas Terbanyak --}}
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100 border-0 p-4">
+                            <h4 class="fw-bold mb-4">Komoditas Unggulan</h4>
+                            <div class="row g-4">
+                                {{-- Card Komoditas Tanaman Terbanyak --}}
+                                <div class="col-12">
+                                    <div class="card p-3 h-100 border-left-success">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold text-secondary">Populasi Tanaman Terbanyak</h6>
+                                            @if ($komoditiTanamanTerbanyak && $komoditiTanamanTerbanyak->image)
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <img src="{{ asset('storage/' . $komoditiTanamanTerbanyak->image) }}" alt="{{ $komoditiTanamanTerbanyak->nama_komoditi }}" class="img-thumbnail rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                    <h3 class="fw-bold mb-0">{{ $komoditiTanamanTerbanyak->nama_komoditi }}</h3>
+                                                </div>
+                                                <p class="mb-0 text-muted">Total: {{ number_format($komoditiTanamanTerbanyak->total_populasi, 0, '', '.') }} Unit</p>
+                                            @else
+                                                <p class="text-muted">Data populasi tanaman belum tersedia.</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Card Komoditas Ternak Terbanyak --}}
+                                <div class="col-12">
+                                    <div class="card p-3 h-100 border-left-warning">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold text-secondary">Populasi Tanaman Terbanyak</h6>
+                                            @if ($komoditiTernakTerbanyak && $komoditiTernakTerbanyak->image)
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <img src="{{ asset('storage/' . $komoditiTernakTerbanyak->image) }}" alt="{{ $komoditiTernakTerbanyak->jenis_ternak }}" class="img-thumbnail rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                    <h3 class="fw-bold mb-0">{{ $komoditiTernakTerbanyak->jenis_ternak }}</h3>
+                                                </div>
+                                                <p class="mb-0 text-muted">Total: {{ number_format($komoditiTernakTerbanyak->total_ternak, 0, '', '.') }} Ekor</p>
+                                            @else
+                                                <p class="text-muted">Data populasi ternak belum tersedia.</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Kolom Kanan: Statistik Total --}}
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100 border-1 p-4">
+                            <h4 class="fw-bold mb-4">Statistik Total Sektor</h4>
+                            <div class="row row-cols-2 g-4">
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100 border-left-success text-center">
+                                        <i class="fa-solid fa-users fa-2x text-success mb-2"></i>
+                                        <p class="mb-0 fw-bold">{{ number_format($jumlahKelembagaanTani, 0, '', '.') }}</p>
+                                        <small class="text-muted">Kelembagaan Tani</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100 border-left-success text-center">
+                                        <i class="fa-solid fa-chart-area fa-2x text-success mb-2"></i>
+                                        <p class="mb-0 fw-bold">{{ number_format($jumlahProduksiPadi, 0, '', '.') }}</p>
+                                        <small class="text-muted">Produksi Padi (ton)</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100 border-left-success text-center">
+                                        <i class="fa-solid fa-tree fa-2x text-success mb-2"></i>
+                                        <p class="mb-0 fw-bold">{{ number_format($jumlahPopulasiTanaman, 0, '', '.') }}</p>
+                                        <small class="text-muted">Populasi Tanaman</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 h-100 border-left-success text-center">
+                                        <i class="fa-solid fa-cow fa-2x text-success mb-2"></i>
+                                        <p class="mb-0 fw-bold">{{ number_format($jumlahPeternakan, 0, '', '.') }}</p>
+                                        <small class="text-muted">Populasi Ternak</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- Tombol Lihat Semua Data --}}
+                <div class="text-center mt-5">
+                    <div class="d-flex justify-content-center flex-wrap" style="gap: 1rem;"> {{-- PERBAIKAN DI SINI --}}
+                        <a href="{{ route('user.pages.pertanian.index') }}" class="btn btn-custom btn-md px-4">
+                            Lihat Semua Data Pertanian<i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                        <a href="{{ route('user.pages.peternakan.index') }}" class="btn btn-custom btn-md px-4">
+                            Lihat Semua Data Peternakan<i class="fa-solid fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- UMKM Section -->
         <section id="umkm-unggulan" class="py-5 bg-light"> {{-- Gunakan bg-light untuk kontras --}}
             <div class="container">

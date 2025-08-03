@@ -57,7 +57,7 @@
             </div>
 
             <div class="card-footer d-flex justify-content-end">
-                <a href="/kelembagaan-tani" class="btn btn-outline-secondary me-2">Kembali</a>
+                <a href="/umkms" class="btn btn-outline-secondary me-2">Kembali</a>
                 <button type="submit" class="btn btn-success">Simpan</button>
             </div>
     </form>

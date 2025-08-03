@@ -46,11 +46,35 @@
     .navbar.fixed-top {
         z-index: 1030;
     }
+    .collapse-inner {
+        background-color: #003d4d; /* Contoh: Latar belakang putih */
+        border-radius: 0.35rem;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+        padding: 0.25rem;
+    }
     .collapse-inner .collapse-item {
-        color: #e0e0e0 !important;
+        color: #ffffff !important; /* Warna teks yang lebih gelap agar terlihat di latar putih */
+        padding: 0.5rem 1rem;
     }
     .collapse-inner .collapse-item:hover {
-        color: black !important;
+        background-color: #f8f9fa; /* Latar belakang abu-abu saat hover */
+        color: #333333 !important;
+    }
+
+    .collapse-inner .collapse-item.active {
+        background-color: #ffffff !important; /* Warna background putih */
+        color: black !important; /* Warna teks hitam agar terlihat */
+        font-weight: bold; /* Teks tebal */
+    }
+
+
+    /* Ini untuk menu utama di sidebar */
+    .sidebar .nav-item .nav-link {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    .sidebar .nav-item .nav-link.collapsed,
+    .sidebar .nav-item .nav-link:hover {
+        color: #ffffff !important;
     }
 
 </style>
@@ -163,7 +187,7 @@
     <script src="{{ asset('template/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('template/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Page level custom scripts -->
     <!-- <script src="{{ asset('template/js/demo/chart-area-demo.js') }}"></script>

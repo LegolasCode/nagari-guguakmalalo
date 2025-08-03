@@ -78,7 +78,7 @@
                                                 <i class="fas fa-eraser"></i> 
                                             </button>
                                             <button type="button" class="btn btn-sm btn-success me-2" data-bs-toggle="modal" data-bs-target="#accountDetail-{{ $item->id }}">
-                                                <i class="fas fa-search"></i> 
+                                                <i class="fas fa-eye"></i> 
                                             </button>
                                         </div>
                                     </td>

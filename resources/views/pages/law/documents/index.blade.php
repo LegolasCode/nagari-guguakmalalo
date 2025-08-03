@@ -15,7 +15,7 @@
                     <div class="row justify-content-end"> 
                         <div class="col-md-8 col-lg-6"> 
                             <div class="input-group">
-                                <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Judul atau Deskripsi..."
+                                <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Judul"
                                     aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">
                                 <div class="input-group-append">
                                     <button class="btn btn-success" type="submit">
@@ -32,7 +32,6 @@
                             <tr>
                                 <th style="width: 50px;">No</th>
                                 <th>Judul</th>
-                                <th>Deskripsi</th>
                                 <th>Tipe File</th>
                                 <th>Ukuran File</th>
                                 <th>Tanggal Publikasi</th>
@@ -44,7 +43,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration + ($documents->currentPage() - 1) * $documents->perPage() }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ Str::limit($item->description, 70, '...') ?? '-' }}</td>
                                     <td>{{ $item->file_type ?? '-' }}</td>
                                     <td>{{ $item->file_size ?? '-' }}</td>
                                     <td>{{ $item->published_date ? \Carbon\Carbon::parse($item->published_date)->locale('id')->translatedFormat('d M Y') : '-' }}</td>

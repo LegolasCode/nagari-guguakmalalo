@@ -45,63 +45,59 @@
 
     <hr class="my-5">
 
-    {{-- SECTION: Dokumen Nagari (Table View) --}}
+    {{-- SECTION: Dokumen Nagari (Card Horizontal View) --}}
     <h2 class="text-center fw-bold mb-4">Dokumen Nagari</h2>
-
-    {{-- Tabel Dokumen --}}
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered w-100" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">No</th>
-                            <th>Judul Dokumen</th>
-                            <th>Deskripsi</th>
-                            <th>Tipe File</th>
-                            <th>Ukuran File</th>
-                            <th>Tanggal Publikasi</th>
-                            <th style="width: 100px;">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($documents as $item)
-                            <tr>
-                                <td>{{ $loop->iteration + ($documents->currentPage() - 1) * $documents->perPage() }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{{ Str::limit($item->description, 70, '...') ?? '-' }}</td>
-                                <td>{{ $item->file_type ?? '-' }}</td>
-                                <td>{{ $item->file_size ?? '-' }}</td>
-                                <td>{{ $item->published_date ? \Carbon\Carbon::parse($item->published_date)->locale('id')->translatedFormat('d M Y') : '-' }}</td>
-                                <td>
-                                    <div class="d-flex">
-                                        {{-- Tombol Download --}}
-                                        <a href="{{ route('hukum.download', $item->slug) }}" class="btn btn-sm btn-success me-2" title="Download Dokumen">
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                        {{-- Tombol Lihat/Preview (opsional) --}}
-                                        <a href="{{ route('user.pages.hukum.show', $item->slug) }}" class="btn btn-sm btn-info" title="Lihat Detail">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-center py-4">Belum ada dokumen yang tersedia.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-            {{-- Pagination Navigation --}}
-            @if ($documents instanceof \Illuminate\Pagination\LengthAwarePaginator)
-                <div class="d-flex justify-content-center mt-5">
-                    {{ $documents->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
+    
+    {{-- Tampilan Card Horizontal untuk Dokumen --}}
+    <div class="row row-cols-1 g-4"> {{-- Gunakan row-cols-1 untuk card horizontal --}}
+        @forelse ($documents as $item)
+            <div class="col">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="row g-0 align-items-center"> {{-- Row untuk card horizontal --}}
+                        <div class="col-md-2 d-none d-md-block text-center p-3"> {{-- Icon di kiri --}}
+                            @if ($item->file_type == 'pdf')
+                                <i class="fa-regular fa-file-pdf fa-3x text-danger"></i>
+                            @elseif (in_array($item->file_type, ['doc', 'docx']))
+                                <i class="fa-regular fa-file-word fa-3x text-info"></i>
+                            @elseif (in_array($item->file_type, ['xls', 'xlsx']))
+                                <i class="fa-regular fa-file-excel fa-3x text-success"></i>
+                            @else
+                                <i class="fa-regular fa-file fa-4x text-muted"></i>
+                            @endif
+                        </div>
+                        <div class="col-md-8"> {{-- Konten dokumen di tengah --}}
+                            <div class="card-body">
+                                <h6 class="card-title">{{ $item->title }}</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt me-1"></i> {{ $item->published_date ? \Carbon\Carbon::parse($item->published_date)->locale('id')->translatedFormat('d M Y') : '-' }} |
+                                    <i class="fas fa-file-alt me-1"></i> Tipe: {{ strtoupper($item->file_type ?? '-') }} |
+                                    <i class="fas fa-database me-1"></i> Ukuran: {{ $item->file_size ?? '-' }}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex flex-column justify-content-center align-items-end p-3"> {{-- Tombol di kanan --}}
+                            <a href="{{ route('hukum.download', $item->slug) }}" class="btn btn-success btn-sm w-100 mb-2">
+                                <i class="fas fa-download me-1"></i> Unduh
+                            </a>
+                            <a href="{{ route('user.pages.hukum.show', $item->slug) }}" class="btn btn-info btn-sm w-100">
+                                <i class="fas fa-eye me-1"></i> Lihat
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            @endif
-        </div>
+            </div>
+        @empty
+            <div class="col-12 text-center py-5">
+                <p>Belum ada dokumen yang tersedia.</p>
+            </div>
+        @endforelse
     </div>
+
+    {{-- Pagination Navigation --}}
+    @if ($documents instanceof \Illuminate\Pagination\LengthAwarePaginator)
+        <div class="d-flex justify-content-center mt-5">
+            {{ $documents->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
+        </div>
+    @endif
 </div>
 @endsection

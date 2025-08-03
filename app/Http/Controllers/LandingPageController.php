@@ -11,6 +11,7 @@ use App\Models\Umkm;
 use App\Models\LuasAreaProduksi; 
 use App\Models\PopulasiTanaman; 
 use App\Models\PopulasiTernak; 
+use App\Models\KelembagaanTani;
 
 class LandingPageController extends Controller
 {
@@ -48,14 +49,35 @@ class LandingPageController extends Controller
         $jumlahPertanian = $jumlahKomoditiLuasArea + $jumlahKomoditiPopulasiTanaman; 
 
         $jumlahPeternakan = PopulasiTernak::count();
+        $jumlahProduksiPadi = LuasAreaProduksi::where('nama_komoditi', 'Padi')->sum('produksi');
+        $jumlahKelembagaanTani = KelembagaanTani::count();
+        $jumlahPopulasiTanaman = PopulasiTanaman::count();
 
-
+        $komoditiTanamanTerbanyak = PopulasiTanaman::orderByDesc('total_populasi')->first();
+        $komoditiTernakTerbanyak = PopulasiTernak::orderByDesc('total_ternak')->first();
 
         // --- Ambil 6 Gambar Galeri Terbaru ---
         $latestGalleries = Gallery::orderBy('activity_date', 'desc') // Urutkan berdasarkan tanggal kegiatan terbaru
                                  ->take(6)                         // Ambil hanya 6
                                  ->get();
-        return view('user.pages.index', compact('visi', 'misiItems', 'totalPenduduk', 'lakiLaki', 'perempuan', 'latestNews', 'latestGalleries', 'featuredUmkms', 'jumlahUmkm', 'jumlahPertanian', 'jumlahPeternakan',));
+        return view('user.pages.index', compact(
+            'visi', 
+            'misiItems',
+            'totalPenduduk',
+            'lakiLaki', 
+            'perempuan', 
+            'latestNews', 
+            'latestGalleries', 
+            'featuredUmkms', 
+            'jumlahUmkm', 
+            'jumlahPertanian', 
+            'jumlahPeternakan',
+            'jumlahKelembagaanTani',
+            'komoditiTanamanTerbanyak',
+            'komoditiTernakTerbanyak',
+            'jumlahPopulasiTanaman',
+            'jumlahProduksiPadi'
+        ));
     }
 }
 
