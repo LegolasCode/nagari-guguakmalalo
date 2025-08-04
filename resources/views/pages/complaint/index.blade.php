@@ -8,14 +8,25 @@
                         class="fas fa-plus fa-sm text-white-50"></i> Buat Aduan</a>
         @endif
     </div>
+
     <div class="row">
         <div class="col">
             <div class="card shadow">
                 <div class="card-body">
-                    {{-- === PERBAIKAN DI SINI === --}}
-                    {{-- Pindahkan table-responsive ke div di luar table --}}
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover w-100"> {{-- Tambahkan w-100 di sini --}}
+                    <form action="{{ route('complaint.index') }}" method="GET">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-6 col-lg-4">
+                                <select name="status" class="form-select bg-light border-0 small" onchange="this.form.submit()">
+                                    <option value="" {{ request('status') == '' ? 'selected' : '' }}>Semua Status</option>
+                                    <option value="new" {{ request('status') == 'new' ? 'selected' : '' }}>Baru</option>
+                                    <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>Diproses</option>
+                                    <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Selesai</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-responsive mt-4">
+                        <table class="table table-bordered w-100"> {{-- Tambahkan w-100 di sini --}}
                             <thead>
                                 <tr>
                                     <th>No</th>

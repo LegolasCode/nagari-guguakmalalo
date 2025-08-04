@@ -12,6 +12,7 @@ use App\Models\LuasAreaProduksi;
 use App\Models\PopulasiTanaman; 
 use App\Models\PopulasiTernak; 
 use App\Models\KelembagaanTani;
+use Carbon\Carbon;
 
 class LandingPageController extends Controller
 {
@@ -43,12 +44,14 @@ class LandingPageController extends Controller
         // Jumlah semua UMKM
         $jumlahUmkm = Umkm::count();
 
-        $jumlahKomoditiLuasArea = LuasAreaProduksi::distinct('nama_komoditi')->count('nama_komoditi');
-        $jumlahKomoditiPopulasiTanaman = PopulasiTanaman::distinct('nama_komoditi')->count('nama_komoditi');
-         //Jumlahkan count dari masing-masing tabel.
-        $jumlahPertanian = $jumlahKomoditiLuasArea + $jumlahKomoditiPopulasiTanaman; 
+        $currentYear = Carbon::now()->year;
+        
+        $jumlahKomoditiLuasArea = LuasAreaProduksi::where('tahun', $currentYear)->distinct('nama_komoditi')->count('nama_komoditi');
+        $jumlahKomoditiPopulasiTanaman = PopulasiTanaman::where('tahun', $currentYear)->distinct('nama_komoditi')->count('nama_komoditi');
+        $jumlahPertanian = $jumlahKomoditiLuasArea + $jumlahKomoditiPopulasiTanaman;
 
-        $jumlahPeternakan = PopulasiTernak::count();
+        $jumlahPeternakan = PopulasiTernak::where('tahun', $currentYear)->count();
+
         $jumlahProduksiPadi = LuasAreaProduksi::where('nama_komoditi', 'Padi')->sum('produksi');
         $jumlahKelembagaanTani = KelembagaanTani::count();
         $jumlahPopulasiTanaman = PopulasiTanaman::count();

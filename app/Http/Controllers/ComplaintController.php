@@ -10,12 +10,29 @@ use Illuminate\Http\Request;
 class ComplaintController extends Controller
 {
     // Fungsi untuk menampilkan halaman daftar pengaduan
-    public function index()
+    public function index(Request $request)
     {
-        $residentId = Auth::user()->resident->id ?? null;
-        $complaints = Complaint::when(Auth::user()->role_id == 2, function ($query) use ($residentId) {
+        $query = Complaint::query();
+
+        // Filter berdasarkan user role
+        if (Auth::user()->role_id == 2) { // Jika role adalah user (bukan admin)
+            $residentId = Auth::user()->resident->id ?? null;
             $query->where('resident_id', $residentId);
-        } )->paginate(10);
+        }
+
+        // --- PERBAIKAN DI SINI: Filter status ---
+        // Jika tidak ada filter status dari request, tampilkan default 'new' dan 'processing'
+        if (!$request->has('status') || $request->status == '') {
+            $query->whereIn('status', ['new', 'processing']);
+        }
+        // Jika ada filter status dari request, terapkan filter tersebut
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+        // --- AKHIR PERBAIKAN ---
+
+        // Ambil data dengan pagination
+        $complaints = $query->paginate(10); // Sesuaikan pagination
 
         return view('pages.complaint.index', compact('complaints'));
     }

@@ -68,7 +68,7 @@ Route::get('/profile/change-password', [UserController::class, 'editPassword'])-
 Route::put('/profile/change-password', [UserController::class, 'updatePassword'])->name('change-password.update')->middleware('auth');
 
 // Complaint
-Route::get('/complaint', [ComplaintController::class, 'index'])->middleware('role:Admin,User');              
+Route::get('/complaint', [ComplaintController::class, 'index'])->middleware('role:Admin,User')->name('complaint.index');              
 Route::get('/complaint/create', [ComplaintController::class, 'create'])->middleware('role:User');
 Route::get('/complaint/{id}/edit', [ComplaintController::class, 'edit'])->middleware('role:User')->name('complaint.edit');
 Route::post('/complaint', [ComplaintController::class, 'store'])->middleware('role:User')->name('complaint.store');

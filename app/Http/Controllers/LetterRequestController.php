@@ -18,11 +18,17 @@ class LetterRequestController extends Controller
     public function index(Request $request)
     {
         $query = LetterRequest::query();
-        if ($request->has('search') && $request->search != '') {
-            $query->where('request_number', 'like', '%' . $request->search . '%');
+        // Jika tidak ada filter status dari request, tampilkan default 'pending' dan 'processing'
+        if (!$request->has('status') || $request->status == '') {
+            $query->whereIn('status', ['pending', 'processing']);
         }
+        // Jika ada filter status dari request, terapkan filter tersebut
         if ($request->has('status') && $request->status != '') {
             $query->where('status', $request->status);
+        }
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('request_number', 'like', '%' . $request->search . '%');
         }
 
         $letterRequests = $query->with(['user', 'service'])->paginate(10);

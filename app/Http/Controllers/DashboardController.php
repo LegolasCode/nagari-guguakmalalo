@@ -13,6 +13,7 @@ use App\Models\PopulasiTernak;
 use App\Models\KelembagaanTani;
 use App\Models\TourismSpot;
 use App\Models\HealthFacility;
+use App\Models\LetterService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,9 @@ class DashboardController extends Controller
         // Statistik Jumlah UMKM
         $totalUmkms = Umkm::count();
 
+        // Statistik Jumlah Layanan Surat
+        $totalLetterServices = LetterService::count();
+
         // Statistik Jumlah Kelembagaan Tani
         $totalKelembagaanTani = KelembagaanTani::count();
 
@@ -41,55 +45,51 @@ class DashboardController extends Controller
         // Statistik Jumlah Kesehatan
         $totalHealthFacility = HealthFacility::count();
 
-        // Data untuk Grafik Produksi Pertanian (Semua Komoditi)
-        // Filter tahun untuk produksi pertanian
-        $selectedYearProduksi = $request->input('tahun_produksi', Carbon::now()->year);
-
-        $produksiData = LuasAreaProduksi::select('nama_komoditi', DB::raw('SUM(produksi) as total_produksi'))
-                                        ->where('tahun', $selectedYearProduksi)
-                                        ->groupBy('nama_komoditi')
-                                        ->orderBy('nama_komoditi') // Urutkan berdasarkan nama komoditi agar konsisten
-                                        ->get();
-
-        $labelsProduksi = $produksiData->pluck('nama_komoditi')->toArray();
-        $valuesProduksi = $produksiData->pluck('total_produksi')->toArray();
-
-        // Mengambil daftar tahun unik dari database LuasAreaProduksi untuk dropdown filter
+        // Data untuk Grafik Produksi Pertanian (Semua Komoditi) 
         $availableYearsProduksi = LuasAreaProduksi::select('tahun')
                                                 ->distinct()
                                                 ->orderBy('tahun', 'desc')
                                                 ->pluck('tahun');
         
-        // Jika tidak ada data tahun di DB LuasAreaProduksi, tambahkan tahun sekarang
-        if ($availableYearsProduksi->isEmpty()) {
-            $availableYearsProduksi = collect([Carbon::now()->year]);
+        // Tentukan tahun yang dipilih secara default
+        $selectedYearProduksi = $request->input('tahun_produksi');
+        if (empty($selectedYearProduksi)) {
+            $selectedYearProduksi = $availableYearsProduksi->first() ?? Carbon::now()->year;
         }
 
+        $produksiData = LuasAreaProduksi::select('nama_komoditi', DB::raw('SUM(produksi) as total_produksi'))
+                                        ->where('tahun', $selectedYearProduksi)
+                                        ->groupBy('nama_komoditi')
+                                        ->orderBy('nama_komoditi')
+                                        ->get();
+        $labelsProduksi = $produksiData->pluck('nama_komoditi')->toArray();
+        $valuesProduksi = $produksiData->pluck('total_produksi')->toArray();
+
         // Data untuk Grafik Populasi Tanaman 
-        $selectedYearPopulasiTanaman = $request->input('tahun_populasi_tanaman', $selectedYearProduksi); // Default ke tahun produksi
+        $availableYearsPopulasiTanaman = PopulasiTanaman::select('tahun')
+                                                      ->distinct()
+                                                      ->orderBy('tahun', 'desc')
+                                                      ->pluck('tahun');
+        
+        // 2. Tentukan tahun yang dipilih secara default
+        $selectedYearPopulasiTanaman = $request->input('tahun_populasi_tanaman');
+        if (empty($selectedYearPopulasiTanaman)) {
+            $selectedYearPopulasiTanaman = $availableYearsPopulasiTanaman->first() ?? Carbon::now()->year;
+        }
         
         $populasiTanamanData = PopulasiTanaman::select('nama_komoditi', DB::raw('SUM(total_populasi) as total_jumlah'))
                                              ->where('tahun', $selectedYearPopulasiTanaman)
                                              ->groupBy('nama_komoditi')
                                              ->orderBy('nama_komoditi')
                                              ->get();
-
         $labelsPopulasiTanaman = $populasiTanamanData->pluck('nama_komoditi')->toArray();
         $valuesPopulasiTanaman = $populasiTanamanData->pluck('total_jumlah')->toArray();
-
-        // Mengambil daftar tahun unik dari database PopulasiTanaman untuk dropdown filter
-        $availableYearsPopulasiTanaman = PopulasiTanaman::select('tahun')
-                                                      ->distinct()
-                                                      ->orderBy('tahun', 'desc')
-                                                      ->pluck('tahun');
-        if ($availableYearsPopulasiTanaman->isEmpty()) {
-            $availableYearsPopulasiTanaman = collect([Carbon::now()->year]);
-        }
  
         return view('pages.dashboard', compact('totalResidents', 
         'totalOfficials', 
         'totalGalleryPhotos', 
-        'totalUmkms', 
+        'totalUmkms',
+        'totalLetterServices', 
         'totalKelembagaanTani', 
         'totalTourismSpot', 
         'totalHealthFacility',

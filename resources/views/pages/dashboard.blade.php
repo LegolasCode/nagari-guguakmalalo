@@ -3,7 +3,7 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>    
+        <h1 class="h3 mb-0 text-gray-800">Dashboard Sistem Infomrasi Nagari</h1>    
     </div>
     <div class="row">
         <!-- Card Jumlah Penduduk -->
@@ -204,20 +204,20 @@
             </div>
         </div>
 
-        <div class="col-sm-6 col-xl-3 col-md-6 mb-4"> {{-- Kolom baru --}}
+        <div class="col-sm-6 col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Jumlah UMKM
+                                Jumlah Layanan Surat
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ number_format($totalUmkms) }}
+                                {{ number_format($totalLetterServices) }}
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-store fa-2x text-gray-300"></i> {{-- Icon Toko --}}
+                            <i class="fas fa-envelope fa-2x text-gray-300"></i> {{-- Icon Surat --}}
                         </div>
                     </div>
                 </div>
