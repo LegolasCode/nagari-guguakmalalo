@@ -20,6 +20,10 @@ class DiseaseController extends Controller
         if ($request->has('year') && $request->year != '') { // Filter tahun
             $query->where('year', $request->year);
         }
+
+        $query->orderBy('year', 'desc') // Urutkan tahun dari yang terbaru
+              ->orderByRaw("FIELD(bulan, 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember')");
+              
         $diseases = $query->paginate(10);
 
         $availableYears = Disease::select('year')->distinct()->orderBy('year', 'desc')->pluck('year');
@@ -39,6 +43,7 @@ class DiseaseController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:diseases',
             'case_count' => 'required|integer|min:0',
+            'bulan' => 'required|string|max:20',
             'year' => 'nullable|integer|digits:4',
         ]);
         $validated['user_id'] = auth()->id();
@@ -59,6 +64,7 @@ class DiseaseController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('diseases')->ignore($disease->id)],
             'case_count' => 'required|integer|min:0',
+            'bulan' => 'required|string|max:20',
             'year' => 'nullable|integer|digits:4',
         ]);
         $validated['user_id'] = auth()->id();

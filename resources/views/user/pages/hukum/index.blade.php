@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Hukum')
+
 @section('content')
 <div class="container py-5">
     {{-- SECTION: Kontak Hukum (Polsek & Babinsa) --}}
@@ -12,7 +14,7 @@
                 <div class="card h-100 shadow-sm border-0 text-center">
                     <div class="card-body p-4">
                         <i class="fa-solid fa-building-columns fa-4x text-success mb-3"></i>
-                        <h5 class="card-title fw-bold mb-2">Polsek Setempat</h5>
+                        <h5 class="card-title fw-bold mb-2">Polsek Batipuh Selatan</h5>
                         <p class="card-text mb-1">
                             <strong>{{ $legalContact->contact_polsek_name ?? 'Nama Tidak Tersedia' }}</strong>
                         </p>

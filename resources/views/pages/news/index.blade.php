@@ -1,5 +1,7 @@
 @extends('layout.app') {{-- Sesuaikan dengan nama file layout admin Anda --}}
 
+@section('title', 'Guguak Malalo | Manajemen Berita')
+
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Manajemen Berita</h1>

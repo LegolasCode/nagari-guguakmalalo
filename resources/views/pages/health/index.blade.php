@@ -1,5 +1,7 @@
 @extends('layout.app') 
 
+@section('title', 'Guguak Malalo | Manajemen Kesehatan')
+
 @section('content')
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Manajemen Data Kesehatan</h1>

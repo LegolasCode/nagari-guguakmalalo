@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Data Populasi Tanaman')
+
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">

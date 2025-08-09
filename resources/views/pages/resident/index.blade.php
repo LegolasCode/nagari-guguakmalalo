@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Data Penduduk')
+
 @section('content')
 
     <!-- Page Heading -->
@@ -43,6 +45,7 @@
                                 <th>Pekerjaan</th>
                                 <th>Telepon</th>
                                 <th>Status</th>
+                                <th>Status BPJS</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -69,6 +72,7 @@
                                     <td>{{ $item->occupation }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->status }}</td>
+                                    <td>{{ $item->bpjs_status }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('resident.edit', $item->id) }}" class="d-inline-block me-2 btn-sm btn-warning">

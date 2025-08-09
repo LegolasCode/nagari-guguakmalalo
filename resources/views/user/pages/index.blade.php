@@ -74,25 +74,25 @@
       <!-- Jelajahi Desa Section -->
         <section id="jelajahi-desa" class="py-4 bg-light">
             <div class="container text-center">
-                <h2 class="mb-5 fw-bold">Jelajahi Nagari Guguak Malalo</h2>
+                <h2 class="mb-5 fw-bold" data-aos="fade-up" data-aos-delay="100">Jelajahi Nagari Guguak Malalo</h2>
                 <div class="row row-cols-2 row-cols-lg-4 g-4">
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="100">
                         <a href="{{ url('/berita') }}" class="btn btn-outline-primary btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-newspaper fa-3x mb-3"></i>
                             <span class="fw-semibold fs-5">Berita</span>
                         </a>
                     </div>
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="200">
                         <a href="#wilayah-detail" class="btn btn-outline-success btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-map-marked-alt fa-3x mb-3"></i> <span class="fw-semibold fs-5">Wilayah</span>
                         </a>
                     </div>
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="300">
                         <a href="#umkm-detail" class="btn btn-outline-warning btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-store fa-3x mb-3"></i> <span class="fw-semibold fs-5">UMKM</span>
                         </a>
                     </div>
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="400">
                         <a href="{{ url('/wisata') }}" class="btn btn-outline-info btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-camera-retro fa-3x mb-3"></i> <span class="fw-semibold fs-5">Pariwisata</span>
                         </a>
@@ -104,10 +104,10 @@
         <!-- Statistik Nagari Section -->
         <section id="statistik-nagari" class="py-4">
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Statistik Nagari</h2>
+                <h2 class="text-center mb-5 fw-bold" data-aos="fade-up" data-aos-delay="100">Statistik Nagari</h2>
 
                 <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="100">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
                                 {{-- Tambahkan kelas text-custom-stats --}}
@@ -118,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="200">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
                                 {{-- Tambahkan kelas text-custom-stats --}}
@@ -129,7 +129,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="300">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
                                 {{-- Tambahkan kelas text-custom-stats --}}
@@ -140,7 +140,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="400">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
                                 {{-- Tambahkan kelas text-custom-stats --}}
@@ -151,7 +151,7 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col" data-aos="fade-up" data-aos-delay="500">
                         <div class="card shadow-sm p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
                             <div class="card-body">
                                 {{-- Tambahkan kelas text-custom-stats --}}
@@ -168,11 +168,11 @@
         <!-- Berita Section -->
         <section id="berita-nagari" class="py-5 bg-light"> {{-- Gunakan bg-light untuk kontras --}}
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Berita Terbaru Nagari</h2>
+                <h2 class="text-center mb-5 fw-bold" data-aos="fade-up" data-aos-delay="100">Berita Terbaru Nagari</h2>
 
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @forelse ($latestNews as $item) {{-- Loop melalui 6 berita terbaru --}}
-                        <div class="col">
+                        <div class="col" data-aos="zoom-in" data-aos-delay="200">
                             <div class="card h-100 shadow-sm border-0">
                                 @if ($item->thumbnail)
                                     <img src="{{ asset('storage/' . $item->thumbnail) }}" class="card-img-top rounded-top" alt="{{ $item->title }}" style="height: 200px; object-fit: cover;">
@@ -198,7 +198,7 @@
                     @endforelse
                 </div>
 
-                <div class="text-center mt-5">
+                <div class="text-center mt-5" data-aos="fade-right" data-aos-delay=200">
                     {{-- Tombol untuk melihat semua berita --}}
                     <a href="{{ route('berita.index') }}" class="btn btn-custom btn-md px-4">Lihat Semua Berita <i class="fa-solid fa-arrow-right ms-2"></i></a>
                 </div>
@@ -206,14 +206,14 @@
         </section>
 
         <!-- Gallery Section --> 
-        <section id="galeri-nagari" class="py-5"> {{-- Warna background default (putih) --}}
+        <section id="galeri-nagari" class="py-5" style="background-color: #003d4d;"> {{-- Warna background default (putih) --}}
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Galeri Terbaru Nagari</h2>
+                <h2 class="text-center mb-5 fw-bold text-white" data-aos="fade-up" data-aos-delay="100">Galeri Terbaru Nagari</h2>
 
                 <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4">
                     @forelse ($latestGalleries as $item) {{-- Loop melalui 6 gambar galeri terbaru --}}
-                        <div class="col">
-                            <div class="card h-100 shadow-sm border-0">
+                        <div class="col" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="card h-100 shadow-sm border-2">
                                 @if ($item->photo)
                                     <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top rounded-lg" alt="{{ $item->activity_name }}" style="height: 250px; object-fit: cover;">
                                 @else
@@ -230,7 +230,7 @@
 
                 <div class="text-center mt-5">
                     {{-- Tombol untuk melihat semua galeri --}}
-                    <a href="{{ route('galeri.index') }}" class="btn btn-custom btn-md px-4">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    <a href="{{ route('galeri.index') }}" class="btn btn-custom btn-md px-4" data-aos="fade-right" data-aos-delay=200">Lihat Semua Galeri <i class="fa-solid fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
         </section>
@@ -247,25 +247,25 @@
             <div class="overlay" style="position: absolute; inset: 0; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
 
             <div class="container text-center" style="position: relative; z-index: 2;">
-                <h2 class="display-4 fw-bold mb-4">Pesona Wisata Nagari</h2>
-                <p class="lead mb-5 mx-auto" style="max-width: 800px;">
+                <h2 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay=100">Pesona Wisata Nagari</h2>
+                <p class="lead mb-5 mx-auto" style="max-width: 800px;" data-aos="fade-up" data-aos-delay=200">
                     Nagari Guguak Malalo menyimpan keindahan alam dan kekayaan budaya yang siap dijelajahi. Setiap sudut Nagari menawarkan pengalaman tak terlupakan.
                 </p>
-                <a href="{{ route('wisata.index') }}" class="btn btn-light btn-md px-4 shadow-sm">
+                <a href="{{ route('wisata.index') }}" class="btn btn-light btn-md px-4 shadow-sm" data-aos="fade-right" data-aos-delay=200">
                     Lihat Semua Wisata <i class="fa-solid fa-arrow-right ms-2"></i>
                 </a>
             </div>
         </section>
 
         <!-- Potensi Pertanian & Peternakan Section -->
-        <section id="potensi-pertanian-peternakan" class="py-5">
+        <section id="potensi-pertanian-peternakan" class="py-5" style="background-color: #003d4d;">
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">Potensi Pertanian & Peternakan</h2>
+                <h2 class="text-center mb-5 fw-bold text-white" data-aos="fade-up" data-aos-delay="100">Potensi Pertanian & Peternakan</h2>
                 <div class="row g-4">
                     {{-- Kolom Kiri: Komoditas Terbanyak --}}
-                    <div class="col-lg-6">
-                        <div class="card shadow-sm h-100 border-0 p-4">
-                            <h4 class="fw-bold mb-4">Komoditas Unggulan</h4>
+                    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card shadow-sm h-100 border-1 p-4">
+                            <h5 class="fw-bold mb-4">Komoditas Unggulan</h5>
                             <div class="row g-4">
                                 {{-- Card Komoditas Tanaman Terbanyak --}}
                                 <div class="col-12">
@@ -306,9 +306,9 @@
                     </div>
 
                     {{-- Kolom Kanan: Statistik Total --}}
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
                         <div class="card shadow-sm h-100 border-1 p-4">
-                            <h4 class="fw-bold mb-4">Statistik Total Sektor</h4>
+                            <h5 class="fw-bold mb-4">Statistik Total Sektor</h5>
                             <div class="row row-cols-2 g-4">
                                 <div class="col-md-6">
                                     <div class="card p-3 h-100 border-left-success text-center">
@@ -345,7 +345,7 @@
                 
                 {{-- Tombol Lihat Semua Data --}}
                 <div class="text-center mt-5">
-                    <div class="d-flex justify-content-center flex-wrap" style="gap: 1rem;"> {{-- PERBAIKAN DI SINI --}}
+                    <div class="d-flex justify-content-center flex-wrap" data-aos="fade-right" data-aos-delay="200" style="gap: 1rem;"> {{-- PERBAIKAN DI SINI --}}
                         <a href="{{ route('user.pages.pertanian.index') }}" class="btn btn-custom btn-md px-4">
                             Lihat Semua Data Pertanian<i class="fa-solid fa-arrow-right ms-2"></i>
                         </a>
@@ -360,10 +360,10 @@
         <!-- UMKM Section -->
         <section id="umkm-unggulan" class="py-5 bg-light"> {{-- Gunakan bg-light untuk kontras --}}
             <div class="container">
-                <h2 class="text-center mb-5 fw-bold">UMKM Unggulan Nagari</h2>
+                <h2 class="text-center mb-5 fw-bold" data-aos="fade-up" data-aos-delay="100">UMKM Unggulan Nagari</h2>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @forelse ($featuredUmkms as $item) {{-- Loop melalui UMKM unggulan --}}
-                        <div class="col">
+                        <div class="col" data-aos="zoom-in" data-aos-delay="100">
                             <div class="card h-100 shadow-sm border-0">
                                 @if ($item->photo)
                                     <img src="{{ asset('storage/' . $item->photo) }}" class="card-img-top rounded-top" alt="{{ $item->nama_usaha }}" style="height: 200px; object-fit: cover;">
@@ -391,9 +391,71 @@
                     @endforelse
                 </div>
 
-                <div class="text-center mt-5">
+                <div class="text-center mt-5" data-aos="fade-right" data-aos-delay="200">
                     {{-- Tombol untuk melihat seluruh UMKM, mengarah ke public.umkms.index --}}
                     <a href="{{ route('user.pages.umkm.index') }}" class="btn btn-custom btn-md px-4">Lihat Seluruh UMKM <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan-kesehatan-landing" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold" data-aos="fade-down" data-aos-delay="100">Layanan Kesehatan Nagari</h2>
+
+                <div id="healthCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        {{-- Kelompokkan 3 fasilitas per slide --}}
+                        @forelse ($healthFacilities->chunk(3) as $chunkIndex => $chunk)
+                        <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                            <div class="row justify-content-center">
+                                @foreach ($chunk as $facility)
+                                <div class="col-12 col-md-4 mb-3"> {{-- 1 card per baris di mobile, 3 di desktop --}}
+                                    <div class="card h-100 shadow-sm border-0">
+                                        @if ($facility->photo)
+                                            <img src="{{ asset('storage/' . $facility->photo) }}" class="card-img-top rounded-top" alt="{{ $facility->name }}" style="height: 200px; object-fit: cover;">
+                                        @else
+                                            <img src="{{ asset('images/default-health-facility.png') }}" class="card-img-top rounded-top" alt="Gambar Default" style="height: 200px; object-fit: cover;">
+                                        @endif
+                                        <div class="card-body d-flex flex-column text-center">
+                                            <h5 class="card-title fw-bold mt-2 mb-2">{{ $facility->name }}</h5>
+                                            <p class="card-text text-muted small mb-1">
+                                                <i class="fa-solid fa-map-marker-alt me-1"></i> Alamat: {{ Str::limit($facility->address, 50, '...') ?? '-' }}
+                                            </p>
+                                            <p class="card-text small mb-2">
+                                                <i class="fa-solid fa-phone me-1"></i> Telp: {{ $facility->phone_number ?? '-' }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @empty
+                        <div class="carousel-item active">
+                            <div class="col-12 text-center py-5">
+                                <p class="text-muted">Belum ada layanan kesehatan yang tersedia.</p>
+                            </div>
+                        </div>
+                        @endforelse
+
+                    </div>
+
+                    {{-- Tampilkan kontrol jika jumlah lebih dari 3 --}}
+                    @if ($healthFacilities->count() > 3)
+                    <button class="carousel-control-prev" type="button" data-bs-target="#healthCarousel" data-bs-slide="prev">
+                        <i class="left-icon fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#healthCarousel" data-bs-slide="next">
+                        <i class="right-icon fa-solid fa-arrow-right"></i>
+                    </button>
+                    @endif
+                </div>
+
+                <div class="text-center mt-5" data-aos="fade-right" data-aos-delay="200">
+                    <a href="{{ route('user.pages.kesehatan.index') }}" class="btn btn-custom btn-md px-4">
+                        Lihat Semua Kesehatan <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
                 </div>
             </div>
         </section>

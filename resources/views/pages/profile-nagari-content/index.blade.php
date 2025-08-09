@@ -1,5 +1,7 @@
 @extends ('layout.app')
 
+@section('title', 'Guguak Malalo | Manajemen Profil Nagari')
+
 @section('content')
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Manajemen Konten Profil Nagari</h1>

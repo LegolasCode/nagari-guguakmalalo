@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Permintaan Surat Saya')
+
 @section('content')
 <div class="mb-4">
     <h3 class="mb-0 text-gray-800"">Permintaan Surat Saya</h3>

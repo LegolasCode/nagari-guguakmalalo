@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Profil Nagari')
+
 @section('content')
 
 <section id="visi-misi" class="py-5">

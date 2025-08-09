@@ -71,8 +71,10 @@ class ResidentController extends Controller
             'marital_status' => ['required', Rule::in(['Belum Menikah', 'Menikah', 'Cerai', 'Janda/Duda'])],
             'occupation' => ['nullable', 'max:100'],
             'phone' => ['nullable', 'max:15'],
-            'status' => ['required', Rule::in(['Aktif', 'Pindah', 'Meninggal'])],        
+            'status' => ['required', Rule::in(['Aktif', 'Pindah', 'Meninggal'])],
+            'bpjs_status' => ['required', Rule::in(['Terdaftar', 'Tidak Terdaftar'])],        
         ]);
+
 
         Resident::findOrFail($id)->update($validatedData);
         return redirect('/resident')->with('success', 'Berhasil Mengubah Data');

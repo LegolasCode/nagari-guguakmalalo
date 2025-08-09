@@ -187,4 +187,10 @@ Route::get('/kesehatan', [KesehatanPublicController::class, 'indexPublic'])->nam
 // Hukum
 Route::get('/hukum', [HukumPublicController::class, 'indexPublic'])->name('user.pages.hukum.index');
 Route::get('/hukum/download/{document:slug}', [HukumPublicController::class, 'downloadDocument'])->name('hukum.download');
-Route::get('/hukum/dokumen/{document:slug}', [HukumPublicController::class, 'showDocument'])->name('user.pages.hukum.show'); // Opsional: Halaman review dokumen
+Route::get('/hukum/dokumen/{document:slug}', [HukumPublicController::class, 'showDocument'])->name('user.pages.hukum.show'); 
+
+// Layanan Surat
+Route::get('/layanan-mandiri', [UserRequestController::class, 'indexPublic'])->name('user.pages.layanan-mandiri.index');
+
+//Langkah-langkah Pengajuan Surat
+Route::get('/layanan-mandiri/langkah', [UserRequestController::class, 'indexSteps'])->name('user.pages.layanan-mandiri.langkah');

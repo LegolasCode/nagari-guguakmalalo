@@ -12,6 +12,7 @@ use App\Models\LuasAreaProduksi;
 use App\Models\PopulasiTanaman; 
 use App\Models\PopulasiTernak; 
 use App\Models\KelembagaanTani;
+use App\Models\HealthFacility;
 use Carbon\Carbon;
 
 class LandingPageController extends Controller
@@ -63,6 +64,11 @@ class LandingPageController extends Controller
         $latestGalleries = Gallery::orderBy('activity_date', 'desc') // Urutkan berdasarkan tanggal kegiatan terbaru
                                  ->take(6)                         // Ambil hanya 6
                                  ->get();
+
+        $healthFacilities = HealthFacility::orderBy('created_at', 'desc')
+                            ->take(6)
+                            ->get();
+
         return view('user.pages.index', compact(
             'visi', 
             'misiItems',
@@ -79,7 +85,8 @@ class LandingPageController extends Controller
             'komoditiTanamanTerbanyak',
             'komoditiTernakTerbanyak',
             'jumlahPopulasiTanaman',
-            'jumlahProduksiPadi'
+            'jumlahProduksiPadi',
+            'healthFacilities'
         ));
     }
 }

@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Perangkat Nagari')
+
 @section('content')
     <section class="py-5">
         <div class="container">
@@ -8,7 +10,7 @@
         <div class="container">
             <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center">
                 {{-- Loop untuk menampilkan daftar Pengurus dari Database --}}
-                @forelse ($officials as $official) {{-- Gunakan $officials yang diteruskan dari controller --}}
+                @forelse ($allOfficials as $official) {{-- Gunakan $officials yang diteruskan dari controller --}}
                     <div class="col">
                         <div class="card h-100 text-center shadow-sm">
                             @if ($official->photo)

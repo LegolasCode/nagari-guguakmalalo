@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Kelembagaan Tani')
+
 @section('content')
 <div class="container py-5">
     <h2 class="text-center fw-bold mb-4">Data Kelembagaan Tani</h2>

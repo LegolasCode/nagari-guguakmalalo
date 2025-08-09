@@ -1,5 +1,7 @@
 @extends ('layout.app')
 
+@section('title', 'Guguak Malalo | Edit Data Penduduk')
+
 @section('content')
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -178,6 +180,14 @@
         {{ $message }}
         </span>
         @enderror
+      </div>
+      <div class="mb-3">
+          <label for="bpjs_status">Status BPJS</label>
+          <select id="bpjs_status" name="bpjs_status" class="form-control @error('bpjs_status') is-invalid @enderror" required>
+              <option value="Tidak Terdaftar" {{ old('bpjs_status', $resident->bpjs_status) == 'Tidak Terdaftar' ? 'selected' : '' }}>Tidak Terdaftar</option>
+              <option value="Terdaftar" {{ old('bpjs_status', $resident->bpjs_status) == 'Terdaftar' ? 'selected' : '' }}>Terdaftar</option>
+          </select>
+          @error('bpjs_status')<span class="invalid-feedback">{{ $message }}</span>@enderror
       </div>
     </div>
     <div class="card-footer">

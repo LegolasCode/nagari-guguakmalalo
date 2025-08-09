@@ -1,5 +1,7 @@
 @extends('user.layout.app') 
 
+@section('title', $newsItem->title . ' | Berita Nagari')
+
 @section('content')
 <div class="container py-5">
     <div class="row"> {{-- Row utama untuk membagi 2 kolom --}}

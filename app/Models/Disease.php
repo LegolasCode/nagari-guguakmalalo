@@ -12,6 +12,7 @@ class Disease extends Model
     protected $fillable = [
         'name',
         'case_count',
+        'bulan',
         'year',
         'user_id',
     ];

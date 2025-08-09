@@ -10,6 +10,13 @@
                         Kabupaten Tanah Datar, Sumatera Barat
                     </p>
                 </div>
+                <h5 class="fw-bold mt-5">KKN Universitas Andalas 2025</h5>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('images/logo_kkn.png') }}" alt="Logo Nagari" width="60" class="me-3">
+                    <p class="mb-0">
+                        Website resmi dari Mahasiswa KKN Unand Guguak Malalo tahun 2025
+                    </p>
+                </div>
             </div>
 
             <div class="col-md-4 mb-4 mb-md-0 text-md-start">

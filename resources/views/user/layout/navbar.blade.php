@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg fixed-top" style="background-color: #003d4d;">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow fixed-top" style="background-color: #003d4d;">
         <div class="container">
             <!-- Logo dan Nama -->
             <a class="navbar-brand fw-semibold d-flex align-items-center" href="#">
@@ -43,7 +43,7 @@
                             Layanan
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownLayanan">
-                            <li><a class="dropdown-item" href="{{ url('/administrasi') }}">Administrasi</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/layanan-mandiri') }}">Layanan Surat</a></li>
                             <li><a class="dropdown-item" href="{{ url('/hukum') }}">Hukum</a></li>
                         </ul>
                     </li>

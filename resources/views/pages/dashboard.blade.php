@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        {{-- === KOLOM BARU UNTUK GRAFIK POPULASI TANAMAN === --}}
+        {{-- Grafik Populasi Tanaman --}}
         <div class="col-xl-6 col-lg-7"> 
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -143,87 +143,117 @@
     </div>
 
     <div class="row">
-        <!-- Card Jumlah Kelembagaan Tani -->
-        <div class="col-sm-6 col-xl-3 col-md-6 mb-4"> {{-- Ubah col-md-4 menjadi col-xl-3 untuk 4 kolom di layar besar --}}
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Jumlah Kelembagaan Tani
+    {{-- Kolom Kiri: Grafik Populasi Ternak --}}
+    <div class="col-lg-7 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold">Populasi Ternak</h6>
+                <div class="dropdown no-arrow">
+                    <form action="{{ route('pages.dashboard') }}" method="GET" class="d-flex align-items-center">
+                        <label for="tahun_populasi_ternak" class="me-2 text-muted small">Filter Tahun:</label>
+                        <select name="tahun_populasi_ternak" id="tahun_populasi_ternak" class="form-select form-select-sm" onchange="this.form.submit()">
+                            @foreach ($availableYearsPopulasiTernak as $year)
+                                <option value="{{ $year }}" {{ $selectedYearPopulasiTernak == $year ? 'selected' : '' }}>
+                                    {{ $year }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="populasiTernakPieChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Kolom Kanan: Card Statistik --}}
+    <div class="col-lg-5 mb-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4"> {{-- Grid 2 kolom di dalam kolom ini --}}
+            <div class="col"> {{-- Ubah col-md-4 menjadi col-xl-3 untuk 4 kolom di layar besar --}}
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Jumlah Kelembagaan Tani
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ number_format($totalKelembagaanTani) }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ number_format($totalKelembagaanTani) }}
+                            <div class="col-auto">
+                                <i class="fas fa-seedling fa-2x text-gray-300"></i>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-seedling fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-xl-3 col-md-6 mb-4"> {{-- Kolom baru --}}
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Jumlah Wisata
+            <div class="col"> {{-- Kolom baru --}}
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Jumlah Wisata
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ number_format($totalTourismSpot) }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ number_format($totalTourismSpot) }}
+                            <div class="col-auto">
+                                <i class="fas fa-map-marked-alt fa-2x text-gray-300"></i> {{-- Icon Wisata --}}
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-map-marked-alt fa-2x text-gray-300"></i> {{-- Icon Wisata --}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-xl-3 col-md-6 mb-4"> {{-- Kolom baru --}}
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Jumlah Layanan Kesehatan
+            <div class="col"> {{-- Kolom baru --}}
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Jumlah Layanan Kesehatan
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ number_format($totalHealthFacility) }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ number_format($totalHealthFacility) }}
+                            <div class="col-auto">
+                                <i class="fas fa-hospital fa-2x text-gray-300"></i> {{-- Icon Kesehatan --}}
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-hospital fa-2x text-gray-300"></i> {{-- Icon Kesehatan --}}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-6 col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Jumlah Layanan Surat
+            <div class="col">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Jumlah Layanan Surat
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ number_format($totalLetterServices) }}
+                                </div>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ number_format($totalLetterServices) }}
+                            <div class="col-auto">
+                                <i class="fas fa-envelope fa-2x text-gray-300"></i> {{-- Icon Surat --}}
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-envelope fa-2x text-gray-300"></i> {{-- Icon Surat --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('scripts')
@@ -400,7 +430,53 @@
                 }
             });
         }
-        // === AKHIR SCRIPT BARU UNTUK GRAFIK POPULASI TANAMAN ===
+
+        // Pie Chart Populasi Ternak
+        const labelsPopulasiTernak = @json($labelsPopulasiTernak);
+        const valuesPopulasiTernak = @json($valuesPopulasiTernak);
+
+        console.log('Labels:', labelsPopulasiTernak);
+        console.log('Values:', valuesPopulasiTernak);
+        
+        const ctxPopulasiTernak = document.getElementById("populasiTernakPieChart");
+        if (ctxPopulasiTernak) {
+            new Chart(ctxPopulasiTernak, {
+                type: 'pie', 
+                data: {
+                    labels: labelsPopulasiTernak,
+                    datasets: [{
+                        data: valuesPopulasiTernak,
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'], // Warna untuk setiap slice
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#e0b542', '#d53d2e', '#6e707e'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.data.labels[tooltipItem.index] || '';
+                                // Hitung total untuk persentase
+                                var total = chart.data.datasets[tooltipItem.datasetIndex].data.reduce((a, b) => a + b, 0);
+                                var currentValue = chart.data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                var percentage = parseFloat((currentValue/total*100).toFixed(1));
+                                return datasetLabel + ': ' + number_format_display(currentValue, 0) + ' Unit (' + percentage + '%)';
+                            }
+                        }
+                    },
+                    cutoutPercentage: 80, // Untuk membuat doughnut chart
+                },
+            });
+        }
 
         // Helper function for number formatting (pastikan ini ada dan berfungsi)
         function number_format_display(number, decimals, dec_point, thousands_sep) {

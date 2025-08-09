@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Tambah Penyakit')
+
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Tambah Data Penyakit Baru</h1>
@@ -28,7 +30,24 @@
                 <label for="case_count" class="form-label">Jumlah Kasus <span class="text-danger">*</span></label>
                 <input type="number" class="form-control @error('case_count') is-invalid @enderror" id="case_count" name="case_count" value="{{ old('case_count') }}" required min="0">
                 @error('case_count')<div class="invalid-feedback">{{ $message }}</div>@enderror
-             </div>
+            </div>
+
+             <div class="mb-3">
+                <label for="bulan" class="form-label">Bulan <span class="text-danger">*</span></label>
+                <select class="form-select @error('bulan') is-invalid @enderror" id="bulan" name="bulan" required>
+                    <option value="">Pilih Bulan</option>
+                    @php
+                        $months = [
+                            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                        ];
+                    @endphp
+                    @foreach ($months as $month)
+                        <option value="{{ $month }}" {{ old('bulan') == $month ? 'selected' : '' }}>{{ $month }}</option>
+                    @endforeach
+                </select>
+                @error('bulan')<div class="invalid-feedback">{{ $message }}</div>@enderror
+            </div>
 
             <div class="mb-3">
                 <label for="year" class="form-label">Tahun (Opsional)</label>

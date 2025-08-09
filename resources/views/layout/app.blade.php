@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sistem Informasi Nagari Guguak Malalo</title>
+    <title>@yield('title', 'Sistem Informasi Nagari Guguak Malalo')</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo_nagari.png') }}">
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -77,9 +79,46 @@
         color: #ffffff !important;
     }
 
+    #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    #preloader.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Styling animasi loader */
+    .loader {
+        width: 60px;
+        height: 60px;
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #003d4d; /* Warna loading */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
 <body id="page-top" class="sidebar-toggled">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
 
 @stack('scripts')
     
@@ -163,6 +202,14 @@
     </div>
 
     <script>
+    // Logika Preloader
+    window.addEventListener('load', function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.classList.add('hidden');
+        }
+    });
+
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarToggle = document.getElementById('sidebarToggleTop');
             const body = document.querySelector('body'); // Ambil elemen body

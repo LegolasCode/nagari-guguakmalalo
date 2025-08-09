@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | UMKM')
+
 @section('content')
 <div class="container py-5">
     <h2 class="text-center fw-bold mb-4">UMKM Unggulan</h2>
@@ -75,7 +77,6 @@
                             <th style="width: 50px;">No</th>
                             <th>Nama Usaha</th>
                             <th>Pemilik</th>
-                            <th>NIK</th>
                             <th style="min-width: 150px;">Alamat</th>
                             <th>No HP</th>
                         </tr>
@@ -86,7 +87,6 @@
                                 <td>{{ $loop->iteration + ($allUmkms->currentPage() - 1) * $allUmkms->perPage() }}</td>
                                 <td>{{ $item->nama_usaha }}</td>
                                 <td>{{ $item->nama_pemilik }}</td>
-                                <td>{{ $item->nik_pemilik ?? '-' }}</td>
                                 <td>{{ Str::limit($item->alamat_usaha, 50, '...') ?? '-' }}</td>
                                 <td>{{ $item->no_hp_usaha ?? '-' }}</td>
                             </tr>

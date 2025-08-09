@@ -14,6 +14,19 @@ use Carbon\Carbon;
 
 class UserRequestController extends Controller
 {
+    public function indexPublic()
+    {
+        // Ambil semua jenis layanan surat yang tersedia
+        $letterServices = LetterService::orderBy('name')->get();
+
+        return view('user.pages.layanan-mandiri.index', compact('letterServices'));
+    }
+
+    public function indexSteps()
+    {
+        return view('user.pages.layanan-mandiri.langkah');
+    }
+
     /**
      * Menampilkan daftar layanan surat yang bisa dipilih user.
      */

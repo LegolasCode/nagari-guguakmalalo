@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Pengajuan Surat')
+
 @section('content')
 <div class="mb-4">
     <h3 class="mb-0 text-gray-800">Ajukan Surat : {{ $letterService->name }}</h3>

@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', $tourismSpot->name . ' | Wisata Nagari')
+
 @section('content')
 <div class="container py-5">
     <div class="row">

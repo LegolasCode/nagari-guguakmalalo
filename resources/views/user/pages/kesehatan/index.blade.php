@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Kesehatan')
+
 @section('content')
 <div class="container py-5">
 

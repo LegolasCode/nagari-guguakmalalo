@@ -11,6 +11,8 @@
 
     <title>Nagari Guguak Malalo - Register</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo_nagari.png') }}">
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -87,7 +89,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Registrasi</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
                                     </div>
                                     <form class="user" action="/register" method="POST">
                                         @csrf
@@ -103,7 +105,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="inputEmail" name="email" aria-describedby="emailHelp"
+                                                id="inputEmail" name="email"    
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">

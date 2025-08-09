@@ -91,4 +91,10 @@ class UserController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Password berhasil diubah!');
     }
+
+    public function show()
+    {
+        $user = Auth::user()->load('resident'); // Memuat relasi resident
+        return view('user.profile', compact('user'));
+    }
 }

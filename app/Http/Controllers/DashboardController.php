@@ -71,7 +71,7 @@ class DashboardController extends Controller
                                                       ->orderBy('tahun', 'desc')
                                                       ->pluck('tahun');
         
-        // 2. Tentukan tahun yang dipilih secara default
+        // Tentukan tahun yang dipilih secara default
         $selectedYearPopulasiTanaman = $request->input('tahun_populasi_tanaman');
         if (empty($selectedYearPopulasiTanaman)) {
             $selectedYearPopulasiTanaman = $availableYearsPopulasiTanaman->first() ?? Carbon::now()->year;
@@ -84,7 +84,20 @@ class DashboardController extends Controller
                                              ->get();
         $labelsPopulasiTanaman = $populasiTanamanData->pluck('nama_komoditi')->toArray();
         $valuesPopulasiTanaman = $populasiTanamanData->pluck('total_jumlah')->toArray();
- 
+
+        // Data untuk Grafik Populasi Ternak
+        $availableYearsPopulasiTernak = PopulasiTernak::select('tahun')->distinct()->orderBy('tahun', 'desc')->pluck('tahun');
+        $selectedYearPopulasiTernak = $request->input('tahun_populasi_ternak', $availableYearsPopulasiTernak->first() ?? Carbon::now()->year);
+        
+        $populasiTernakData = PopulasiTernak::select('jenis_ternak', DB::raw('SUM(total_ternak) as total_jumlah'))
+                                           ->where('tahun', $selectedYearPopulasiTernak)
+                                           ->groupBy('jenis_ternak')
+                                           ->orderBy('jenis_ternak')
+                                           ->get();
+
+        $labelsPopulasiTernak = $populasiTernakData->pluck('jenis_ternak')->toArray();
+        $valuesPopulasiTernak = $populasiTernakData->pluck('total_jumlah')->toArray();
+
         return view('pages.dashboard', compact('totalResidents', 
         'totalOfficials', 
         'totalGalleryPhotos', 
@@ -100,7 +113,11 @@ class DashboardController extends Controller
         'labelsPopulasiTanaman',
         'valuesPopulasiTanaman',
         'selectedYearPopulasiTanaman',
-        'availableYearsPopulasiTanaman'
+        'availableYearsPopulasiTanaman',
+        'labelsPopulasiTernak',           
+        'valuesPopulasiTernak',           
+        'selectedYearPopulasiTernak',     
+        'availableYearsPopulasiTernak'
     ));
     }
 }

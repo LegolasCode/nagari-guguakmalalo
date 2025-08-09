@@ -1,5 +1,7 @@
 @extends('user.layout.app')
 
+@section('title', 'Guguak Malalo | Populasi Tanaman')
+
 @section('content')
 <div class="container py-5">
     <h2 class="text-center fw-bold mb-4">Data Populasi Tanaman</h2>

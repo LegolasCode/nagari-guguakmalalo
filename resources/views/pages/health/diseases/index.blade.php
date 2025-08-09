@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Guguak Malalo | Data Penyakit')
+
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -47,6 +49,7 @@
                                 <th style="width: 50px;">No</th>
                                 <th>Nama Penyakit</th>
                                 <th>Jumlah Kasus</th>
+                                <th>Bulan</th>
                                 <th>Tahun</th>
                                 <th style="width: 150px;">Aksi</th>
                             </tr>
@@ -57,6 +60,7 @@
                                     <td>{{ $loop->iteration + ($diseases->currentPage() - 1) * $diseases->perPage() }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ number_format($item->case_count) }}</td>
+                                    <td>{{ $item->bulan ?? '-' }}</td>
                                     <td>{{ $item->year ?? '-' }}</td>
                                     <td>
                                         <div class="d-flex">

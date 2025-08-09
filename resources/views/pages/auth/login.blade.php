@@ -11,6 +11,8 @@
 
     <title>Nagari Guguak Malalo - Login</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo_nagari.png') }}">
+    
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -25,14 +27,15 @@
 
 <style>
     body {
-        /* Background gambar */
-        background-size: cover; /* Menutupi seluruh area */
-        background-position: center; /* Memusatkan gambar */
-        background-repeat: no-repeat; /* Mencegah pengulangan gambar */
-        
-        height: 100vh; /* Pastikan body setinggi viewport */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
         position: relative; /* Penting untuk pseudo-element overlay */
-        overflow: hidden; /* Mencegah scroll yang tidak diinginkan jika gambar terlalu besar */
+        overflow: hidden;
+        display: flex; /* Memusatkan konten */
+        align-items: center;
+        justify-content: center;
     }
 
     /* Menambahkan overlay gelap sebagai pseudo-element */
@@ -43,8 +46,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Hitam dengan opacity 50% */
-        z-index: 1; /* Pastikan overlay di atas gambar background */
+        background-color: rgba(0, 0, 0, 0.7); /* Hitam dengan opacity 70% */
+        z-index: 1;
     }
 
     .container { /* Sesuaikan selektor ini jika kontainer konten kamu punya kelas lain */
@@ -103,7 +106,8 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+                                        <img src="{{ asset('images/logo_nagari.png') }}" alt="Logo" width="36" height="36" class="me-2">
+                                        <h4 class="text-gray-900 mb-4 mt-2">Sistem Informasi Nagari Guguak Malalo</h4>
                                     </div>
                                     <form class="user" action="/login" method="POST">
                                         @csrf
