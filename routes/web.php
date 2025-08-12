@@ -158,6 +158,8 @@ Route::get('layanan-surat/my-request/{letterRequest}', [UserRequestController::c
 Route::get('layanan-surat/my-request/{letterRequest}/download', [UserRequestController::class, 'downloadCompletedFile'])->name('my-request.download')->middleware('auth');
 
 
+
+
 // Beranda Public
 Route::get('/', [LandingPageController::class, 'LandingPageView'])->name('index');
 

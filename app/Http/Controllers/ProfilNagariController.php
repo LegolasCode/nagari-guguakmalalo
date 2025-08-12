@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\VisiMisi;
 use App\Models\VillageOfficial; // Pastikan ini diimpor
+use App\Models\ContentPage;
 
 class ProfilNagariController extends Controller
 {
@@ -16,8 +17,12 @@ class ProfilNagariController extends Controller
 
         // Ambil data officials di sini, sebelum return
         $officials = VillageOfficial::orderBy('order')->orderBy('name')->take(4)->get();
+
+        $strukturBagan = ContentPage::where('type', 'struktur_bagan')->first();
+
         // Hanya ada satu return statement yang meneruskan semua variabel
-        return view('user.pages.profil-nagari', compact('visi', 'misiItems', 'officials'));
+        return view('user.pages.profil-nagari', compact('visi', 'misiItems', 'officials', 'strukturBagan'));
+
     }
 
 
@@ -31,4 +36,5 @@ class ProfilNagariController extends Controller
     {
         return view('user.pages.sejarah-nagari');
     }
+    
 }

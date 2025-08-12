@@ -75,20 +75,49 @@
     </div>
 </section>
 
+<section id="peta-nagari" class="py-5">
+    <div class="container">
+        <h3 class="text-center fw-bold mb-5">Peta Lokasi Nagari Guguak Malalo</h3>
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="ratio ratio-16x9 shadow-lg rounded-3 overflow-hidden">
+                    {{-- Embed Peta Google Maps --}}
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127666.57273412065!2d100.36541512255977!3d-0.625721238281254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd4d783a8a2b2f5%3A0xce99a32dfcc4976c!2sGuguak%20Malalo%2C%20Kecamatan%20Batipuh%20Selatan%2C%20Kabupaten%20Tanah%20Datar%2C%20Sumatera%20Barat!5e0!3m2!1sid!2sid!4v1754972123386!5m2!1sid!2sid" 
+                        width="400" 
+                        height="300" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section id="struktur-organisasi" class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-4">Perangkat Nagari</h3>
+        <h3 class="text-center fw-bold mb-5">Struktur Organisasi Perangkat Nagari</h3>
+
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-10 col-md-11 text-center">
+                {{-- PERUBAHAN DI SINI: Gunakan variabel $strukturBagan --}}
+                @if ($strukturBagan && $strukturBagan->image)
+                    <img src="{{ asset('storage/' . $strukturBagan->image) }}" alt="Bagan Struktur Organisasi Nagari" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+                @endif
+                <p class="small text-muted mt-3">Struktur Organisasi Pemerintahan Nagari Guguak Malalo</p>
+            </div>
+        </div>
         <div class="row row-cols-2 row-cols-lg-4 g-4 justify-content-center">
-            {{-- Loop untuk menampilkan daftar Pengurus dari Database --}}
-            @forelse ($officials as $official) {{-- Gunakan $officials yang diteruskan dari controller --}}
+            @forelse ($officials as $official)
                 <div class="col">
                     <div class="card h-100 text-center shadow-sm">
                         @if ($official->photo)
-                            {{-- Foto dari storage/app/public --}}
                             <img src="{{ asset('storage/' . $official->photo) }}" class="card-img-top mx-auto mt-3 rounded-circle" alt="Foto {{ $official->name }}" style="width: 150px; height: 150px; object-fit: cover;">
                         @else
-                            {{-- Gambar placeholder jika tidak ada foto --}}
-                            <img src="{{ asset('images/default-profile.png') }}" class="card-img-top mx-auto mt-3 rounded-circle" alt="Foto Default" style="width: 150px; height: 150px; object-fit: cover;">
+                            <img src="{{ asset('images/default-profile.png') }}" alt="Foto Default" class="card-img-top mx-auto mt-3 rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
                         @endif
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>

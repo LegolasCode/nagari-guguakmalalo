@@ -57,7 +57,7 @@
             <form action="{{ route('user.pages.umkm.index') }}" method="GET" class="mb-3">
                 <div class="row g-3 align-items-center justify-content-end">
                     {{-- Kolom Pencarian --}}
-                    <div class="col-md-8 col-lg-6 justify">
+                    <div class="col-md-8 col-lg-6">
                         <div class="input-group">
                             <input type="text" name="search" class="form-control bg-light border-0 small" placeholder="Cari berdasarkan Nama Usaha, Pemilik, atau NIK..."
                                 aria-label="Search" aria-describedby="basic-addon2" value="{{ request('search') }}">
