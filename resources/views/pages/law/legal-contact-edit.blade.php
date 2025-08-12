@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="card-footer d-flex justify-content-end">
-        <a href="{{ route('health-facilities.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
+        <a href="{{ route('law.index') }}" class="btn btn-outline-secondary me-2">Kembali</a>
         <button type="submit" class="btn btn-warning">Update</button>
     </div>
 </form>

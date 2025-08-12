@@ -109,18 +109,18 @@
                                         <img src="{{ asset('images/logo_nagari.png') }}" alt="Logo" width="36" height="36" class="me-2">
                                         <h4 class="text-gray-900 mb-4 mt-2">Sistem Informasi Nagari Guguak Malalo</h4>
                                     </div>
-                                    <form class="user" action="/login" method="POST">
+                                    <form class="user" action="/login" method="POST" autocomplete="off">
                                         @csrf
                                         @method('POST')
                                         
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="inputEmail" name="email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..." autocomplete="new-email">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="inputPassword" name="password" placeholder="Password">
+                                                id="inputPassword" name="password" placeholder="Password" autocomplete="new-password">
                                         </div>
                                         <button type="submit" class="btn btn-custom-login btn-user btn-block">
                                             Login

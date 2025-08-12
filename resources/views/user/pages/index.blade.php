@@ -83,12 +83,12 @@
                         </a>
                     </div>
                     <div class="col" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#wilayah-detail" class="btn btn-outline-success btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
-                            <i class="fa-solid fa-map-marked-alt fa-3x mb-3"></i> <span class="fw-semibold fs-5">Wilayah</span>
+                        <a href="{{ url('/profil-nagari') }}" class="btn btn-outline-success btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
+                            <i class="fa-solid fa-map-location-dot fa-3x mb-3"></i> <span class="fw-semibold fs-5">Profil</span>
                         </a>
                     </div>
                     <div class="col" data-aos="fade-up" data-aos-delay="300">
-                        <a href="#umkm-detail" class="btn btn-outline-warning btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
+                        <a href="{{ url('/umkm') }}" class="btn btn-outline-warning btn-lg w-100 py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
                             <i class="fa-solid fa-store fa-3x mb-3"></i> <span class="fw-semibold fs-5">UMKM</span>
                         </a>
                     </div>

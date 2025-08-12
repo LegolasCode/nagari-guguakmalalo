@@ -89,6 +89,9 @@ Route::patch('/complaint/update-status/{id}', [ComplaintController::class, 'upda
  Route::put('/struktur-organisasi/{id}', [ProfilNagariContentController::class, 'updateStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.update');
  Route::delete('struktur-organisasi/{id}', [ProfilNagariContentController::class, 'destroyStrukturOrganisasi'])->middleware('role:Admin')->name('struktur-organisasi.destroy');
 
+Route::get('/struktur-bagan', [ProfilNagariContentController::class, 'editStrukturBagan'])->name('struktur-organisasi.struktur-bagan');
+Route::put('/struktur-bagan', [ProfilNagariContentController::class, 'updateStrukturBagan'])->middleware('role:Admin')->name('struktur-organisasi.struktur-bagan.update');
+
 // News
 Route::resource('news', NewsController::class)->middleware('role:Admin');
 
@@ -124,7 +127,7 @@ Route::get('/law', [HukumController::class, 'index'])->middleware('role:Admin')-
 
 // Kontak Hukum
 Route::get('/law/legal-contact-edit', [ProfilNagariContentController::class, 'editLegalContact'])->middleware('role:Admin')->name('law.legal-contact-edit'); 
-Route::put('/law/legal-contact-edit', [ProfilNagariContentController::class, 'updateLegalContact'])->middleware('role:Admin')->name('law.contact.update'); 
+Route::put('/law/legal-contact-edit', [ProfilNagariContentController::class, 'updateLegalContact'])->middleware('role:Admin')->name('law.legal-contact-edit.update'); 
 // Dokumen 
 Route::resource('documents', DocumentController::class)->middleware('role:Admin');
 
@@ -136,6 +139,9 @@ Route::get('letter-request/{letterRequest}', [LetterRequestController::class, 's
 Route::put('letter-request/{letterRequest}', [LetterRequestController::class, 'update'])->middleware('role:Admin')->name('letter-request.update');
 Route::delete('letter-request/{letterRequest}', [LetterRequestController::class, 'destroy'])->middleware('role:Admin')->name('letter-request.destroy');
 Route::get('letter-request/{letterRequest}/download', [LetterRequestController::class, 'download'])->middleware('role:Admin')->name('letter-request.download');
+
+Route::get('/law/edit-posbankum', [HukumController::class, 'editPosbankum'])->middleware('role:Admin')->name('pages.law.edit-posbankum');
+Route::put('/law/edit-posbankum', [HukumController::class, 'updatePosbankum'])->middleware('role:Admin')->name('pages.law.edit-posbankum.update');
 
 
 // Menampilkan daftar layanan surat yang bisa dipilih

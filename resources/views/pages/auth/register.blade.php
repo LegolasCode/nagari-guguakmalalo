@@ -91,7 +91,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Registrasi Akun</h1>
                                     </div>
-                                    <form class="user" action="/register" method="POST">
+                                    <form class="user" action="/register" method="POST" autocomplete="off">
                                         @csrf
                                         @method('POST')
                                         <div class="form-group">
@@ -105,12 +105,12 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="inputEmail" name="email"    
-                                                placeholder="Enter Email Address...">
+                                                id="inputEmail" name="email"
+                                                placeholder="Enter Email Address..." autocomplete="new-email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="inputPassword" name="password" placeholder="Password">
+                                                <input type="password" class="form-control form-control-user"
+                                                    id="inputPassword" name="password" placeholder="Password" autocomplete="new-password">
                                         </div>
                                         <button type="submit" class="btn btn-custom-register btn-user btn-block">
                                             Simpan

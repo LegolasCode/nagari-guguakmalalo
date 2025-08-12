@@ -231,4 +231,35 @@ class ProfilNagariContentController extends Controller
         return redirect()->route('law.index')->with('success', 'Kontak Hukum berhasil diperbarui!');
         // === AKHIR PERBAIKAN ===
     }
+
+    public function editStrukturBagan()
+    {
+        $strukturBagan = ContentPage::firstOrCreate(
+            ['type' => 'struktur_bagan'],
+            ['title' => 'Bagan Struktur Pengurus', 'body' => 'Gambar bagan struktur organisasi']
+        );
+        return view('pages.profile-nagari-content.struktur-organisasi.struktur-bagan', compact('strukturBagan'));
+    }
+
+    /**
+     * Memperbarui gambar bagan struktur.
+     */
+    public function updateStrukturBagan(Request $request)
+    {
+        $validated = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+        
+        $strukturBagan = ContentPage::where('type', 'struktur_bagan')->firstOrFail();
+        
+        if ($request->hasFile('image')) {
+            if ($strukturBagan->image) {
+                Storage::disk('public')->delete($strukturBagan->image);
+            }
+            $imagePath = $request->file('image')->store('content_pages', 'public');
+            $strukturBagan->update(['image' => $imagePath]);
+        }
+        
+        return redirect('/struktur-organisasi')->with('success', 'Gambar bagan struktur berhasil diperbarui!');
+    }
 }
