@@ -2,35 +2,31 @@
     "version": 2,
     "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+      "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
-        { "src": "/build/(.*)", "dest": "/public/build/" },
-        { "src": "/(.*)", "dest": "/api/index.php" }
+      { "src": "/(.*\\.[A-Za-z]{2,4})$", "dest": "/public/$1" },
+      { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "outputDirectory": "public",
+    "build": {
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=4096"
+      }
+    },
+    "installCommand": "npm install && php artisan storage:link",
+    "buildCommand": "npm run build && php artisan migrate --force",
     "env": {
-        "APP_ENV": "production",
-        "APP_DEBUG": "false",
-        "APP_URL": "https://nagari-guguakmalalo.vercel.app",
-        "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
-        
-        "DB_CONNECTION": "mysql",
-        "DB_HOST": "your-db-host.com",
-        "DB_PORT": "3306",
-        "DB_DATABASE": "laravel_nagari",
-        "DB_USERNAME": "root",
-        "DB_PASSWORD": "Legolas04",
-        
-        "NODE_VERSION": "18.16.0",
-        
-        "MAIL_MAILER": "smtp",
-        "MAIL_HOST": "mailhog",
-        "MAIL_PORT": "1025",
-        "MAIL_USERNAME": null,
-        "MAIL_PASSWORD": null,
-        "MAIL_ENCRYPTION": null,
-        "MAIL_FROM_ADDRESS": null,
-        "MAIL_FROM_NAME": "${APP_NAME}"
+      "APP_ENV": "production",
+      "APP_DEBUG": "false",
+      "APP_URL": "https://nagari-guguakmalalo.vercel.app",
+      "APP_KEY": "base64:TGaVaXwhWgjn9akhE4SCSIjGG/cQqvICUQ+PgLA3Bs0=",
+
+      "DB_CONNECTION": "mysql",
+      "DB_HOST": "your-db-host.com",
+      "DB_PORT": "3306",
+      "DB_DATABASE": "laravel_nagari",
+      "DB_USERNAME": "root",
+      "DB_PASSWORD": "Legolas04"
     }
 }
